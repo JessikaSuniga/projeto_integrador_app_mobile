@@ -1,3 +1,4 @@
+import 'package:projeto_integrador_app/app/domain/models/book.dart';
 import 'package:projeto_integrador_app/app/domain/models/borrowed.dart';
 import 'package:projeto_integrador_app/app/domain/repositories/book_repository.dart';
 import 'package:projeto_integrador_app/app/domain/repositories/borrowed_repository.dart';
@@ -18,11 +19,31 @@ class BorrowedService {
   }
 
   Future<List<Borrowed>> findAll() async {
-    List<Borrowed> borroweds = await _borrowedRepository.findAll();
+    List<Borrowed> borroweds = await _borrowedRepository.findAllOpen();
 
     for (var borrowed in borroweds) {
       borrowed.book = await _bookRepository.findById(borrowed.bookId);
     }
     return borroweds;
+  }
+
+  Future<List<Book>> findAllBookAvailable(int borrowedBookId) async {
+    var borroweds = await _borrowedRepository.findAllOpen();
+    var query = "item_type='bought'";
+
+    if (borroweds.isNotEmpty) {
+      query += " AND id not in (";
+      var count = 0;
+      for (var item in borroweds) {
+        if (item.id != borrowedBookId) {
+          query =
+              count == 0 ? '$query${item.bookId}' : '$query, ${item.bookId}';
+          count++;
+        }
+      }
+      query += ")";
+    }
+
+    return _bookRepository.findAllBookAvailable(query);
   }
 }

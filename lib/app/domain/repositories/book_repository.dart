@@ -19,6 +19,13 @@ class BookRepository {
     return allRows.map((book) => Book.fromMap(book)).toList();
   }
 
+  Future<List<Book>> findAllBookAvailable(String query) async {
+    Database _db = await _getDatabase();
+
+    List<Map<String, dynamic>> allRows = await _db.query(_table, where: query);
+    return allRows.map((book) => Book.fromMap(book)).toList();
+  }
+
   Future<Book> findById(int id) async {
     Database _db = await _getDatabase();
     List<Map<String, dynamic>> allRows =

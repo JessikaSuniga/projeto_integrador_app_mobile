@@ -55,9 +55,10 @@ class Tile extends StatelessWidget {
                 ),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    flex: 1,
+                    flex: 2,
                     child: infoLeft ?? Expanded(flex: 1, child: infoLeft),
                   ),
                   Expanded(

@@ -17,7 +17,14 @@ class BorrowedRepository {
     return allRows.map((borrowed) => Borrowed.fromMap(borrowed)).toList();
   }
 
-  Future<Borrowed> findByIdAll(int id) async {
+  Future<List<Borrowed>> findAllOpen() async {
+    final _db = await _getDatabase();
+    List<Map<String, dynamic>> allRows =
+        await _db.query(_table, where: 'end_date is null');
+    return allRows.map((borrowed) => Borrowed.fromMap(borrowed)).toList();
+  }
+
+  Future<Borrowed> findById(int id) async {
     final _db = await _getDatabase();
     List<Map<String, dynamic>> allRows =
         await _db.query(_table, where: "id=?", whereArgs: [id]);

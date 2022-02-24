@@ -26,7 +26,7 @@ abstract class _BorrowedListBack with Store {
 
   goToForm(BuildContext context, [Borrowed borrowed]) {
     Navigator.of(context)
-        .pushNamed(Routes.BOOK_FORM, arguments: borrowed)
+        .pushNamed(Routes.BORROWED_FORM, arguments: borrowed)
         .then(refleshList);
   }
 
