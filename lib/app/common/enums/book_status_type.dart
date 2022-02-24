@@ -1,4 +1,8 @@
-enum BookStatusType { read, notRead, reading }
+enum BookStatusType {
+  read,
+  notRead,
+  reading,
+}
 
 extension BookStatusTypeDescription on BookStatusType {
   // ignore: missing_return

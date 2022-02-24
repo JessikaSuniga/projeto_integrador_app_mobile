@@ -6,7 +6,7 @@ enum BookLanguageType {
   mandarin,
   chinese,
   japanese,
-  other
+  other,
 }
 
 extension BookLanguageTypeDescription on BookLanguageType {

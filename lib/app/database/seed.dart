@@ -1,3 +1,9 @@
+const String morteSubita = '';
+
+const String homemDeGiz = '';
+
+const String itACoisa = '';
+
 const insertBook = '''
 INSERT INTO book (title, author, publishing_company, isbn, format, publication_date, pages, language, serie, volume, description, image, start_date, end_date, status, pages_read, item_type, notes)
 VALUES ('Harry Potter e o prisioneiro de Azkaban', 'J.K. Rowling', 'Rocco', 'dfgdgd', 'ebook', 1594682971156, 50, 'portuguese', '3', 5, 'Ótimo livro', null, 1555962196, null, 'read', 50, 'bought', 'teste|||teste2');
@@ -44,4 +50,20 @@ VALUES (1, 4);
 const insertBorrowed = '''
 INSERT INTO borrowed (book_id, name, start_date, end_date)
 VALUES (1, 'Alex', 1555962196, null);
+''';
+
+//
+const insertBookIt = '''
+INSERT INTO book (title, author, publishing_company, isbn, format, publication_date, pages, language, serie, volume, description, image, start_date, end_date, status, pages_read, item_type)
+VALUES ('It - A Coisa', 'Stephen King', 'Suma', '978-8560280941', 'paperback', 1594682971156, 1104, 'portuguese', '3', 5, 'Ótimo livro', null, 1555962196, null, 'read', 50, 'bought');
+''';
+
+const insertBookMS = '''
+INSERT INTO book (title, author, publishing_company, isbn, format, publication_date, pages, language, serie, volume, description, image, start_date, end_date, status, pages_read, item_type)
+VALUES ('Morte Súbita', 'J.K. Rowling', 'Casa dos Livros', '978-8560280940', 'paperback', 1594682971156, 512, 'portuguese', '3', 5, 'Ótimo livro', null, 1555962196, null, 'read', 50, 'bought');
+''';
+
+const insertBookGiz = '''
+INSERT INTO book (title, author, publishing_company, isbn, format, publication_date, pages, language, serie, volume, description, image, start_date, end_date, status, pages_read, item_type)
+VALUES ('O Homem de Giz', 'C.J. Tudor', 'Intrínseca', '978-8551002933', 'hardCover', 1594682971156, 272, 'portuguese', '3', 5, 'Ótimo livro', null, 1555962196, null, 'read', 50, 'bought');
 ''';

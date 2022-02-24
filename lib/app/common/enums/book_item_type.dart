@@ -1,4 +1,7 @@
-enum BookItemType { bought, desire }
+enum BookItemType {
+  bought,
+  desire,
+}
 
 extension BookItemTypeDescription on BookItemType {
   // ignore: missing_return

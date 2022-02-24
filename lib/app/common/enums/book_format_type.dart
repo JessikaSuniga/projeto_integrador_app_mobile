@@ -1,4 +1,9 @@
-enum BookFormatType { paperback, hardCover, pocketBook, ebook }
+enum BookFormatType {
+  paperback,
+  hardCover,
+  pocketBook,
+  ebook,
+}
 
 extension BookFormatTypeDescription on BookFormatType {
   // ignore: missing_return

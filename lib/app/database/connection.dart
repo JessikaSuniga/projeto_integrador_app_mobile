@@ -21,6 +21,7 @@ class Connection {
 
   _initDatabase() async {
     String path = join(await getDatabasesPath(), _databaseName);
+    // deleta o diretório do banco
     // deleteDatabase(path);
     return await openDatabase(
       path,
@@ -54,6 +55,10 @@ class Connection {
 
     await db.execute(insertBook);
     await db.execute(insertBook1);
+
+    await db.execute(insertBookIt);
+    await db.execute(insertBookMS);
+    await db.execute(insertBookGiz);
 
     await db.execute(insertBookToGenre1);
     await db.execute(insertBookToGenre2);
