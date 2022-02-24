@@ -16,9 +16,8 @@ import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class BookDetais extends StatefulWidget {
   final BookFormBack back;
-  final GlobalKey<FormState> formKey;
 
-  const BookDetais({Key key, this.back, this.formKey}) : super(key: key);
+  const BookDetais({Key key, this.back}) : super(key: key);
 
   @override
   _BookDetaisState createState() => _BookDetaisState();
@@ -39,23 +38,20 @@ class _BookDetaisState extends State<BookDetais> {
     return Scroll(
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: Form(
-          key: widget.formKey,
-          child: Column(
-            children: [
-              _titleField,
-              _authorField,
-              _sourceBookSection(),
-              _genreField,
-              Padding(padding: const EdgeInsets.only(top: 20, bottom: 0)),
-              _publicationDateField,
-              _pagesField,
-              _languageSelect,
-              _serieField,
-              _volumeField,
-              _descriptionField,
-            ],
-          ),
+        child: Column(
+          children: [
+            _titleField,
+            _authorField,
+            _sourceBookSection(),
+            _genreField,
+            Padding(padding: const EdgeInsets.only(top: 20, bottom: 0)),
+            _publicationDateField,
+            _pagesField,
+            _languageSelect,
+            _serieField,
+            _volumeField,
+            _descriptionField,
+          ],
         ),
       ),
     );
@@ -132,7 +128,8 @@ class _BookDetaisState extends State<BookDetais> {
         onTap: _showDialog,
         child: widget.back.book.image != null
             ? Utility.imageFromBase64String(widget.back.book.image)
-            : Image.asset(ConstantAssets.imgDefault),
+            : Image.asset(ConstantAssets.imgDefault,
+                fit: BoxFit.fill, height: 160),
       ),
     );
   }
@@ -262,7 +259,7 @@ class _BookDetaisState extends State<BookDetais> {
 
   Widget get _genreField {
     return FutureBuilder(
-      future: widget.back.listGenre,
+      future: widget.back.findAllGenre(),
       builder: (context, result) {
         if (!result.hasData) {
           return const CircularProgressIndicator();
@@ -467,7 +464,7 @@ class _BookDetaisState extends State<BookDetais> {
         labelText: "Descrição:",
         // border: OutlineInputBorder(),
         labelStyle: Constants.sdFormTitle,
-        hintText: 'Ecreva a descrição do livro aqui',
+        hintText: 'Escreva a descrição do livro aqui',
         hintStyle: Constants.sdFormHint,
         focusedBorder: Constants.sdFormFocusedDorder,
       ),

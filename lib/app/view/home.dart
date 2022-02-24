@@ -108,13 +108,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           style: TextStyle(color: Constants.myOrange),
         ),
         backgroundColor: Constants.headerColorLigth,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.menu),
-            color: Constants.myOrange,
-            onPressed: () {},
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: const Icon(Icons.menu),
+        //     color: Constants.myOrange,
+        //     onPressed: () {},
+        //   ),
+        // ],
         bottom: TabBar(
           isScrollable: true,
           onTap: _onTabTop,

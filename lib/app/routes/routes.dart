@@ -9,4 +9,6 @@ class Routes {
   static const BORROWED_FORM = '/borrowed-form';
   // ignore: constant_identifier_names
   static const DESIRE_FORM = '/desire-form';
+  // ignore: constant_identifier_names
+  static const DESIRE_VIEW = '/desire-view';
 }

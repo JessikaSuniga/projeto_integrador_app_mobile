@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_integrador_app/app/common/assets.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/utility/utility.dart';
 import 'package:projeto_integrador_app/app/view/components/my_divider.dart';
@@ -23,10 +24,11 @@ class Tile extends StatelessWidget {
     if (uri != null) {
       return Utility.imageFromBase64String(uri);
     }
-    return SizedBox(
-        width: 100,
-        height: 100,
-        child: Image.asset('assets/images/image_default.png'));
+    return Image.asset(
+      ConstantAssets.imgDefault,
+      fit: BoxFit.fill,
+      height: 160,
+    );
   }
 
   @override

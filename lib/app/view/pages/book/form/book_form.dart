@@ -36,8 +36,9 @@ class _BookFormState extends State<BookForm>
     return Scaffold(
       backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
-        title: const Text(
-          "Cadastro do livro",
+        centerTitle: true,
+        title: Text(
+          back.book.id == null ? "Cadastrar livro" : "Editar livro",
           style: TextStyle(color: Constants.myOrange),
         ),
         backgroundColor: Constants.headerColorLigth,
@@ -55,18 +56,15 @@ class _BookFormState extends State<BookForm>
           indicatorColor: Constants.myOrange,
         ),
       ),
-      body: TabBarView(
-        controller: _controller,
-        children: <Widget>[
-          BookDetais(
-            back: back,
-            formKey: formKey,
-          ),
-          BookNote(
-            back: back,
-            formKey: formKey,
-          ),
-        ],
+      body: Form(
+        key: formKey,
+        child: TabBarView(
+          controller: _controller,
+          children: <Widget>[
+            BookDetais(back: back),
+            BookNote(back: back),
+          ],
+        ),
       ),
       bottomNavigationBar: SizedBox(
         width: double.infinity,

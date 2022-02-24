@@ -7,7 +7,7 @@ class Connection {
 
   static final Connection instance = Connection._();
 
-  final _databaseName = 'db_book';
+  final _databaseName = 'database1';
   final _databaseVersion = 1;
 
   static Database _database;
@@ -84,6 +84,7 @@ class Connection {
       pages_read INTEGER DEFAULT 0,
       status VARCHAR DEFAULT 'notRead' NOT NULL,
       item_type VARCHAR DEFAULT 'bought' NOT NULL,
+      evaluation DOUBLE,
       notes VARCHAR
     );
   ''';

@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
-import 'package:projeto_integrador_app/app/view/pages/desire/form/desire_details.dart';
-import 'package:projeto_integrador_app/app/view/pages/desire/form/desire_form_back.dart';
+import 'package:projeto_integrador_app/app/view/pages/desire/manage/desire_form_back.dart';
+import 'package:projeto_integrador_app/app/view/pages/desire/manage/form/desire_details.dart';
 
 class DesireForm extends StatelessWidget {
   const DesireForm({Key key}) : super(key: key);
@@ -16,15 +16,18 @@ class DesireForm extends StatelessWidget {
     return Scaffold(
       backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
-        title: const Text(
-          "Cadastro do livro",
+        centerTitle: true,
+        title: Text(
+          _back.book.id == null ? "Cadastrar desejo" : "Editar desejo",
           style: TextStyle(color: Constants.myOrange),
         ),
         backgroundColor: Constants.headerColorLigth,
       ),
-      body: DesireDetais(
-        back: _back,
-        formKey: _formKey,
+      body: Form(
+        key: _formKey,
+        child: DesireDetais(
+          back: _back,
+        ),
       ),
       bottomNavigationBar: SizedBox(
         width: double.infinity,

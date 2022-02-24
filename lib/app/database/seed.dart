@@ -1,6 +1,6 @@
 const insertBook = '''
-INSERT INTO book (title, author, publishing_company, isbn, format, publication_date, pages, language, serie, volume, description, image, start_date, end_date, status, pages_read, item_type)
-VALUES ('Harry Potter e o prisioneiro de Azkaban', 'J.K. Rowling', 'Rocco', 'dfgdgd', 'ebook', 1594682971156, 50, 'portuguese', '3', 5, 'Ótimo livro', null, 1555962196, null, 'read', 50, 'bought');
+INSERT INTO book (title, author, publishing_company, isbn, format, publication_date, pages, language, serie, volume, description, image, start_date, end_date, status, pages_read, item_type, notes)
+VALUES ('Harry Potter e o prisioneiro de Azkaban', 'J.K. Rowling', 'Rocco', 'dfgdgd', 'ebook', 1594682971156, 50, 'portuguese', '3', 5, 'Ótimo livro', null, 1555962196, null, 'read', 50, 'bought', 'teste|||teste2');
 ''';
 
 const insertBookToGenre1 = '''

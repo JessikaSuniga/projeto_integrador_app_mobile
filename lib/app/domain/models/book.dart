@@ -24,9 +24,9 @@ class Book {
   DateTime endDate;
   int pagesRead;
   BookStatusType status;
+  double evaluation;
   BookItemType itemType;
 
-  var newDate = DateTime.now();
   Book({
     this.id,
     this.title,
@@ -47,6 +47,7 @@ class Book {
     this.endDate,
     this.pagesRead = 0,
     this.status = BookStatusType.notRead,
+    this.evaluation,
     this.itemType,
   });
 
@@ -56,7 +57,7 @@ class Book {
     author = obj['author'] as String;
     publishingCompany = obj['publishing_company'] as String;
     isbn = obj['isbn'] as String;
-    notes = obj['notes'].toString().split('|||');
+    notes = obj['notes'] != null ? obj['notes'].toString().split('|||') : [''];
     format =
         EnumToString.fromString(BookFormatType.values, obj['format'] as String);
     publicationDate = _millisecondsToDatetime(obj['publication_date'] as int);
@@ -72,6 +73,7 @@ class Book {
     pagesRead = obj['pages_read'] as int;
     status =
         EnumToString.fromString(BookStatusType.values, obj['status'] as String);
+    evaluation = obj['evaluation'];
     itemType = EnumToString.fromString(
         BookItemType.values, obj['item_type'] as String);
   }
@@ -97,6 +99,7 @@ class Book {
       'end_date': _datetimeToMilliseconds(endDate),
       'pages_read': pagesRead,
       'status': status.cod,
+      'evaluation': evaluation,
       'item_type': itemType.cod
     };
 

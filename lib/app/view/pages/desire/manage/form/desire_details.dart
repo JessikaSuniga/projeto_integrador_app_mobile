@@ -11,14 +11,13 @@ import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/utility/utility.dart';
 import 'package:projeto_integrador_app/app/domain/models/genre.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
-import 'package:projeto_integrador_app/app/view/pages/desire/form/desire_form_back.dart';
+import 'package:projeto_integrador_app/app/view/pages/desire/manage/desire_form_back.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class DesireDetais extends StatefulWidget {
   final DesireFormBack back;
-  final GlobalKey<FormState> formKey;
 
-  const DesireDetais({Key key, this.back, this.formKey}) : super(key: key);
+  const DesireDetais({Key key, this.back}) : super(key: key);
 
   @override
   _DesireDetaisState createState() => _DesireDetaisState();
@@ -39,24 +38,21 @@ class _DesireDetaisState extends State<DesireDetais> {
     return Scroll(
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: Form(
-          key: widget.formKey,
-          child: Column(
-            children: [
-              _titleField,
-              _authorField,
-              _sourceBookSection(),
-              _genreField,
-              Padding(padding: const EdgeInsets.only(top: 20, bottom: 0)),
-              _publicationDateField,
-              _pagesField,
-              _languageSelect,
-              // _serieField,
-              // _volumeField,
-              // _descriptionField,
-              //teste
-            ],
-          ),
+        child: Column(
+          children: [
+            _titleField,
+            _authorField,
+            _sourceBookSection(),
+            _genreField,
+            Padding(padding: const EdgeInsets.only(top: 20, bottom: 0)),
+            _publicationDateField,
+            _pagesField,
+            _languageSelect,
+            // _serieField,
+            // _volumeField,
+            // _descriptionField,
+            //teste
+          ],
         ),
       ),
     );
@@ -126,9 +122,9 @@ class _DesireDetaisState extends State<DesireDetais> {
   Widget _imagePicker() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade400, width: 2),
-      ),
+      // decoration: BoxDecoration(
+      //   border: Border.all(color: Colors.grey.shade400, width: 2),
+      // ),
       child: GestureDetector(
         onTap: _showDialog,
         child: widget.back.book.image != null
@@ -263,7 +259,7 @@ class _DesireDetaisState extends State<DesireDetais> {
 
   Widget get _genreField {
     return FutureBuilder(
-      future: widget.back.listGenre,
+      future: widget.back.findAllGenre(),
       builder: (context, result) {
         if (!result.hasData) {
           return const CircularProgressIndicator();
@@ -468,7 +464,7 @@ class _DesireDetaisState extends State<DesireDetais> {
         labelText: "Descrição:",
         // border: OutlineInputBorder(),
         labelStyle: Constants.sdFormTitle,
-        hintText: 'Ecreva a descrição do livro aqui',
+        hintText: 'Escreva a descrição do livro aqui',
         hintStyle: Constants.sdFormHint,
         focusedBorder: Constants.sdFormFocusedDorder,
       ),

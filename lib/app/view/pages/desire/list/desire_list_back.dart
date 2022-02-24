@@ -31,6 +31,12 @@ abstract class _DesireListBack with Store {
         .then(refleshList);
   }
 
+  goToView(BuildContext context, [Book book]) {
+    Navigator.of(context)
+        .pushNamed(Routes.DESIRE_VIEW, arguments: book)
+        .then(refleshList);
+  }
+
   remove(dynamic id, BuildContext context) async {
     try {
       await _service.remove(id);
