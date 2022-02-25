@@ -30,6 +30,12 @@ abstract class _BorrowedListBack with Store {
         .then(refleshList);
   }
 
+  goToView(BuildContext context, [Borrowed borrowed]) {
+    Navigator.of(context)
+        .pushNamed(Routes.BORROWED_VIEW, arguments: borrowed)
+        .then(refleshList);
+  }
+
   remove(dynamic id, BuildContext context) async {
     try {
       await _service.remove(id);

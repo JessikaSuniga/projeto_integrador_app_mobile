@@ -42,7 +42,7 @@ class DesireFormBack {
       CommonService.messageSuccess(context, 'Livro salvo com sucesso!');
       Navigator.of(context).pop();
     } catch (e) {
-      CommonService.messageSuccess(context, 'Falha ao salvar livro! $e');
+      CommonService.messageError(context, 'Falha ao salvar livro! $e');
       Navigator.of(context).pop();
     }
   }

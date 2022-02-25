@@ -13,6 +13,8 @@ class ShelfService {
     if (shelf.id == null) {
       await _shelfRepository.insert(shelf);
 
+      if (shelf.books == null) return;
+
       for (var book in shelf.books) {
         await _shelfToBookRepository.insert(book);
       }

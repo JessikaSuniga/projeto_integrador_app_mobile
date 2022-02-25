@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/common/assets.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_format_type.dart';
@@ -23,7 +21,7 @@ class DesireView extends StatelessWidget {
         backgroundColor: Constants.bgColorLigth,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(
+          title: const Text(
             "Visualizar desejo",
             style: TextStyle(color: Constants.myOrange),
           ),
@@ -48,7 +46,7 @@ class DesireView extends StatelessWidget {
                       Expanded(
                         flex: 2,
                         child: Container(
-                          margin: EdgeInsets.symmetric(vertical: 20),
+                          margin: const EdgeInsets.symmetric(vertical: 20),
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: Colors.grey.shade400, width: 2),
@@ -68,7 +66,7 @@ class DesireView extends StatelessWidget {
                               padding: const EdgeInsets.all(10),
                               child: Text(
                                 _back.book.title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 18),
                               ),
                             ),
@@ -80,8 +78,8 @@ class DesireView extends StatelessWidget {
                               padding: const EdgeInsets.all(10),
                               child: Row(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 8.0),
                                     child: Text(
                                       "ISBN",
                                       style: TextStyle(
@@ -110,7 +108,7 @@ class DesireView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Gênero",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -135,7 +133,7 @@ class DesireView extends StatelessWidget {
                                                 (e) => Text(e.genre.name),
                                               )
                                               .toList()
-                                          : [Text("-")],
+                                          : [const Text("-")],
                                     );
                                   },
                                 ),
@@ -148,7 +146,7 @@ class DesireView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Editora",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -164,7 +162,7 @@ class DesireView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Formato",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -186,7 +184,7 @@ class DesireView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Páginas",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -202,7 +200,7 @@ class DesireView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Idioma",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -218,7 +216,7 @@ class DesireView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Publicação",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,

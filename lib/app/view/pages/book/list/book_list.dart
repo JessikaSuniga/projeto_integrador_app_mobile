@@ -40,34 +40,37 @@ class BookList extends StatelessWidget {
                         context, () => _back.remove(resultData[i].id, context)),
                   ],
                 ),
-                child: Tile(
-                  image: resultData[i].image,
-                  title: resultData[i].title,
-                  subtitle: resultData[i].author,
-                  infoLeft: Row(
-                    children: [
-                      const Icon(
-                        Icons.library_books,
-                        color: Constants.myOrange,
-                      ),
-                      Text(
-                        resultData[i].pages.toString(),
-                        style: Constants.sdAuxMessages,
-                      ),
-                    ],
-                  ),
-                  infoRigth: Row(
-                    children: [
-                      const Icon(
-                        Icons.calendar_today_outlined,
-                        color: Constants.myOrange,
-                      ),
-                      Text(
-                        CommonService.formattedDate(
-                            resultData[i].publicationDate),
-                        style: Constants.sdAuxMessages,
-                      ),
-                    ],
+                child: GestureDetector(
+                  onTap: () => _back.goToView(context, resultData[i]),
+                  child: Tile(
+                    image: resultData[i].image,
+                    title: resultData[i].title,
+                    subtitle: resultData[i].author,
+                    infoLeft: Row(
+                      children: [
+                        const Icon(
+                          Icons.library_books,
+                          color: Constants.myOrange,
+                        ),
+                        Text(
+                          resultData[i].pages.toString(),
+                          style: Constants.sdAuxMessages,
+                        ),
+                      ],
+                    ),
+                    infoRigth: Row(
+                      children: [
+                        const Icon(
+                          Icons.calendar_today_outlined,
+                          color: Constants.myOrange,
+                        ),
+                        Text(
+                          CommonService.formattedDate(
+                              resultData[i].publicationDate),
+                          style: Constants.sdAuxMessages,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );

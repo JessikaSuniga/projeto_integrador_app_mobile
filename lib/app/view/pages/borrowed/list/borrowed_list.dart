@@ -40,28 +40,33 @@ class BorrowedList extends StatelessWidget {
                         context, () => _back.remove(resultData[i].id, context)),
                   ],
                 ),
-                child: Tile(
-                  title: resultData[i].book.title,
-                  subtitle: resultData[i].book.author,
-                  image: resultData[i].book.image,
-                  infoLeft: Row(
-                    children: [
-                      const Icon(
-                        Icons.account_circle,
-                        color: Constants.myBlack,
-                      ),
-                      Text(
-                        resultData[i].name,
-                        style: Constants.sdAuxMessages,
-                      ),
-                    ],
-                  ),
-                  infoRigth: Row(
-                    children: [
-                      const Text('Início: ', style: Constants.sdAuxMessages),
-                      Text(CommonService.formattedDate(resultData[i].startDate),
-                          style: Constants.sdAuxMessages),
-                    ],
+                child: GestureDetector(
+                  onTap: () => _back.goToView(context, resultData[i]),
+                  child: Tile(
+                    title: resultData[i].book.title,
+                    subtitle: resultData[i].book.author,
+                    image: resultData[i].book.image,
+                    infoLeft: Row(
+                      children: [
+                        const Icon(
+                          Icons.account_circle,
+                          color: Constants.myBlack,
+                        ),
+                        Text(
+                          resultData[i].name,
+                          style: Constants.sdAuxMessages,
+                        ),
+                      ],
+                    ),
+                    infoRigth: Row(
+                      children: [
+                        const Text('Início: ', style: Constants.sdAuxMessages),
+                        Text(
+                            CommonService.formattedDate(
+                                resultData[i].startDate),
+                            style: Constants.sdAuxMessages),
+                      ],
+                    ),
                   ),
                 ),
               );

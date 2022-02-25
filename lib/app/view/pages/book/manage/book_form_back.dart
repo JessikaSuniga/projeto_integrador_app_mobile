@@ -7,6 +7,7 @@ import 'package:projeto_integrador_app/app/domain/models/genre.dart';
 import 'package:projeto_integrador_app/app/domain/services/book_service.dart';
 import 'package:projeto_integrador_app/app/domain/services/book_to_genre_service.dart';
 import 'package:projeto_integrador_app/app/domain/services/genre_service.dart';
+import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 // flutter pub run build_runner build
@@ -29,6 +30,11 @@ class BookFormBack {
     return _serviceBookToGenre.findAllByBookId(bookId);
   }
 
+  goToForm(BuildContext context, [Book book]) {
+    Navigator.of(context)
+        .pushReplacementNamed(Routes.BOOK_FORM, arguments: book);
+  }
+
   save(BuildContext context) async {
     try {
       book.itemType ??= BookItemType.bought;
@@ -36,7 +42,7 @@ class BookFormBack {
       CommonService.messageSuccess(context, 'Livro salvo com sucesso!');
       Navigator.of(context).pop();
     } catch (e) {
-      CommonService.messageSuccess(context, 'Falha ao salvar livro! $e');
+      CommonService.messageError(context, 'Falha ao salvar livro! $e');
       Navigator.of(context).pop();
     }
   }

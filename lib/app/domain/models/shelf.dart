@@ -3,7 +3,7 @@ import 'package:projeto_integrador_app/app/domain/models/shelf_to_book.dart';
 class Shelf {
   int id;
   String name;
-  List<ShelfToBook> books = [];
+  List<ShelfToBook> books;
 
   Shelf({
     this.id,

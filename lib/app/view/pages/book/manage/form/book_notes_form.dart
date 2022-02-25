@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
+import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
-import 'package:projeto_integrador_app/app/view/pages/book/form/book_form_back.dart';
 
-class BookNote extends StatefulWidget {
+class BookNotesFrom extends StatefulWidget {
   final BookFormBack back;
 
-  const BookNote({Key key, this.back}) : super(key: key);
+  const BookNotesFrom({Key key, this.back}) : super(key: key);
 
   @override
-  _BookNoteState createState() => _BookNoteState();
+  _BookNotesFromState createState() => _BookNotesFromState();
 }
 
-class _BookNoteState extends State<BookNote> {
+class _BookNotesFromState extends State<BookNotesFrom> {
   // String _validationIsNullOrEmpty(value) {
   //   if (value == null || value.trim().isEmpty) {
   //     return 'Informe um valor válido';

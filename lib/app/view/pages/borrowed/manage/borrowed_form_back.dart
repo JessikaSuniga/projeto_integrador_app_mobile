@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:projeto_integrador_app/app/domain/models/book.dart';
 import 'package:projeto_integrador_app/app/domain/models/borrowed.dart';
 import 'package:projeto_integrador_app/app/domain/services/borrowed_service.dart';
+import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 // flutter pub run build_runner build
@@ -19,13 +20,18 @@ class BorrowedFormBack {
     return _service.findAllBookAvailable(id);
   }
 
+  goToForm(BuildContext context, [Borrowed borrowed]) {
+    Navigator.of(context)
+        .pushReplacementNamed(Routes.BORROWED_FORM, arguments: borrowed);
+  }
+
   save(BuildContext context) async {
     try {
       await _service.save(borrowed);
-      CommonService.messageSuccess(context, 'Livro salvo com sucesso!');
+      CommonService.messageSuccess(context, 'Empréstimo salvo com sucesso!');
       Navigator.of(context).pop();
     } catch (e) {
-      CommonService.messageSuccess(context, 'Falha ao salvar livro! $e');
+      CommonService.messageError(context, 'Falha ao salvar empréstimo! $e');
       Navigator.of(context).pop();
     }
   }

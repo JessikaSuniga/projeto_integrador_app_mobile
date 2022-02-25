@@ -5,6 +5,7 @@ import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/list/book_list.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/list/borrowed_list.dart';
 import 'package:projeto_integrador_app/app/view/pages/desire/list/desire_list.dart';
+import 'package:projeto_integrador_app/app/view/pages/shelf/form/shelf_form_back.dart';
 import 'package:projeto_integrador_app/app/view/pages/shelf/list/shelf_list.dart';
 
 class Home extends StatefulWidget {
@@ -84,7 +85,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           Navigator.of(context).pushNamed(Routes.BOOK_FORM);
           return;
         case NavigationTop.shelf:
-          Navigator.of(context).pushNamed(Routes.SHELF_FORM);
+          var back = ShelfFormBack(context);
+          back.dispacheDialogSave(context);
+          // Navigator.of(context).pushNamed(Routes.SHELF_FORM);
           return;
         case NavigationTop.borrowed:
           Navigator.of(context).pushNamed(Routes.BORROWED_FORM);

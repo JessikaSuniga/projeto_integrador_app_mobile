@@ -11,19 +11,19 @@ import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/utility/utility.dart';
 import 'package:projeto_integrador_app/app/domain/models/genre.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
-import 'package:projeto_integrador_app/app/view/pages/book/form/book_form_back.dart';
+import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
-class BookDetais extends StatefulWidget {
+class BookDetaisForm extends StatefulWidget {
   final BookFormBack back;
 
-  const BookDetais({Key key, this.back}) : super(key: key);
+  const BookDetaisForm({Key key, this.back}) : super(key: key);
 
   @override
-  _BookDetaisState createState() => _BookDetaisState();
+  _BookDetaisFormState createState() => _BookDetaisFormState();
 }
 
-class _BookDetaisState extends State<BookDetais> {
+class _BookDetaisFormState extends State<BookDetaisForm> {
   final _picker = ImagePicker();
 
   // String _validationIsNullOrEmpty(value) {

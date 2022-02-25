@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
-import 'package:projeto_integrador_app/app/view/pages/book/form/book_details.dart';
-import 'package:projeto_integrador_app/app/view/pages/book/form/book_form_back.dart';
-import 'package:projeto_integrador_app/app/view/pages/book/form/book_notes.dart';
+import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
+import 'package:projeto_integrador_app/app/view/pages/book/manage/form/book_details_form.dart';
+import 'package:projeto_integrador_app/app/view/pages/book/manage/form/book_notes_form.dart';
 
 class BookForm extends StatefulWidget {
   const BookForm({Key key}) : super(key: key);
@@ -61,8 +61,8 @@ class _BookFormState extends State<BookForm>
         child: TabBarView(
           controller: _controller,
           children: <Widget>[
-            BookDetais(back: back),
-            BookNote(back: back),
+            BookDetaisForm(back: back),
+            BookNotesFrom(back: back),
           ],
         ),
       ),
