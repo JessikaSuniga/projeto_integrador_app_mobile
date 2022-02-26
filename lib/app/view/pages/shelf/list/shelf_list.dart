@@ -51,28 +51,41 @@ class ShelfList extends StatelessWidget {
                 endActionPane: ActionPane(
                   motion: const DrawerMotion(),
                   children: <Widget>[
-                    ButtonEditIcon(
-                        () => _back.goToForm(context, resultData[i])),
-                    ButtonDeleteIcon(
-                        context, () => _back.remove(resultData[i].id, context)),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    ListTile(
-                      contentPadding: const EdgeInsets.only(
-                          bottom: 0, left: 15, right: 15, top: 10),
-                      leading: _imageBook(resultData[i].books),
-                      title: Row(
+                    Expanded(
+                      child: Row(
                         children: [
-                          Text(resultData[i].name,
-                              style: Constants.sdListTitle),
-                          _createTextAux(resultData[i].books.length),
+                          ButtonEditIcon(
+                            () => _back.dispacheDialogSave(
+                                context, resultData[i]),
+                          ),
+                          ButtonDeleteIcon(
+                            context,
+                            () => _back.remove(resultData[i].id, context),
+                          ),
                         ],
                       ),
                     ),
-                    const MyDivider(),
                   ],
+                ),
+                child: GestureDetector(
+                  onTap: () => _back.goToForm(context, resultData[i]),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        contentPadding: const EdgeInsets.only(
+                            bottom: 0, left: 15, right: 15, top: 10),
+                        leading: _imageBook(resultData[i].books),
+                        title: Row(
+                          children: [
+                            Text(resultData[i].name,
+                                style: Constants.sdListTitle),
+                            _createTextAux(resultData[i].books.length),
+                          ],
+                        ),
+                      ),
+                      const MyDivider(),
+                    ],
+                  ),
                 ),
               );
             },

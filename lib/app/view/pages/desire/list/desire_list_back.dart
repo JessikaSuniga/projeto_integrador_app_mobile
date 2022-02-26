@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_item_type.dart';
 import 'package:projeto_integrador_app/app/domain/models/book.dart';
@@ -11,7 +10,7 @@ part 'desire_list_back.g.dart';
 class DesireListBack = _DesireListBack with _$DesireListBack;
 
 abstract class _DesireListBack with Store {
-  final _service = GetIt.I.get<BookService>();
+  final _service = BookService();
 
   @observable
   Future<List<Book>> list;

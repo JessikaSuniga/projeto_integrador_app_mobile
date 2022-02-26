@@ -74,18 +74,20 @@ class _BookDetaisViewState extends State<BookDetaisView> {
   }
 
   Widget get _descriptionInfo {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "Descrição:",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-          Text(widget.back.book.description),
-        ],
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Descrição:",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            Text(widget.back.book.description),
+          ],
+        ),
       ),
     );
   }

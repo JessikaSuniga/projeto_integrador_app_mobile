@@ -2,6 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:projeto_integrador_app/app/common/enums/book_status_type.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
@@ -23,7 +24,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
   //   }
   //   return null;
   // }
-
+  // static List<String> friendsList = [null];
   @override
   Widget build(BuildContext context) {
     return Scroll(
@@ -33,11 +34,22 @@ class _BookNotesFromState extends State<BookNotesFrom> {
           children: [
             _evaluationRating,
             _pagesReadSlider,
+            _statusSelect,
             const Padding(padding: EdgeInsets.only(top: 10)),
             _startDateField,
             const Padding(padding: EdgeInsets.only(top: 10)),
             _endDateField,
-            // _notesField(),
+            const Padding(padding: EdgeInsets.only(top: 10)),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Anotações',
+                  style: Constants.sdFormTitle,
+                ),
+                ..._notesField(),
+              ],
+            ),
           ],
         ),
       ),
@@ -76,6 +88,14 @@ class _BookNotesFromState extends State<BookNotesFrom> {
             onChanged: (double newSliderValue) {
               setState(
                 () {
+                  if (newSliderValue.toInt() == 0) {
+                    widget.back.book.status = BookStatusType.notRead;
+                  } else if (newSliderValue.toInt() == widget.back.book.pages) {
+                    widget.back.book.status = BookStatusType.read;
+                  } else {
+                    widget.back.book.status = BookStatusType.reading;
+                  }
+
                   widget.back.book.pagesRead = newSliderValue.toInt();
                 },
               );
@@ -88,6 +108,54 @@ class _BookNotesFromState extends State<BookNotesFrom> {
             '${widget.back.book.pagesRead.round()} pages',
           ),
         )
+      ],
+    );
+  }
+
+  Widget get _statusSelect {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text("Status:"),
+            DropdownButtonHideUnderline(
+              child: DropdownButton(
+                hint: Text(BookStatusType.notRead.description),
+                value: widget.back.book.status,
+                items: BookStatusType.values
+                    .map(
+                      (status) => DropdownMenuItem(
+                        child: Text(
+                          status.description,
+                          style: Constants.sdFormText,
+                        ),
+                        value: status,
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  setState(
+                    () {
+                      if (value == BookStatusType.notRead) {
+                        widget.back.book.pagesRead = 0;
+                      }
+                      if (value == BookStatusType.read) {
+                        widget.back.book.pagesRead = widget.back.book.pages;
+                      }
+                      widget.back.book.status = value;
+                    },
+                  );
+                },
+                dropdownColor: Constants.bgColorDialogsLigth,
+              ),
+            ),
+          ],
+        ),
+        Divider(
+          thickness: 1,
+          color: Colors.grey.shade700,
+        ),
       ],
     );
   }
@@ -172,51 +240,64 @@ class _BookNotesFromState extends State<BookNotesFrom> {
     );
   }
 
-  Widget _notesField() {
-    return Column(
-      children: [
-        Row(
+  List<Widget> _notesField() {
+    List<Widget> friendsTextFieldsList = [];
+    if (widget.back.book.notes == null) {
+      setState(() {
+        widget.back.book.notes = [null];
+      });
+    }
+    for (int i = 0; i < widget.back.book.notes.length; i++) {
+      friendsTextFieldsList.add(Padding(
+        padding: const EdgeInsets.symmetric(vertical: 0),
+        child: Row(
           children: [
             Expanded(
               child: TextFormField(
-                initialValue: widget.back.book.notes != null &&
-                        widget.back.book.notes.length != 0
-                    ? widget.back.book.notes[0]
-                    : "",
-                // validator: (value) {
-                //   return _validationIsNullOrEmpty(value);
-                // },
-                onSaved: (value) {
-                  setState(() {
-                    widget.back.book.notes.add(value);
-                  });
-                },
+                initialValue: widget.back.book.notes[i] ?? "",
+                onChanged: (v) => widget.back.book.notes[i] = v,
                 decoration: const InputDecoration(
-                  labelText: 'Notas',
-                  labelStyle: Constants.sdFormTitle,
-                  hintText: 'Informe uma anotação',
+                  hintText: 'Insira uma anotação',
                   hintStyle: Constants.sdFormHint,
                   focusedBorder: Constants.sdFormFocusedDorder,
                 ),
-                style: Constants.sdFormText,
-                cursorColor: Constants.myGrey,
-                textInputAction: TextInputAction.next,
+                validator: (v) {
+                  if (v.trim().isEmpty) {
+                    return 'Por favor. insire um texto valido';
+                  }
+                  return null;
+                },
               ),
             ),
-            GestureDetector(
-              child: const Icon(
-                Icons.add,
-                color: Constants.myBlack,
-              ),
-              onTap: () {
-                setState(() {
-                  // widget.back.book.notes.add()
-                });
-              },
+            const SizedBox(
+              width: 16,
             ),
+            _addRemoveButton(i == widget.back.book.notes.length - 1, i),
           ],
         ),
-      ],
+      ));
+    }
+    return List.from(friendsTextFieldsList.reversed);
+  }
+
+  Widget _addRemoveButton(bool add, int index) {
+    return InkWell(
+      onTap: () {
+        if (add) {
+          widget.back.book.notes.insert(0, null);
+        } else {
+          widget.back.book.notes.removeAt(index);
+        }
+        setState(() {});
+      },
+      child: SizedBox(
+        width: 30,
+        height: 30,
+        child: Icon(
+          (add) ? Icons.add : Icons.remove,
+          color: Constants.myBlack,
+        ),
+      ),
     );
   }
 }

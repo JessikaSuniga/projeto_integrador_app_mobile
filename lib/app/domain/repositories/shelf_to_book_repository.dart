@@ -51,6 +51,14 @@ class ShelfToBookRepository {
     _db.insert(_table, shelfToBook.toMap());
   }
 
+  insertRange(List<ShelfToBook> shelfToBooks) async {
+    final _db = await _getDatabase();
+
+    for (var shelfToBook in shelfToBooks) {
+      _db.insert(_table, shelfToBook.toMap());
+    }
+  }
+
   update(ShelfToBook shelfToBook) async {
     final _db = await _getDatabase();
     _db.update(_table, shelfToBook.toMap(),

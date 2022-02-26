@@ -114,17 +114,30 @@ class _BookViewState extends State<BookView>
                 ],
               ),
             ),
-            TabBar(
-              controller: _controller,
-              tabs: const <Widget>[
-                Tab(text: "Informações"),
-                Tab(text: "Notas"),
+            Stack(
+              fit: StackFit.passthrough,
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: Constants.myGrey, width: 2.0),
+                    ),
+                  ),
+                ),
+                TabBar(
+                  controller: _controller,
+                  tabs: const <Widget>[
+                    Tab(text: "Informações"),
+                    Tab(text: "Notas"),
+                  ],
+                  labelColor: Constants.myOrange,
+                  unselectedLabelColor: Constants.myBlack,
+                  labelStyle: const TextStyle(fontSize: 18),
+                  unselectedLabelStyle: const TextStyle(fontSize: 18),
+                  indicatorColor: Constants.myOrange,
+                ),
               ],
-              labelColor: Constants.myOrange,
-              unselectedLabelColor: Constants.myBlack,
-              labelStyle: const TextStyle(fontSize: 18),
-              unselectedLabelStyle: const TextStyle(fontSize: 18),
-              indicatorColor: Constants.myOrange,
             ),
             Expanded(
               child: TabBarView(

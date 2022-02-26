@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_item_type.dart';
 import 'package:projeto_integrador_app/app/domain/models/book.dart';
 import 'package:projeto_integrador_app/app/domain/models/book_to_genre.dart';
@@ -13,7 +12,7 @@ import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 // flutter pub run build_runner build
 class BookFormBack {
   Book book;
-  final _service = GetIt.I.get<BookService>();
+  final _service = BookService();
   final _serviceGenre = GenreService();
   final _serviceBookToGenre = BookToGenreService();
 

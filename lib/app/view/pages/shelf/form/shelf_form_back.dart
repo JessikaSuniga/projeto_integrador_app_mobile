@@ -1,78 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:projeto_integrador_app/app/common/styles/constants.dart';
+import 'package:mobx/mobx.dart';
+import 'package:projeto_integrador_app/app/domain/models/book.dart';
 import 'package:projeto_integrador_app/app/domain/models/shelf.dart';
-import 'package:projeto_integrador_app/app/domain/services/shelf_service.dart';
-import 'package:projeto_integrador_app/app/routes/routes.dart';
+import 'package:projeto_integrador_app/app/domain/models/shelf_to_book.dart';
+import 'package:projeto_integrador_app/app/domain/services/shelf_to_book_service.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+part 'shelf_form_back.g.dart';
+
+class ShelfFormBack = _ShelfFormBack with _$ShelfFormBack;
 
 // flutter pub run build_runner build
-class ShelfFormBack {
-  Shelf shelf;
-  final _service = GetIt.I.get<ShelfService>();
+abstract class _ShelfFormBack with Store {
+  final _shelfToBookService = ShelfToBookService();
 
-  ShelfFormBack(BuildContext context) {
+  Shelf shelf;
+
+  @observable
+  Future<List<ShelfToBook>> list;
+
+  @action
+  refleshList() {
+    list = _shelfToBookService.findAllByShelfId(shelf.id);
+  }
+
+  _ShelfFormBack(BuildContext context) {
     var parameter = ModalRoute.of(context).settings.arguments;
     shelf = (parameter == null) ? Shelf() : parameter;
+    refleshList();
   }
 
-  goToForm(BuildContext context, [Shelf shelf]) {
-    Navigator.of(context)
-        .pushReplacementNamed(Routes.SHELF_FORM, arguments: shelf);
-  }
-
-  dispacheDialogSave(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
-
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        title: const Text('Nova estante'),
-        content: Form(
-          key: _formKey,
-          child: TextFormField(
-            initialValue: shelf.name,
-            // validator: (value) {
-            //   return _validationIsNullOrEmpty(value);
-            // },
-            onSaved: (value) => shelf.name = value,
-            decoration: const InputDecoration(
-              labelText: 'Nome',
-              labelStyle: Constants.sdFormTitle,
-              hintText: 'Informe um nome para sua estante',
-              hintStyle: Constants.sdFormHint,
-              focusedBorder: Constants.sdFormFocusedDorder,
-            ),
-            style: Constants.sdFormText,
-            cursorColor: Constants.myGrey,
-            textInputAction: TextInputAction.next,
-          ),
-        ),
-        actions: [
-          TextButton(
-            child: const Text('Não'),
-            onPressed: () => Navigator.of(_).pop(),
-          ),
-          TextButton(
-            child: const Text('Sim'),
-            onPressed: () {
-              _formKey.currentState.validate();
-              _formKey.currentState.save();
-              save(_);
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  save(BuildContext context) async {
+  save(BuildContext context, List<Book> books) async {
     try {
-      await _service.save(shelf);
-      CommonService.messageSuccess(context, 'Livro salvo com sucesso!');
+      await _shelfToBookService.save(shelf.id, books);
+      CommonService.messageSuccess(context, 'Estante salvo com sucesso!');
       Navigator.of(context).pop();
     } catch (e) {
-      CommonService.messageError(context, 'Falha ao salvar livro! $e');
+      CommonService.messageError(context, 'Falha ao salvar estante! $e');
       Navigator.of(context).pop();
     }
   }

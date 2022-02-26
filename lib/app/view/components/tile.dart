@@ -37,8 +37,8 @@ class Tile extends StatelessWidget {
       children: [
         ListTile(
           isThreeLine: true,
-          contentPadding:
-              const EdgeInsets.only(bottom: 0, left: 15, right: 15, top: 10),
+          // contentPadding:
+          //     const EdgeInsets.only(bottom: 0, left: 15, right: 15, top: 10),
           leading: _imageBook(image),
           title: Text(
             title,

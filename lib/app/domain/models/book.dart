@@ -84,9 +84,7 @@ class Book {
       'author': author,
       'publishing_company': publishingCompany,
       'isbn': isbn,
-      'notes': notes != null
-          ? notes.toList().map((e) => e.replaceAll('|||', '')).join('|||')
-          : notes,
+      'notes': _replaceNotes(notes),
       'format': format.cod,
       'publication_date': _datetimeToMilliseconds(publicationDate),
       'pages': pages,
@@ -104,6 +102,14 @@ class Book {
     };
 
     return map;
+  }
+
+  _replaceNotes(List<String> notes) {
+    if (notes.isEmpty) {
+      return notes;
+    }
+
+    return notes.map((e) => e.replaceAll('|||', '')).join('|||');
   }
 
   _millisecondsToDatetime(int date) {

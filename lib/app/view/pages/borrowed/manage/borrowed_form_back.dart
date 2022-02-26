@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:projeto_integrador_app/app/domain/models/book.dart';
 import 'package:projeto_integrador_app/app/domain/models/borrowed.dart';
 import 'package:projeto_integrador_app/app/domain/services/borrowed_service.dart';
@@ -9,7 +8,7 @@ import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 // flutter pub run build_runner build
 class BorrowedFormBack {
   Borrowed borrowed;
-  final _service = GetIt.I.get<BorrowedService>();
+  final _service = BorrowedService();
 
   BorrowedFormBack(BuildContext context) {
     var parameter = ModalRoute.of(context).settings.arguments;

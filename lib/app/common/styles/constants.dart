@@ -11,7 +11,7 @@ class Constants {
   static const Color icColorPressLigth = Color.fromRGBO(206, 78, 40, 1);
   static const Color btnSaveColorDark = Color.fromRGBO(28, 195, 194, 1);
   static const Color btnSaveColorLigth = Color.fromRGBO(206, 78, 40, 1);
-  static const Color bgActions = Color.fromRGBO(206, 78, 40, 0.4);
+  static const Color bgActions = Color.fromRGBO(210, 179, 153, 0.6);
   static const Color myGrey = Color.fromRGBO(174, 179, 201, 0.74);
   static const Color myBlue = Color.fromRGBO(28, 195, 194, 1);
   static const Color myOrange = Color.fromRGBO(206, 78, 40, 1);

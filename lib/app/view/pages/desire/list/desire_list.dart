@@ -34,10 +34,19 @@ class DesireList extends StatelessWidget {
                 endActionPane: ActionPane(
                   motion: const DrawerMotion(),
                   children: <Widget>[
-                    ButtonEditIcon(
-                        () => _back.goToForm(context, resultData[i])),
-                    ButtonDeleteIcon(
-                        context, () => _back.remove(resultData[i].id, context)),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          ButtonEditIcon(
+                            () => _back.goToForm(context, resultData[i]),
+                          ),
+                          ButtonDeleteIcon(
+                            context,
+                            () => _back.remove(resultData[i].id, context),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
                 child: GestureDetector(

@@ -35,6 +35,11 @@ class _DesireDetaisState extends State<DesireDetais> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.back.book.notes == null) {
+      setState(() {
+        widget.back.book.notes = [''];
+      });
+    }
     return Scroll(
       child: Padding(
         padding: const EdgeInsets.all(10),

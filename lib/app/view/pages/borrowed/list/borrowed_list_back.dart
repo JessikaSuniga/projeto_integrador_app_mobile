@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:projeto_integrador_app/app/domain/models/borrowed.dart';
 import 'package:projeto_integrador_app/app/domain/services/borrowed_service.dart';
@@ -10,7 +9,7 @@ part 'borrowed_list_back.g.dart';
 class BorrowedListBack = _BorrowedListBack with _$BorrowedListBack;
 
 abstract class _BorrowedListBack with Store {
-  final _service = GetIt.I.get<BorrowedService>();
+  final _service = BorrowedService();
 
   @observable
   Future<List<Borrowed>> list;

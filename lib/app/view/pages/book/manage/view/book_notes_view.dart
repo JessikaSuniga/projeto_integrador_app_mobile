@@ -2,8 +2,8 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:projeto_integrador_app/app/common/enums/book_status_type.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
-import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
@@ -30,15 +30,21 @@ class _BookNotesViewState extends State<BookNotesView> {
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _evaluationRating,
             _pagesReadSlider,
-            const Padding(padding: EdgeInsets.only(top: 10)),
-            _startDateField,
-            const Padding(padding: EdgeInsets.only(top: 10)),
-            _endDateField,
-            // _notesField(),
+            _statusInfo,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _startDateInfo,
+                const Padding(padding: EdgeInsets.only(top: 10)),
+                _endDateInfo,
+                const Padding(padding: EdgeInsets.only(top: 10)),
+              ],
+            ),
+            _notesField(),
           ],
         ),
       ),
@@ -47,7 +53,7 @@ class _BookNotesViewState extends State<BookNotesView> {
 
   Widget get _evaluationRating {
     return RatingBar.builder(
-      initialRating: widget.back.book.evaluation,
+      initialRating: widget.back.book.evaluation ?? 0,
       direction: Axis.horizontal,
       allowHalfRating: true,
       itemCount: 5,
@@ -56,8 +62,11 @@ class _BookNotesViewState extends State<BookNotesView> {
         Icons.star,
         color: Colors.amber,
       ),
-      updateOnDrag: true,
-      onRatingUpdate: null,
+      onRatingUpdate: (value) {
+        // setState(() {
+        //   widget.back.book.evaluation = value;
+        // });
+      },
     );
   }
 
@@ -97,131 +106,86 @@ class _BookNotesViewState extends State<BookNotesView> {
     );
   }
 
-  Widget get _startDateField {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Início: ${CommonService.formattedDate(widget.back.book.startDate)}",
-              style: Constants.sdFormText,
-            ),
-            GestureDetector(
-              onTap: () {
-                showDatePicker(
-                  context: context,
-                  initialDate: widget.back.book.startDate ?? DateTime.now(),
-                  firstDate: DateTime(2001),
-                  lastDate: DateTime(2222),
-                ).then((value) {
-                  if (value != null) {
-                    setState(() {
-                      widget.back.book.startDate = value;
-                    });
-                  }
-                });
-              },
-              child: const Icon(
-                Icons.date_range,
-                color: Constants.myOrange,
-              ),
-            ),
-          ],
-        ),
-        Divider(
-          thickness: 1,
-          color: Colors.grey.shade700,
-        ),
-      ],
+  Widget get _statusInfo {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Status",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          Text(widget.back.book.status.description),
+        ],
+      ),
     );
   }
 
-  Widget get _endDateField {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Fim: ${CommonService.formattedDate(widget.back.book.endDate)}",
-              style: Constants.sdFormText,
-            ),
-            GestureDetector(
-              onTap: () {
-                showDatePicker(
-                  context: context,
-                  initialDate: widget.back.book.endDate ?? DateTime.now(),
-                  firstDate: DateTime(2001),
-                  lastDate: DateTime(2222),
-                ).then((value) {
-                  if (value != null) {
-                    setState(() {
-                      widget.back.book.endDate = value;
-                    });
-                  }
-                });
-              },
-              child: const Icon(
-                Icons.date_range,
-                color: Constants.myOrange,
-              ),
-            ),
-          ],
-        ),
-        Divider(
-          thickness: 1,
-          color: Colors.grey.shade700,
-        ),
-      ],
+  Widget get _startDateInfo {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Início",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          Text(CommonService.formattedDate(widget.back.book.startDate)),
+        ],
+      ),
+    );
+  }
+
+  Widget get _endDateInfo {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Fim",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          Text(CommonService.formattedDate(widget.back.book.endDate)),
+        ],
+      ),
     );
   }
 
   Widget _notesField() {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: TextFormField(
-                initialValue: widget.back.book.notes != null &&
-                        widget.back.book.notes.length != 0
-                    ? widget.back.book.notes[0]
-                    : "",
-                // validator: (value) {
-                //   return _validationIsNullOrEmpty(value);
-                // },
-                onSaved: (value) {
-                  setState(() {
-                    widget.back.book.notes.add(value);
-                  });
-                },
-                decoration: const InputDecoration(
-                  labelText: 'Notas',
-                  labelStyle: Constants.sdFormTitle,
-                  hintText: 'Informe uma anotação',
-                  hintStyle: Constants.sdFormHint,
-                  focusedBorder: Constants.sdFormFocusedDorder,
-                ),
-                style: Constants.sdFormText,
-                cursorColor: Constants.myGrey,
-                textInputAction: TextInputAction.next,
-              ),
-            ),
-            GestureDetector(
-              child: const Icon(
-                Icons.add,
-                color: Constants.myBlack,
-              ),
-              onTap: () {
-                setState(() {
-                  // widget.back.book.notes.add()
-                });
-              },
-            ),
-          ],
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Anotações",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: List.from(widget.back.book.notes.reversed)
+                .map(
+                  (e) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(e),
+                      const Divider(
+                        thickness: 1,
+                      ),
+                    ],
+                  ),
+                )
+                .toList(),
+          ),
+        ],
+      ),
     );
   }
 }

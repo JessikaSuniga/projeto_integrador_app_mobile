@@ -43,7 +43,6 @@ class _BookFormState extends State<BookForm>
         ),
         backgroundColor: Constants.headerColorLigth,
         bottom: TabBar(
-          isScrollable: true,
           controller: _controller,
           tabs: const <Widget>[
             Tab(text: "Detalhes"),

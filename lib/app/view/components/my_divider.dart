@@ -6,14 +6,11 @@ class MyDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(0),
-      child: Divider(
-        thickness: 2,
-        endIndent: 15,
-        indent: 15,
-        color: Constants.myGrey,
-      ),
+    return const Divider(
+      thickness: 2,
+      endIndent: 15,
+      indent: 15,
+      color: Constants.myGrey,
     );
   }
 }
