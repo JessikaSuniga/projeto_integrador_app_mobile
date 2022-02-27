@@ -7,3 +7,5 @@ void main() {
 // flutter packages get
 // flutter clean
 // flutter build apk
+
+// comand: flutter pub run build_runner build --delete-conflicting-outputs

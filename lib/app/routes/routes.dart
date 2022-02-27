@@ -6,7 +6,7 @@ class Routes {
   // ignore: constant_identifier_names
   static const BOOK_VIEW = '/book-view';
   // ignore: constant_identifier_names
-  static const SHELF_FORM = '/shelf-form';
+  static const SHELF_TO_BOOK_LIST = '/shelf-to-book-list';
   // ignore: constant_identifier_names
   static const BORROWED_FORM = '/borrowed-form';
   // ignore: constant_identifier_names

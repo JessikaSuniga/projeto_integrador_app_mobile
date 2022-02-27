@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'shelf_form_back.dart';
+part of 'shelf_to_book_list_back.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,8 @@ part of 'shelf_form_back.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$ShelfFormBack on _ShelfFormBack, Store {
-  final _$listAtom = Atom(name: '_ShelfFormBack.list');
+mixin _$ShelfToBookListBack on _ShelfToBookListBack, Store {
+  final _$listAtom = Atom(name: '_ShelfToBookListBack.list');
 
   @override
   Future<List<ShelfToBook>> get list {
@@ -24,17 +24,17 @@ mixin _$ShelfFormBack on _ShelfFormBack, Store {
     });
   }
 
-  final _$_ShelfFormBackActionController =
-      ActionController(name: '_ShelfFormBack');
+  final _$_ShelfToBookListBackActionController =
+      ActionController(name: '_ShelfToBookListBack');
 
   @override
   dynamic refleshList() {
-    final _$actionInfo = _$_ShelfFormBackActionController.startAction(
-        name: '_ShelfFormBack.refleshList');
+    final _$actionInfo = _$_ShelfToBookListBackActionController.startAction(
+        name: '_ShelfToBookListBack.refleshList');
     try {
       return super.refleshList();
     } finally {
-      _$_ShelfFormBackActionController.endAction(_$actionInfo);
+      _$_ShelfToBookListBackActionController.endAction(_$actionInfo);
     }
   }
 

@@ -39,6 +39,17 @@ mixin _$ShelfListBack on _ShelfListBack, Store {
   }
 
   @override
+  dynamic dispacheDialogSave(BuildContext context, [Shelf shelfRef]) {
+    final _$actionInfo = _$_ShelfListBackActionController.startAction(
+        name: '_ShelfListBack.dispacheDialogSave');
+    try {
+      return super.dispacheDialogSave(context, shelfRef);
+    } finally {
+      _$_ShelfListBackActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 list: ${list}

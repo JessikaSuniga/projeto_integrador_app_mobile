@@ -28,7 +28,7 @@ abstract class _ShelfListBack with Store {
 
   goToForm(BuildContext context, [Shelf shelf]) {
     Navigator.of(context)
-        .pushNamed(Routes.SHELF_FORM, arguments: shelf)
+        .pushNamed(Routes.SHELF_TO_BOOK_LIST, arguments: shelf)
         .then(refleshList);
   }
 
@@ -75,7 +75,7 @@ abstract class _ShelfListBack with Store {
             onPressed: () {
               _formKey.currentState.validate();
               _formKey.currentState.save();
-              save(context, shelf).then((e) => refleshList());
+              save(context, shelf) /*.then((e) => refleshList())*/;
             },
           ),
         ],
@@ -88,6 +88,7 @@ abstract class _ShelfListBack with Store {
       await _service.save(shelf);
       CommonService.messageSuccess(context, 'Estante salva com sucesso!');
       Navigator.of(context).pop();
+      refleshList();
     } catch (e) {
       CommonService.messageError(context, 'Falha ao salvar estante! $e');
       Navigator.of(context).pop();
@@ -98,6 +99,7 @@ abstract class _ShelfListBack with Store {
     try {
       await _service.remove(id);
       refleshList();
+
       Navigator.of(context).pop();
       CommonService.messageSuccess(context, 'Estante deletada com sucesso!');
     } catch (e) {

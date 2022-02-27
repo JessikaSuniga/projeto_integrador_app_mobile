@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:projeto_integrador_app/app/common/enums/book_item_type.dart';
 import 'package:projeto_integrador_app/app/domain/models/book.dart';
 import 'package:projeto_integrador_app/app/domain/models/shelf.dart';
 import 'package:projeto_integrador_app/app/domain/models/shelf_to_book.dart';
+import 'package:projeto_integrador_app/app/domain/services/book_service.dart';
 import 'package:projeto_integrador_app/app/domain/services/shelf_to_book_service.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
-part 'shelf_form_back.g.dart';
+part 'shelf_to_book_list_back.g.dart';
 
-class ShelfFormBack = _ShelfFormBack with _$ShelfFormBack;
+class ShelfToBookListBack = _ShelfToBookListBack with _$ShelfToBookListBack;
 
 // flutter pub run build_runner build
-abstract class _ShelfFormBack with Store {
+abstract class _ShelfToBookListBack with Store {
   final _shelfToBookService = ShelfToBookService();
+  final _bookService = BookService();
 
   Shelf shelf;
 
@@ -23,17 +26,22 @@ abstract class _ShelfFormBack with Store {
     list = _shelfToBookService.findAllByShelfId(shelf.id);
   }
 
-  _ShelfFormBack(BuildContext context) {
+  Future<List<Book>> findAllBook() {
+    return _bookService.findAll(BookItemType.bought);
+  }
+
+  _ShelfToBookListBack(BuildContext context) {
     var parameter = ModalRoute.of(context).settings.arguments;
     shelf = (parameter == null) ? Shelf() : parameter;
     refleshList();
   }
 
-  save(BuildContext context, List<Book> books) async {
+  save(BuildContext context, List<int> books) async {
     try {
       await _shelfToBookService.save(shelf.id, books);
       CommonService.messageSuccess(context, 'Estante salvo com sucesso!');
-      Navigator.of(context).pop();
+      refleshList();
+      // Navigator.of(context).pop();
     } catch (e) {
       CommonService.messageError(context, 'Falha ao salvar estante! $e');
       Navigator.of(context).pop();

@@ -7,7 +7,7 @@ import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/form/borro
 import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/view/borrowed_view.dart';
 import 'package:projeto_integrador_app/app/view/pages/desire/manage/form/desire_form.dart';
 import 'package:projeto_integrador_app/app/view/pages/desire/manage/view/desire_view.dart';
-import 'package:projeto_integrador_app/app/view/pages/shelf/form/shelf_form.dart';
+import 'package:projeto_integrador_app/app/view/pages/shelf/book_list/shelf_to_book_list.dart';
 
 class App extends StatelessWidget {
   const App({Key key}) : super(key: key);
@@ -23,7 +23,7 @@ class App extends StatelessWidget {
           Routes.HOME: (context) => const Home(),
           Routes.BOOK_FORM: (context) => const BookForm(),
           Routes.BOOK_VIEW: (context) => const BookView(),
-          Routes.SHELF_FORM: (context) => const ShelfForm(),
+          Routes.SHELF_TO_BOOK_LIST: (context) => const ShelfToBookList(),
           Routes.BORROWED_FORM: (context) => const BorrowedForm(),
           Routes.BORROWED_VIEW: (context) => const BorrowedView(),
           Routes.DESIRE_FORM: (context) => const DesireForm(),

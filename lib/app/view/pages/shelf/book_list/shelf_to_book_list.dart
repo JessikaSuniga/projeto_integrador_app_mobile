@@ -7,16 +7,17 @@ import 'package:projeto_integrador_app/app/domain/models/book.dart';
 import 'package:projeto_integrador_app/app/domain/models/shelf_to_book.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/components/tile.dart';
-import 'package:projeto_integrador_app/app/view/pages/shelf/form/shelf_form_back.dart';
+import 'package:projeto_integrador_app/app/view/pages/shelf/book_list/shelf_to_book_list_back.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
-class ShelfForm extends StatelessWidget {
-  const ShelfForm({Key key}) : super(key: key);
+class ShelfToBookList extends StatelessWidget {
+  const ShelfToBookList({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
-    final _back = ShelfFormBack(context);
-    List<ShelfToBook> books = _back.shelf.books;
+    final _back = ShelfToBookListBack(context);
+
     return Scaffold(
       backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
@@ -33,7 +34,7 @@ class ShelfForm extends StatelessWidget {
           builder: (context) {
             return FutureBuilder(
               future: _back.list,
-              builder: (context, result) {
+              builder: (_, result) {
                 if (!result.hasData) {
                   return const CircularProgressIndicator();
                 }
@@ -46,9 +47,10 @@ class ShelfForm extends StatelessWidget {
                     return Slidable(
                       key: const ValueKey(0),
                       child: GestureDetector(
-                        onTap: () => Navigator.of(context).pushNamed(
-                            Routes.BOOK_VIEW,
-                            arguments: books[i].book),
+                        onTap: () => Navigator.of(ctx).pushNamed(
+                          Routes.BOOK_VIEW,
+                          arguments: resultData[i].book,
+                        ),
                         child: Tile(
                           image: resultData[i].book.image,
                           title: resultData[i].book.title,
@@ -92,16 +94,28 @@ class ShelfForm extends StatelessWidget {
         onPressed: () {
           List<ShelfToBook> list;
           _back.list.then((value) => list = value);
+
           showDialog(
             context: context,
             builder: (ctx) {
-              return MultiSelectDialog(
-                items: books
-                    .map((e) => MultiSelectItem(e.id, e.book.title))
-                    .toList(),
-                initialValue: list.map((e) => e.bookId).toList(),
-                onConfirm: (values) {
-                  print(values);
+              return FutureBuilder(
+                future: _back.findAllBook(),
+                builder: (_, result) {
+                  if (!result.hasData) {
+                    return const CircularProgressIndicator();
+                  }
+
+                  List<Book> resultData = result.data;
+
+                  return MultiSelectDialog(
+                    items: resultData
+                        .map((e) => MultiSelectItem(e.id, e.title))
+                        .toList(),
+                    initialValue: list.map((e) => e.bookId).toList(),
+                    onConfirm: (values) {
+                      _back.save(ctx, values);
+                    },
+                  );
                 },
               );
             },
