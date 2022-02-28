@@ -136,6 +136,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ),
       ),
       body: TabBarView(
+        physics: const NeverScrollableScrollPhysics(),
         controller: _controller,
         children: <Widget>[
           BookList(),

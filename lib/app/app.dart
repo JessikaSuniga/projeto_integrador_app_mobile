@@ -17,8 +17,9 @@ class App extends StatelessWidget {
     return MaterialApp(
         title: 'Folha Amarela',
         theme: ThemeData(
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity),
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
         routes: {
           Routes.HOME: (context) => const Home(),
           Routes.BOOK_FORM: (context) => const BookForm(),

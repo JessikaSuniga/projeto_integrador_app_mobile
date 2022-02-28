@@ -32,7 +32,6 @@ abstract class _ShelfListBack with Store {
         .then(refleshList);
   }
 
-  @action
   dispacheDialogSave(BuildContext context, [Shelf shelfRef]) {
     Shelf shelf = Shelf();
     if (shelfRef != null) {
