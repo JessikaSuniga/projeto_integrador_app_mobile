@@ -7,6 +7,7 @@ import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:projeto_integrador_app/app/common/assets.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_format_type.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_language_type.dart';
+import 'package:projeto_integrador_app/app/common/enums/regex_types.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/utility/utility.dart';
 import 'package:projeto_integrador_app/app/domain/models/genre.dart';
@@ -16,8 +17,10 @@ import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class BookDetaisForm extends StatefulWidget {
   final BookFormBack back;
+  final Function setPagesCallback;
 
-  const BookDetaisForm({Key key, this.back}) : super(key: key);
+  const BookDetaisForm({Key key, this.back, @required this.setPagesCallback})
+      : super(key: key);
 
   @override
   _BookDetaisFormState createState() => _BookDetaisFormState();
@@ -360,9 +363,11 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
   TextFormField get _pagesField {
     return TextFormField(
       initialValue: widget.back.book.pages.toString(),
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
+      onChanged: (nrPages) {
+        if (RegexType.number.validate(nrPages)) {
+          widget.setPagesCallback(int.parse(nrPages));
+        }
+      },
       onSaved: (value) => widget.back.book.pages = int.parse(value),
       decoration: InputDecoration(
         labelText: 'Páginas',

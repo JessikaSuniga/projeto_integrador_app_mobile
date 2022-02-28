@@ -17,6 +17,9 @@ class _BookFormState extends State<BookForm>
     with SingleTickerProviderStateMixin {
   final formKey = GlobalKey<FormState>();
 
+  int pages = 0;
+  void setPages(int pages) => setState(() => this.pages = pages);
+
   TabController _controller;
 
   @override
@@ -60,8 +63,14 @@ class _BookFormState extends State<BookForm>
         child: TabBarView(
           controller: _controller,
           children: <Widget>[
-            BookDetaisForm(back: back),
-            BookNotesFrom(back: back),
+            BookDetaisForm(
+              back: back,
+              setPagesCallback: setPages,
+            ),
+            BookNotesFrom(
+              back: back,
+              pages: pages,
+            ),
           ],
         ),
       ),

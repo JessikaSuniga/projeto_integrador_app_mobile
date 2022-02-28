@@ -10,8 +10,8 @@ import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class BookNotesFrom extends StatefulWidget {
   final BookFormBack back;
-
-  const BookNotesFrom({Key key, this.back}) : super(key: key);
+  final int pages;
+  const BookNotesFrom({Key key, this.back, this.pages}) : super(key: key);
 
   @override
   _BookNotesFromState createState() => _BookNotesFromState();
@@ -84,7 +84,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
           child: Slider(
             value: widget.back.book.pagesRead.toDouble(),
             min: 0,
-            max: widget.back.book.pages.toDouble(),
+            max: widget.pages.toDouble(),
             onChanged: (double newSliderValue) {
               setState(
                 () {
@@ -105,7 +105,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
         Expanded(
           flex: 2,
           child: Text(
-            '${widget.back.book.pagesRead.round()} pages',
+            '${widget.back.book.pagesRead.round()} paginas',
           ),
         )
       ],
