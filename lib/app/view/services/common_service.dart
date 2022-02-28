@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 
 class CommonService {
   static messageError(BuildContext context, String message) {
@@ -12,7 +13,7 @@ class CommonService {
   static messageSuccess(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message, textAlign: TextAlign.center),
-      backgroundColor: Colors.green,
+      backgroundColor: Constants.myGrey,
     ));
   }
 

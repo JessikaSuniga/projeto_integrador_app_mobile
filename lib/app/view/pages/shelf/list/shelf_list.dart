@@ -43,52 +43,72 @@ class ShelfList extends StatelessWidget {
 
           List<Shelf> resultData = result.data;
 
-          return ListView.builder(
-            itemCount: resultData.length,
-            itemBuilder: (ctx, i) {
-              return Slidable(
-                key: const ValueKey(0),
-                endActionPane: ActionPane(
-                  motion: const DrawerMotion(),
-                  children: <Widget>[
-                    Expanded(
-                      child: Row(
-                        children: [
-                          ButtonEditIcon(
-                            () => _back.dispacheDialogSave(
-                                context, resultData[i]),
-                          ),
-                          ButtonDeleteIcon(
-                            context,
-                            () => _back.remove(resultData[i].id, context),
+          return Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: resultData.length,
+                  itemBuilder: (ctx, i) {
+                    return Slidable(
+                      key: const ValueKey(0),
+                      endActionPane: ActionPane(
+                        motion: const DrawerMotion(),
+                        children: <Widget>[
+                          Expanded(
+                            child: Row(
+                              children: [
+                                ButtonEditIcon(
+                                  () => _back.dispacheDialogSave(
+                                      context, resultData[i]),
+                                ),
+                                ButtonDeleteIcon(
+                                  context,
+                                  () => _back.remove(resultData[i].id, context),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-                child: GestureDetector(
-                  onTap: () => _back.goToForm(context, resultData[i]),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        contentPadding: const EdgeInsets.only(
-                            bottom: 0, left: 15, right: 15, top: 10),
-                        leading: _imageBook(resultData[i].books),
-                        title: Row(
+                      child: GestureDetector(
+                        onTap: () => _back.goToForm(context, resultData[i]),
+                        child: Column(
                           children: [
-                            Text(resultData[i].name,
-                                style: Constants.sdListTitle),
-                            _createTextAux(resultData[i].books.length),
+                            ListTile(
+                              contentPadding: const EdgeInsets.only(
+                                  bottom: 0, left: 15, right: 15, top: 10),
+                              leading: _imageBook(resultData[i].books),
+                              title: Row(
+                                children: [
+                                  Text(resultData[i].name,
+                                      style: Constants.sdListTitle),
+                                  _createTextAux(resultData[i].books.length),
+                                ],
+                              ),
+                            ),
+                            const MyDivider(),
                           ],
                         ),
                       ),
-                      const MyDivider(),
-                    ],
-                  ),
+                    );
+                  },
                 ),
-              );
-            },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: FloatingActionButton(
+                      onPressed: () => _back.dispacheDialogSave(context), 
+                      child: const Icon(Icons.add),
+                      backgroundColor: Constants.myOrange,
+                      mini: true,
+                    ),
+                  ),
+                ],
+              )
+            ],
           );
         },
       );

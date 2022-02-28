@@ -84,11 +84,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         case NavigationTop.book:
           Navigator.of(context).pushNamed(Routes.BOOK_FORM);
           return;
-        case NavigationTop.shelf:
-          var back = ShelfListBack();
-          back.dispacheDialogSave(context);
-          // Navigator.of(context).pushNamed(Routes.SHELF_TO_BOOK_LIST);
-          return;
+        // case NavigationTop.shelf:
+        //   var back = ShelfListBack();
+        //   back.dispacheDialogSave(context);
+        //   // Navigator.of(context).pushNamed(Routes.SHELF_TO_BOOK_LIST);
+        //   return;
         case NavigationTop.borrowed:
           Navigator.of(context).pushNamed(Routes.BORROWED_FORM);
           return;
@@ -145,30 +145,32 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           DesireList(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Constants.bgColorLigth,
-        currentIndex: _indexBottom,
-        onTap: (int i) => _onTabBottom(context, i),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book_outlined, color: Constants.icColorLigth),
-            activeIcon: Icon(Icons.book, color: Constants.icColorPressLigth),
-            tooltip: 'Livro',
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_circle_outline, color: Constants.icColorLigth),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_outline, color: Constants.icColorLigth),
-            activeIcon:
-                Icon(Icons.favorite, color: Constants.icColorPressLigth),
-            tooltip: 'Desejo',
-            label: '',
-          ),
-        ],
-      ),
+      bottomNavigationBar: _indexTop != NavigationTop.shelf.index
+        ? BottomNavigationBar(
+          backgroundColor: Constants.bgColorLigth,
+          currentIndex: _indexBottom,
+          onTap: (int i) => _onTabBottom(context, i),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.book_outlined, color: Constants.icColorLigth),
+              activeIcon: Icon(Icons.book, color: Constants.icColorPressLigth),
+              tooltip: 'Livro',
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add_circle_outline, color: Constants.icColorLigth),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_outline, color: Constants.icColorLigth),
+              activeIcon:
+                  Icon(Icons.favorite, color: Constants.icColorPressLigth),
+              tooltip: 'Desejo',
+              label: '',
+            ),
+          ],
+        )
+        : null,
     );
   }
 }
