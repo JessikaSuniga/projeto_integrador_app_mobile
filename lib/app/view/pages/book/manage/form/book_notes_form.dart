@@ -1,17 +1,15 @@
 import 'dart:core';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_status_type.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
-import 'package:projeto_integrador_app/app/common/styles/constants.dart';
-import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 
 class BookNotesFrom extends StatefulWidget {
   final BookFormBack back;
-  final int pages;
-  const BookNotesFrom({Key key, this.back, this.pages}) : super(key: key);
+  const BookNotesFrom(this.back, {Key key}) : super(key: key);
 
   @override
   _BookNotesFromState createState() => _BookNotesFromState();
@@ -83,7 +81,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
           child: Slider(
             value: widget.back.book.pagesRead.toDouble(),
             min: 0,
-            max: widget.pages.toDouble(),
+            max: widget.back.book.pages.toDouble(),
             onChanged: (double newSliderValue) {
               setState(
                 () {
@@ -104,7 +102,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
         Expanded(
           flex: 2,
           child: Text(
-            '${widget.back.book.pagesRead.round()} paginas',
+            '${widget.back.book.pagesRead.round()} páginas',
           ),
         )
       ],

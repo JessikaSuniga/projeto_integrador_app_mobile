@@ -1,10 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
-import 'package:projeto_integrador_app/app/view/pages/book/manage/form/book_details_form.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/form/book_notes_form.dart';
+import 'package:projeto_integrador_app/app/view/pages/book/manage/form/book_details_form.dart';
 
 class BookForm extends StatefulWidget {
   const BookForm({Key key}) : super(key: key);
@@ -16,9 +14,6 @@ class BookForm extends StatefulWidget {
 class _BookFormState extends State<BookForm>
     with SingleTickerProviderStateMixin {
   final formKey = GlobalKey<FormState>();
-
-  int pages = 0;
-  void setPages(int pages) => setState(() => this.pages = pages);
 
   TabController _controller;
 
@@ -48,7 +43,7 @@ class _BookFormState extends State<BookForm>
         centerTitle: true,
         title: Text(
           back.book.id == null ? "Cadastrar livro" : "Editar livro",
-          style: TextStyle(color: Constants.myOrange),
+          style: const TextStyle(color: Constants.myOrange),
         ),
         backgroundColor: Constants.headerColorLigth,
         bottom: TabBar(
@@ -70,13 +65,9 @@ class _BookFormState extends State<BookForm>
           controller: _controller,
           children: <Widget>[
             BookDetaisForm(
-              back: back,
-              setPagesCallback: setPages,
+              back,
             ),
-            BookNotesFrom(
-              back: back,
-              pages: pages,
-            ),
+            BookNotesFrom(back),
           ],
         ),
       ),

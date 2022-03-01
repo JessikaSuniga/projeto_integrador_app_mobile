@@ -1,26 +1,22 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:projeto_integrador_app/app/domain/models/genre.dart';
 import 'package:projeto_integrador_app/app/common/assets.dart';
+import 'package:projeto_integrador_app/app/common/utility/utility.dart';
+import 'package:projeto_integrador_app/app/common/styles/constants.dart';
+import 'package:projeto_integrador_app/app/common/enums/regex_types.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_format_type.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_language_type.dart';
-import 'package:projeto_integrador_app/app/common/enums/regex_types.dart';
-import 'package:projeto_integrador_app/app/common/styles/constants.dart';
-import 'package:projeto_integrador_app/app/common/utility/utility.dart';
-import 'package:projeto_integrador_app/app/domain/models/genre.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
-import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 
 class BookDetaisForm extends StatefulWidget {
   final BookFormBack back;
-  final Function setPagesCallback;
 
-  const BookDetaisForm({Key key, this.back, @required this.setPagesCallback})
-      : super(key: key);
+  const BookDetaisForm(this.back, {Key key}) : super(key: key);
 
   @override
   _BookDetaisFormState createState() => _BookDetaisFormState();
@@ -47,7 +43,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
             _authorField,
             _sourceBookSection(),
             _genreField,
-            Padding(padding: const EdgeInsets.only(top: 20, bottom: 0)),
+            const Padding(padding: EdgeInsets.only(top: 20, bottom: 0)),
             _publicationDateField,
             _pagesField,
             _languageSelect,
@@ -67,7 +63,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.title = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Título',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Titulo do livro',
@@ -87,7 +83,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.author = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Autor(a)',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Nome do autor(a)',
@@ -106,7 +102,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
         _imagePicker(),
         Expanded(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -192,7 +188,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.publishingCompany = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Editora',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Nome da editora',
@@ -212,7 +208,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.isbn = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'ISBN',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Informe o valor do ISBN',
@@ -231,7 +227,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Formato:"),
+            const Text("Formato:"),
             DropdownButtonHideUnderline(
               child: DropdownButton(
                 hint: Text(BookFormatType.pocketBook.description),
@@ -291,21 +287,21 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
           selectedItemsTextStyle: TextStyle(color: Constants.myBlack),
           searchable: true,
           searchHint: 'Pesquisar',
-          buttonText: Text('Gênero:', textAlign: TextAlign.left),
-          cancelText: Text(
+          buttonText: const Text('Gênero:', textAlign: TextAlign.left),
+          cancelText: const Text(
             'Cancelar',
             style: TextStyle(
               color: Constants.myBrown,
             ),
           ),
-          confirmText: Text(
+          confirmText: const Text(
             'Aplicar',
             style: TextStyle(
               color: Constants.myOrange,
             ),
           ),
-          title: Text('Gênero'),
-          closeSearchIcon: Icon(Icons.search_off),
+          title: const Text('Gênero'),
+          closeSearchIcon: const Icon(Icons.search_off),
           onSaved: (value) => widget.back.book.genres = value,
           items: resultData
               .map((genre) => MultiSelectItem(genre.id, genre.name))
@@ -345,7 +341,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
                   }
                 });
               },
-              child: Icon(
+              child: const Icon(
                 Icons.date_range,
                 color: Constants.myOrange,
               ),
@@ -365,11 +361,13 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       initialValue: widget.back.book.pages.toString(),
       onChanged: (nrPages) {
         if (RegexType.number.validate(nrPages)) {
-          widget.setPagesCallback(int.parse(nrPages));
+          setState(() {
+            widget.back.book.pages = int.parse(nrPages);
+          });
         }
       },
       onSaved: (value) => widget.back.book.pages = int.parse(value),
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Páginas',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Informe a quantidade de páginas',
@@ -389,7 +387,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Idioma:"),
+            const Text("Idioma:"),
             DropdownButtonHideUnderline(
               child: DropdownButton(
                   hint: Text(BookLanguageType.portuguese.description),
@@ -424,7 +422,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.serie = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Série:',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Informe a série',
@@ -444,7 +442,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.volume = int.parse(value),
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Volume:',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Informe o Volume do livro',
@@ -465,7 +463,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.description = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Descrição:",
         // border: OutlineInputBorder(),
         labelStyle: Constants.sdFormTitle,

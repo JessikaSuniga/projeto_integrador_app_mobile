@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_integrador_app/app/common/enums/book_format_type.dart';
-import 'package:projeto_integrador_app/app/common/enums/book_language_type.dart';
 import 'package:projeto_integrador_app/app/domain/models/book_to_genre.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
-import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
+import 'package:projeto_integrador_app/app/common/enums/book_format_type.dart';
+import 'package:projeto_integrador_app/app/common/enums/book_language_type.dart';
 
 class BookDetaisView extends StatefulWidget {
   final BookFormBack back;

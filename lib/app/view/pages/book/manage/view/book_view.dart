@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/common/assets.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
@@ -45,7 +43,7 @@ class _BookViewState extends State<BookView>
       backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "Visualizar livro",
           style: TextStyle(color: Constants.myOrange),
         ),
@@ -125,7 +123,7 @@ class _BookViewState extends State<BookView>
               alignment: Alignment.bottomCenter,
               children: <Widget>[
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     border: Border(
                       bottom: BorderSide(color: Constants.myGrey, width: 2.0),
                     ),
