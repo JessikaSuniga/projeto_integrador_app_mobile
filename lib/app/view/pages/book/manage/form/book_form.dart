@@ -38,25 +38,25 @@ class _BookFormState extends State<BookForm>
     final back = BookFormBack(context);
 
     return Scaffold(
-      backgroundColor: Constants.bgColorLigth,
+      // backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           back.book.id == null ? "Cadastrar livro" : "Editar livro",
-          style: const TextStyle(color: Constants.myOrange),
+          // style: const TextStyle(color: Constants.myOrange),
         ),
-        backgroundColor: Constants.headerColorLigth,
+        // backgroundColor: Constants.headerColorLigth,
         bottom: TabBar(
           controller: _controller,
           tabs: const <Widget>[
             Tab(text: "Detalhes"),
             Tab(text: "Notas"),
           ],
-          labelColor: Constants.myOrange,
-          unselectedLabelColor: Constants.myBlack,
-          labelStyle: const TextStyle(fontSize: 18),
-          unselectedLabelStyle: const TextStyle(fontSize: 18),
-          indicatorColor: Constants.myOrange,
+          // labelColor: Constants.myOrange,
+          // unselectedLabelColor: Constants.myBlack,
+          // labelStyle: const TextStyle(fontSize: 18),
+          // unselectedLabelStyle: const TextStyle(fontSize: 18),
+          // indicatorColor: Constants.myOrange,
         ),
       ),
       body: Form(
@@ -71,22 +71,13 @@ class _BookFormState extends State<BookForm>
           ],
         ),
       ),
-      bottomNavigationBar: SizedBox(
-        width: double.infinity,
-        child: TextButton(
-          style: TextButton.styleFrom(
-            backgroundColor: Constants.btnSaveColorLigth,
-            padding: const EdgeInsets.all(10),
-            primary: Colors.white,
-            textStyle: const TextStyle(fontSize: 20),
-          ),
-          onPressed: () {
-            formKey.currentState.validate();
-            formKey.currentState.save();
-            back.save(context);
-          },
-          child: const Text('Salvar'),
-        ),
+      bottomNavigationBar: ElevatedButton(
+        onPressed: () {
+          formKey.currentState.validate();
+          formKey.currentState.save();
+          back.save(context);
+        },
+        child: const Text('Salvar'),
       ),
     );
   }

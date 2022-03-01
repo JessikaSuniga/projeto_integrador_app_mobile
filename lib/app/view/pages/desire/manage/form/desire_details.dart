@@ -146,7 +146,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       builder: (BuildContext context) => SimpleDialog(
         title: const Text('Alterar foto'),
         alignment: Alignment.center,
-        backgroundColor: Constants.bgColorLigth,
+        // backgroundColor: Constants.bgColorLigth,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -272,7 +272,7 @@ class _DesireDetaisState extends State<DesireDetais> {
         List<Genre> resultData = result.data;
 
         return MultiSelectDialogField(
-          backgroundColor: Constants.bgColorLigth,
+          // backgroundColor: Constants.bgColorLigth,
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
@@ -349,7 +349,7 @@ class _DesireDetaisState extends State<DesireDetais> {
               },
               child: Icon(
                 Icons.date_range,
-                color: Constants.myOrange,
+                // color: Constants.myOrange,
               ),
             ),
           ],

@@ -19,14 +19,14 @@ class ShelfToBookList extends StatelessWidget {
     final _back = ShelfToBookListBack(context);
 
     return Scaffold(
-      backgroundColor: Constants.bgColorLigth,
+      // backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           _back.shelf.name,
-          style: const TextStyle(color: Constants.myOrange),
+          // style: const TextStyle(color: Constants.myOrange),
         ),
-        backgroundColor: Constants.headerColorLigth,
+        // backgroundColor: Constants.headerColorLigth,
       ),
       body: Form(
         key: formKey,
@@ -59,11 +59,11 @@ class ShelfToBookList extends StatelessWidget {
                             children: [
                               const Icon(
                                 Icons.library_books,
-                                color: Constants.myOrange,
+                                // color: Constants.myOrange,
                               ),
                               Text(
                                 resultData[i].book.pages.toString(),
-                                style: Constants.sdAuxMessages,
+                                // style: Constants.sdAuxMessages,
                               ),
                             ],
                           ),
@@ -71,12 +71,12 @@ class ShelfToBookList extends StatelessWidget {
                             children: [
                               const Icon(
                                 Icons.calendar_today_outlined,
-                                color: Constants.myOrange,
+                                // color: Constants.myOrange,
                               ),
                               Text(
                                 CommonService.formattedDate(
                                     resultData[i].book.publicationDate),
-                                style: Constants.sdAuxMessages,
+                                // style: Constants.sdAuxMessages,
                               ),
                             ],
                           ),
@@ -122,7 +122,7 @@ class ShelfToBookList extends StatelessWidget {
           );
         },
         child: const Icon(Icons.add),
-        backgroundColor: Constants.myOrange,
+        // backgroundColor: Constants.myOrange,
         mini: true,
       ),
     );

@@ -14,38 +14,29 @@ class BorrowedForm extends StatelessWidget {
     final _formKey = GlobalKey<FormState>();
 
     return Scaffold(
-      backgroundColor: Constants.bgColorLigth,
+      // backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           _back.borrowed.id == null
               ? "Cadastrar empréstimo"
               : "Editar empréstimo",
-          style: TextStyle(color: Constants.myOrange),
+          // style: TextStyle(color: Constants.myOrange),
         ),
-        backgroundColor: Constants.headerColorLigth,
+        // backgroundColor: Constants.headerColorLigth,
       ),
       body: Form(
           key: _formKey,
           child: BorrowedDetais(
             back: _back,
           )),
-      bottomNavigationBar: SizedBox(
-        width: double.infinity,
-        child: TextButton(
-          style: TextButton.styleFrom(
-            backgroundColor: Constants.btnSaveColorLigth,
-            padding: const EdgeInsets.all(10),
-            primary: Colors.white,
-            textStyle: const TextStyle(fontSize: 20),
-          ),
-          onPressed: () {
-            _formKey.currentState.validate();
-            _formKey.currentState.save();
-            _back.save(context);
-          },
-          child: const Text('Salvar'),
-        ),
+      bottomNavigationBar: ElevatedButton(
+        onPressed: () {
+          _formKey.currentState.validate();
+          _formKey.currentState.save();
+          _back.save(context);
+        },
+        child: const Text('Salvar'),
       ),
     );
   }

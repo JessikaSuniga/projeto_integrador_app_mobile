@@ -18,13 +18,12 @@ class Constants {
   static const Color myBrown = Color.fromRGBO(210, 179, 153, 1);
   static const Color myBlack = Color.fromRGBO(55, 66, 93, 1);
   static const TextStyle sdListTitle = TextStyle(
-    color: myBlack,
     fontWeight: FontWeight.bold,
   );
   static const TextStyle sdListSubTitle = TextStyle(color: myBlack);
   static const TextStyle sdAuxMessages = TextStyle(color: myBlack);
-  static const TextStyle sdFormTitle = TextStyle(color: myBlack, fontSize: 16);
-  static const TextStyle sdFormText = TextStyle(color: myBlack, fontSize: 14);
+  static const TextStyle sdFormTitle = TextStyle(fontSize: 16);
+  static const TextStyle sdFormText = TextStyle(fontSize: 14);
   static const UnderlineInputBorder sdFormFocusedDorder = UnderlineInputBorder(
     borderSide: BorderSide(color: myBlack),
   );

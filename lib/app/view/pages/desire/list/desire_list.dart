@@ -59,11 +59,11 @@ class DesireList extends StatelessWidget {
                       children: [
                         const Icon(
                           Icons.library_books,
-                          color: Constants.myOrange,
+                          // color: Constants.myOrange,
                         ),
                         Text(
                           resultData[i].pages.toString(),
-                          style: Constants.sdAuxMessages,
+                          // style: Constants.sdAuxMessages,
                         ),
                       ],
                     ),
@@ -71,12 +71,12 @@ class DesireList extends StatelessWidget {
                       children: [
                         const Icon(
                           Icons.calendar_today_outlined,
-                          color: Constants.myOrange,
+                          // color: Constants.myOrange,
                         ),
                         Text(
                           CommonService.formattedDate(
                               resultData[i].publicationDate),
-                          style: Constants.sdAuxMessages,
+                          // style: Constants.sdAuxMessages,
                         ),
                       ],
                     ),

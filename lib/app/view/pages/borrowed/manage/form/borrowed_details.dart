@@ -92,7 +92,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
               },
               child: Icon(
                 Icons.date_range,
-                color: Constants.myOrange,
+                // color: Constants.myOrange,
               ),
             ),
           ],
@@ -132,7 +132,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
               },
               child: Icon(
                 Icons.date_range,
-                color: Constants.myOrange,
+                // color: Constants.myOrange,
               ),
             ),
           ],

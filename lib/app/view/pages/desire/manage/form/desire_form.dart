@@ -14,14 +14,14 @@ class DesireForm extends StatelessWidget {
     final _formKey = GlobalKey<FormState>();
 
     return Scaffold(
-      backgroundColor: Constants.bgColorLigth,
+      // backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           _back.book.id == null ? "Cadastrar desejo" : "Editar desejo",
-          style: TextStyle(color: Constants.myOrange),
+          // style: TextStyle(color: Constants.myOrange),
         ),
-        backgroundColor: Constants.headerColorLigth,
+        // backgroundColor: Constants.headerColorLigth,
       ),
       body: Form(
         key: _formKey,
@@ -29,22 +29,13 @@ class DesireForm extends StatelessWidget {
           back: _back,
         ),
       ),
-      bottomNavigationBar: SizedBox(
-        width: double.infinity,
-        child: TextButton(
-          style: TextButton.styleFrom(
-            backgroundColor: Constants.btnSaveColorLigth,
-            padding: const EdgeInsets.all(10),
-            primary: Colors.white,
-            textStyle: const TextStyle(fontSize: 20),
-          ),
-          onPressed: () {
-            _formKey.currentState.validate();
-            _formKey.currentState.save();
-            _back.save(context);
-          },
-          child: const Text('Salvar'),
-        ),
+      bottomNavigationBar: ElevatedButton(
+        onPressed: () {
+          _formKey.currentState.validate();
+          _formKey.currentState.save();
+          _back.save(context);
+        },
+        child: const Text('Salvar'),
       ),
     );
   }

@@ -40,18 +40,18 @@ class _BookViewState extends State<BookView>
     final back = BookFormBack(context);
 
     return Scaffold(
-      backgroundColor: Constants.bgColorLigth,
+      // backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
           "Visualizar livro",
-          style: TextStyle(color: Constants.myOrange),
+          // style: TextStyle(color: Constants.myOrange),
         ),
-        backgroundColor: Constants.headerColorLigth,
+        // backgroundColor: Constants.headerColorLigth,
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
-            color: Constants.myOrange,
+            // color: Constants.myOrange,
             onPressed: () => back.goToForm(context, back.book),
           ),
         ],
@@ -135,11 +135,11 @@ class _BookViewState extends State<BookView>
                     Tab(text: "Informações"),
                     Tab(text: "Notas"),
                   ],
-                  labelColor: Constants.myOrange,
-                  unselectedLabelColor: Constants.myBlack,
-                  labelStyle: const TextStyle(fontSize: 18),
-                  unselectedLabelStyle: const TextStyle(fontSize: 18),
-                  indicatorColor: Constants.myOrange,
+                  // labelColor: Constants.myOrange,
+                  // unselectedLabelColor: Constants.myBlack,
+                  // labelStyle: const TextStyle(fontSize: 18),
+                  // unselectedLabelStyle: const TextStyle(fontSize: 18),
+                  // indicatorColor: Constants.myOrange,
                 ),
               ],
             ),

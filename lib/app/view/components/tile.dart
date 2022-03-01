@@ -42,7 +42,7 @@ class Tile extends StatelessWidget {
           leading: _imageBook(image),
           title: Text(
             title,
-            style: Constants.sdListTitle,
+            // style: Constants.sdListTitle,
           ),
           subtitle: Column(
             children: [
@@ -51,7 +51,7 @@ class Tile extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   subtitle,
-                  style: Constants.sdListSubTitle,
+                  // style: Constants.sdListSubTitle,
                 ),
               ),
               Row(

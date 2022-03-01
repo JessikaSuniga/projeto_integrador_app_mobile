@@ -59,21 +59,24 @@ class BorrowedList extends StatelessWidget {
                       children: [
                         const Icon(
                           Icons.account_circle,
-                          color: Constants.myBlack,
+                          color: Constants.myGrey,
                         ),
                         Text(
                           resultData[i].name,
-                          style: Constants.sdAuxMessages,
+                          // style: Constants.sdAuxMessages,
                         ),
                       ],
                     ),
                     infoRigth: Row(
                       children: [
-                        const Text('Início: ', style: Constants.sdAuxMessages),
+                        const Text(
+                          'Início: ',
+                          // style: Constants.sdAuxMessages,
+                        ),
                         Text(
-                            CommonService.formattedDate(
-                                resultData[i].startDate),
-                            style: Constants.sdAuxMessages),
+                          CommonService.formattedDate(resultData[i].startDate),
+                          // style: Constants.sdAuxMessages,
+                        ),
                       ],
                     ),
                   ),

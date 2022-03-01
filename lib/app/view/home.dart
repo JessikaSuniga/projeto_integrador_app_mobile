@@ -6,7 +6,6 @@ import 'package:projeto_integrador_app/app/view/pages/book/list/book_list.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/list/borrowed_list.dart';
 import 'package:projeto_integrador_app/app/view/pages/desire/list/desire_list.dart';
 import 'package:projeto_integrador_app/app/view/pages/shelf/list/shelf_list.dart';
-import 'package:projeto_integrador_app/app/view/pages/shelf/list/shelf_list_back.dart';
 
 class Home extends StatefulWidget {
   const Home({Key key}) : super(key: key);
@@ -110,13 +109,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Constants.bgColorLigth,
+      // backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
         title: const Text(
           'Folha Amarela',
-          style: TextStyle(color: Constants.myOrange),
+          // style: TextStyle(color: Constants.myOrange),
         ),
-        backgroundColor: Constants.headerColorLigth,
+        // backgroundColor: Constants.headerColorLigth,
         // actions: [
         //   IconButton(
         //     icon: const Icon(Icons.menu),
@@ -134,11 +133,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             Tab(text: "Emprestado"),
             Tab(text: "Desejo"),
           ],
-          labelColor: Constants.myOrange,
-          unselectedLabelColor: Constants.myBlack,
-          labelStyle: const TextStyle(fontSize: 18),
-          unselectedLabelStyle: const TextStyle(fontSize: 18),
-          indicatorColor: Constants.myOrange,
+          // labelColor: Constants.myOrange,
+          // unselectedLabelColor: Constants.myBlack,
+          // labelStyle: const TextStyle(fontSize: 18),
+          // unselectedLabelStyle: const TextStyle(fontSize: 18),
+          // indicatorColor: Constants.myOrange,
         ),
       ),
       body: TabBarView(
@@ -153,7 +152,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       ),
       bottomNavigationBar: _indexTop != NavigationTop.shelf.index
           ? BottomNavigationBar(
-              backgroundColor: Constants.bgColorLigth,
+              // backgroundColor: Constants.bgColorLigth,
               currentIndex: _indexBottom,
               onTap: (int i) => _onTabBottom(context, i),
               items: const <BottomNavigationBarItem>[
@@ -164,7 +163,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ),
                   activeIcon: Icon(
                     Icons.book,
-                    color: Constants.icColorPressLigth,
+                    // color: Constants.icColorPressLigth,
                   ),
                   tooltip: 'Livro',
                   label: '',
@@ -172,17 +171,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 BottomNavigationBarItem(
                   icon: Icon(
                     Icons.add_circle_outline,
-                    color: Constants.icColorLigth,
+                    // color: Constants.icColorLigth,
                   ),
                   label: '',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
                     Icons.favorite_outline,
-                    color: Constants.icColorLigth,
+                    // color: Constants.icColorLigth,
                   ),
-                  activeIcon:
-                      Icon(Icons.favorite, color: Constants.icColorPressLigth),
+                  activeIcon: Icon(
+                    Icons.favorite,
+                    // color: Constants.icColorPressLigth,
+                  ),
                   tooltip: 'Desejo',
                   label: '',
                 ),

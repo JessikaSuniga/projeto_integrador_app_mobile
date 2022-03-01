@@ -15,18 +15,18 @@ class BorrowedView extends StatelessWidget {
     final _formKey = GlobalKey<FormState>();
 
     return Scaffold(
-      backgroundColor: Constants.bgColorLigth,
+      // backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
           "Visualizar empréstimo",
-          style: TextStyle(color: Constants.myOrange),
+          // style: TextStyle(color: Constants.myOrange),
         ),
-        backgroundColor: Constants.headerColorLigth,
+        // backgroundColor: Constants.headerColorLigth,
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
-            color: Constants.myOrange,
+            // color: Constants.myOrange,
             onPressed: () => _back.goToForm(context, _back.borrowed),
           ),
         ],

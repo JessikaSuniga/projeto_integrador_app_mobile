@@ -140,7 +140,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       builder: (BuildContext context) => SimpleDialog(
         title: const Text('Alterar foto'),
         alignment: Alignment.center,
-        backgroundColor: Constants.bgColorLigth,
+        // backgroundColor: Constants.bgColorLigth,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -266,7 +266,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
         List<Genre> resultData = result.data;
 
         return MultiSelectDialogField(
-          backgroundColor: Constants.bgColorLigth,
+          // backgroundColor: Constants.bgColorLigth,
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
@@ -343,7 +343,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
               },
               child: const Icon(
                 Icons.date_range,
-                color: Constants.myOrange,
+                // color: Constants.myOrange,
               ),
             ),
           ],
@@ -363,6 +363,9 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
         if (RegexType.number.validate(nrPages)) {
           setState(() {
             widget.back.book.pages = int.parse(nrPages);
+            if (int.parse(nrPages) < widget.back.book.pagesRead) {
+              widget.back.book.pagesRead = 0;
+            }
           });
         }
       },
