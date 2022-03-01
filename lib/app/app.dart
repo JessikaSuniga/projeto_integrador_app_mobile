@@ -83,7 +83,7 @@ class _AppState extends State<App> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Folha Amarela',
-      theme: darkTheme,
+      theme: bookTheme,
       routes: {
         Routes.HOME: (context) => const Home(),
         Routes.BOOK_FORM: (context) => const BookForm(),

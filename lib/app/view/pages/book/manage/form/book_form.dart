@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/form/book_notes_form.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/form/book_details_form.dart';

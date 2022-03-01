@@ -87,13 +87,41 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     if (indexBottom == NavigationBottom.add.index) {
       switch (NavigationTop.values[_indexTop]) {
         case NavigationTop.book:
-          Navigator.of(context).pushNamed(Routes.BOOK_FORM);
+          showDialog(
+            context: context,
+            builder: (ctx) => AlertDialog(
+              title: const Text('Adicionar livro'),
+              content: SizedBox(
+                width: 100,
+                height: 100,
+                child: Column(
+                  children: [
+                    // ElevatedButton(
+                    //   child: const Text('Cadastro manual'),
+                    //   onPressed: () => Navigator.of(context).pushNamed(Routes.BOOK_FORM).then((value) => Navigator.of(context).pop()),
+                    // ),
+                    TextButton(
+                      child: const Text('Buscar por palavra chave ou ISBN'),
+                      onPressed: () {
+                        // save(context, shelf) /*.then((e) => refleshList())*/;
+                      },
+                    ),
+                    TextButton(
+                      child: const Text('Adicionar novo livro manualmente'),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(Routes.BOOK_FORM).
+                          then((value) => Navigator.of(context).pop());
+                      },
+                    ),
+                  ],
+                  
+                ),
+              ),
+            ),
+          );
+      
+          
           return;
-        // case NavigationTop.shelf:
-        //   var back = ShelfListBack();
-        //   back.dispacheDialogSave(context);
-        //   // Navigator.of(context).pushNamed(Routes.SHELF_TO_BOOK_LIST);
-        //   return;
         case NavigationTop.borrowed:
           Navigator.of(context).pushNamed(Routes.BORROWED_FORM);
           return;
@@ -159,11 +187,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 BottomNavigationBarItem(
                   icon: Icon(
                     Icons.book_outlined,
-                    color: Constants.icColorLigth,
+                    // color: Constants.icColorLigth,
                   ),
                   activeIcon: Icon(
                     Icons.book,
-                    // color: Constants.icColorPressLigth,
+                    color: Constants.icColorPressLigth,
                   ),
                   tooltip: 'Livro',
                   label: '',
@@ -182,7 +210,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   ),
                   activeIcon: Icon(
                     Icons.favorite,
-                    // color: Constants.icColorPressLigth,
+                    color: Constants.icColorPressLigth,
                   ),
                   tooltip: 'Desejo',
                   label: '',
