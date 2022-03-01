@@ -13,21 +13,39 @@ class BorrowedRepository {
 
   Future<List<Borrowed>> findAll() async {
     final _db = await _getDatabase();
-    List<Map<String, dynamic>> allRows = await _db.query(_table);
+
+    String query = '''
+      SELECT * FROM $_table 
+        INNER JOIN book ON $_table.book_id = book.id;
+    ''';
+
+    List<Map<String, dynamic>> allRows = await _db.rawQuery(query);
     return allRows.map((borrowed) => Borrowed.fromMap(borrowed)).toList();
   }
 
   Future<List<Borrowed>> findAllOpen() async {
     final _db = await _getDatabase();
-    List<Map<String, dynamic>> allRows =
-        await _db.query(_table, where: 'end_date is null');
+
+    String query = '''
+      SELECT * FROM $_table 
+        INNER JOIN book ON $_table.book_id = book.id 
+      WHERE $_table.end_date is null;
+    ''';
+
+    List<Map<String, dynamic>> allRows = await _db.rawQuery(query);
     return allRows.map((borrowed) => Borrowed.fromMap(borrowed)).toList();
   }
 
   Future<Borrowed> findById(int id) async {
     final _db = await _getDatabase();
-    List<Map<String, dynamic>> allRows =
-        await _db.query(_table, where: "id=?", whereArgs: [id]);
+
+    String query = '''
+      SELECT * FROM $_table 
+        INNER JOIN book ON $_table.book_id = book.id 
+      WHERE $_table.id = $id;
+    ''';
+
+    List<Map<String, dynamic>> allRows = await _db.rawQuery(query);
     return allRows.map((borrowed) => Borrowed.fromMap(borrowed)).first;
   }
 

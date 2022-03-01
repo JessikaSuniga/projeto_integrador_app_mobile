@@ -24,7 +24,6 @@ class _BookNotesFromState extends State<BookNotesFrom> {
   //   }
   //   return null;
   // }
-  // static List<String> friendsList = [null];
   @override
   Widget build(BuildContext context) {
     return Scroll(
@@ -244,7 +243,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
     List<Widget> friendsTextFieldsList = [];
     if (widget.back.book.notes == null) {
       setState(() {
-        widget.back.book.notes = [null];
+        widget.back.book.notes = [""];
       });
     }
     for (int i = 0; i < widget.back.book.notes.length; i++) {

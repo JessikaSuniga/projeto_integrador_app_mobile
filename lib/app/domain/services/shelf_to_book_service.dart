@@ -32,9 +32,6 @@ class ShelfToBookService {
 
   Future<List<ShelfToBook>> findAllByShelfId(int shelfId) async {
     var shelfToBooks = await _shelfToBookRepository.findAllByShelfId(shelfId);
-    for (var stb in shelfToBooks) {
-      stb.book = await _bookRepository.findById(stb.bookId);
-    }
     return shelfToBooks;
   }
 }

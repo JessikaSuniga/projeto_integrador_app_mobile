@@ -105,7 +105,7 @@ class Book {
   }
 
   _replaceNotes(List<String> notes) {
-    if (notes.isEmpty) {
+    if (notes == null) {
       return notes;
     }
 

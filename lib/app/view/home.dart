@@ -33,6 +33,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     _indexBottom = NavigationBottom.book.index;
   }
 
+  @override
+  void dispose() {
+    _controller = null;
+    super.dispose();
+  }
+
   void _onSetStateTop(int index) {
     setState(() {
       _indexTop = index;
@@ -146,31 +152,43 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ],
       ),
       bottomNavigationBar: _indexTop != NavigationTop.shelf.index
-        ? BottomNavigationBar(
-          backgroundColor: Constants.bgColorLigth,
-          currentIndex: _indexBottom,
-          onTap: (int i) => _onTabBottom(context, i),
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.book_outlined, color: Constants.icColorLigth),
-              activeIcon: Icon(Icons.book, color: Constants.icColorPressLigth),
-              tooltip: 'Livro',
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle_outline, color: Constants.icColorLigth),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_outline, color: Constants.icColorLigth),
-              activeIcon:
-                  Icon(Icons.favorite, color: Constants.icColorPressLigth),
-              tooltip: 'Desejo',
-              label: '',
-            ),
-          ],
-        )
-        : null,
+          ? BottomNavigationBar(
+              backgroundColor: Constants.bgColorLigth,
+              currentIndex: _indexBottom,
+              onTap: (int i) => _onTabBottom(context, i),
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.book_outlined,
+                    color: Constants.icColorLigth,
+                  ),
+                  activeIcon: Icon(
+                    Icons.book,
+                    color: Constants.icColorPressLigth,
+                  ),
+                  tooltip: 'Livro',
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.add_circle_outline,
+                    color: Constants.icColorLigth,
+                  ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.favorite_outline,
+                    color: Constants.icColorLigth,
+                  ),
+                  activeIcon:
+                      Icon(Icons.favorite, color: Constants.icColorPressLigth),
+                  tooltip: 'Desejo',
+                  label: '',
+                ),
+              ],
+            )
+          : null,
     );
   }
 }

@@ -23,6 +23,7 @@ class Borrowed {
     name = obj['name'];
     startDate = _millisecondsToDatetime(obj['start_date'] as int);
     endDate = _millisecondsToDatetime(obj['end_date'] as int);
+    book = Book.fromMap(obj);
   }
 
   Map<String, dynamic> toMap() {

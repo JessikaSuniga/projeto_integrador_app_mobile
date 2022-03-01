@@ -20,10 +20,6 @@ class BorrowedService {
 
   Future<List<Borrowed>> findAll() async {
     List<Borrowed> borroweds = await _borrowedRepository.findAllOpen();
-
-    for (var borrowed in borroweds) {
-      borrowed.book = await _bookRepository.findById(borrowed.bookId);
-    }
     return borroweds;
   }
 

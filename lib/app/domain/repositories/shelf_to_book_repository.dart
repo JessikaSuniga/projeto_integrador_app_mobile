@@ -13,7 +13,13 @@ class ShelfToBookRepository {
 
   Future<List<ShelfToBook>> findAll() async {
     final _db = await _getDatabase();
-    List<Map<String, dynamic>> allRows = await _db.query(_table);
+
+    String query = '''
+      SELECT * FROM $_table
+        INNER JOIN book ON $_table.book_id = book.id
+    ''';
+
+    List<Map<String, dynamic>> allRows = await _db.rawQuery(query);
     List<ShelfToBook> shelfToBooks =
         allRows.map((shelfToBook) => ShelfToBook.fromMap(shelfToBook)).toList();
     return shelfToBooks;
@@ -22,8 +28,13 @@ class ShelfToBookRepository {
   Future<List<ShelfToBook>> findAllByShelfId(int shelfId) async {
     final _db = await _getDatabase();
 
-    List<Map<String, dynamic>> allRows =
-        await _db.query(_table, where: 'shelf_Id=?', whereArgs: [shelfId]);
+    String query = '''
+      SELECT * FROM $_table
+        INNER JOIN book ON $_table.book_id = book.id
+      WHERE shelf_Id = '$shelfId'
+    ''';
+
+    List<Map<String, dynamic>> allRows = await _db.rawQuery(query);
 
     List<ShelfToBook> shelfToBooks =
         allRows.map((shelfToBook) => ShelfToBook.fromMap(shelfToBook)).toList();

@@ -33,6 +33,12 @@ class _BookFormState extends State<BookForm>
   }
 
   @override
+  void dispose() {
+    _controller = null;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final back = BookFormBack(context);
 

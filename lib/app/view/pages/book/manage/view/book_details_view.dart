@@ -111,6 +111,9 @@ class _BookDetaisViewState extends State<BookDetaisView> {
               }
               List<BookToGenre> resultData = result.data;
 
+              widget.back.book.genres =
+                  resultData.map((e) => e.genreId).toList();
+
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
