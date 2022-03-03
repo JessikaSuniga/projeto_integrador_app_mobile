@@ -125,18 +125,30 @@ class BookApiDetailsPage extends StatelessWidget {
   }
 
   void prepareObject(BuildContext context, BookApi bookApi) {
+    Book newBook = Book(
+      title: bookApi.title,
+      author: bookApi.authors,
+      description: bookApi.description,
+      pages: bookApi.pageCount,
+      publicationDate: bookApi.publishedDate,
+    );
+
+    if (bookApi.thumbnailUrl == null) {
+      goToBookForm(context, newBook);
+    }
+
     Utility.networkImageToBase64(bookApi.thumbnailUrl).then((value) {
-      Book newBook = Book(
-          title: bookApi.title,
-          author: bookApi.authors,
-          description: bookApi.description,
-          pages: bookApi.pageCount,
-          // publicationYear: bookApi.publishedDate,
-          image: value);
-      Navigator.of(context).pushReplacementNamed(
-        Routes.BOOK_FORM,
-        arguments: newBook,
-      );
-    });
+      newBook.image = value;
+      goToBookForm(context, newBook);
+    }).catchError(
+      (error) => goToBookForm(context, newBook),
+    );
+  }
+
+  void goToBookForm(BuildContext context, Book book) {
+    Navigator.of(context).pushReplacementNamed(
+      Routes.BOOK_FORM,
+      arguments: book,
+    );
   }
 }

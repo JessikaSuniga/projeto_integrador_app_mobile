@@ -1,11 +1,8 @@
-import 'package:projeto_integrador_app/app/domain/models/book.dart';
 import 'package:projeto_integrador_app/app/domain/models/shelf_to_book.dart';
-import 'package:projeto_integrador_app/app/domain/repositories/book_repository.dart';
 import 'package:projeto_integrador_app/app/domain/repositories/shelf_to_book_repository.dart';
 
 class ShelfToBookService {
   final _shelfToBookRepository = ShelfToBookRepository();
-  final _bookRepository = BookRepository();
 
   save(int shelfId, List<int> books) async {
     if (shelfId == null || books == null) return;

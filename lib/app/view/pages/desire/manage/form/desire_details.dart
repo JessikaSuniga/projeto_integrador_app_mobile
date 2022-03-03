@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,7 +10,6 @@ import 'package:projeto_integrador_app/app/common/utility/utility.dart';
 import 'package:projeto_integrador_app/app/domain/models/genre.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
 import 'package:projeto_integrador_app/app/view/pages/desire/manage/desire_form_back.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class DesireDetais extends StatefulWidget {
   final DesireFormBack back;
@@ -49,7 +46,7 @@ class _DesireDetaisState extends State<DesireDetais> {
             _authorField,
             _sourceBookSection(),
             _genreField,
-            Padding(padding: const EdgeInsets.only(top: 20, bottom: 0)),
+            const Padding(padding: EdgeInsets.only(top: 20, bottom: 0)),
             // _publicationDateField,
             _pagesField,
             _languageSelect,
@@ -70,7 +67,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.title = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Título',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Titulo do livro',
@@ -90,7 +87,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.author = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Autor(a)',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Nome do autor(a)',
@@ -109,7 +106,7 @@ class _DesireDetaisState extends State<DesireDetais> {
         _imagePicker(),
         Expanded(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -194,7 +191,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.publishingCompany = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Editora',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Nome da editora',
@@ -214,7 +211,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.isbn = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'ISBN',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Informe o valor do ISBN',
@@ -233,7 +230,7 @@ class _DesireDetaisState extends State<DesireDetais> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Formato:"),
+            const Text("Formato:"),
             DropdownButtonHideUnderline(
               child: DropdownButton(
                 hint: Text(BookFormatType.pocketBook.description),
@@ -290,14 +287,14 @@ class _DesireDetaisState extends State<DesireDetais> {
           ),
           searchable: true,
           searchHint: 'Pesquisar',
-          buttonText: Text('Gênero:', textAlign: TextAlign.left),
-          cancelText: Text('Cancelar'),
-          confirmText: Text(
+          buttonText: const Text('Gênero:', textAlign: TextAlign.left),
+          cancelText: const Text('Cancelar'),
+          confirmText: const Text(
             'Aplicar',
             style: TextStyle(color: Constants.myOrange),
           ),
-          title: Text('Gênero'),
-          closeSearchIcon: Icon(Icons.search_off),
+          title: const Text('Gênero'),
+          closeSearchIcon: const Icon(Icons.search_off),
           onSaved: (value) => widget.back.book.genres = value,
           items: resultData
               .map((genre) => MultiSelectItem(genre.id, genre.name))
@@ -359,7 +356,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.pages = int.parse(value),
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Páginas',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Informe a quantidade de páginas',
@@ -379,7 +376,7 @@ class _DesireDetaisState extends State<DesireDetais> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Idioma:"),
+            const Text("Idioma:"),
             DropdownButtonHideUnderline(
               child: DropdownButton(
                   hint: Text(BookLanguageType.portuguese.description),
@@ -414,7 +411,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.serie = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Série:',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Informe a série',
@@ -434,7 +431,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.volume = int.parse(value),
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Volume:',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Informe o Volume do livro',
@@ -455,7 +452,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.book.description = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: "Descrição:",
         // border: OutlineInputBorder(),
         labelStyle: Constants.sdFormTitle,
