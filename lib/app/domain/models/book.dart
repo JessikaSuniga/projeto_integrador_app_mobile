@@ -52,7 +52,7 @@ class Book {
   });
 
   Book.fromMap(dynamic obj) {
-    id = obj['id'] as int;
+    id = obj['book_id'] as int;
     title = obj['title'] as String;
     author = obj['author'] as String;
     publishingCompany = obj['publishing_company'] as String;

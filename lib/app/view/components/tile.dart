@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/common/assets.dart';
-import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/utility/utility.dart';
 import 'package:projeto_integrador_app/app/view/components/my_divider.dart';
 
@@ -37,21 +36,14 @@ class Tile extends StatelessWidget {
       children: [
         ListTile(
           isThreeLine: true,
-          // contentPadding:
-          //     const EdgeInsets.only(bottom: 0, left: 15, right: 15, top: 10),
           leading: _imageBook(image),
-          title: Text(
-            title,
-            // style: Constants.sdListTitle,
-          ),
+          title: Text(title),
           subtitle: Column(
             children: [
               Container(
-                // margin: const EdgeInsets.symmetric(vertical: 4),
                 alignment: Alignment.centerLeft,
                 child: Text(
                   subtitle,
-                  // style: Constants.sdListSubTitle,
                 ),
               ),
               Row(

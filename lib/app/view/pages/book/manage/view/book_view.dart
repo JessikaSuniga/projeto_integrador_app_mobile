@@ -40,18 +40,13 @@ class _BookViewState extends State<BookView>
     final back = BookFormBack(context);
 
     return Scaffold(
-      // backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
-          "Visualizar livro",
-          // style: TextStyle(color: Constants.myOrange),
-        ),
+        title: const Text("Visualizar livro"),
         // backgroundColor: Constants.headerColorLigth,
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
-            // color: Constants.myOrange,
             onPressed: () => back.goToForm(context, back.book),
           ),
         ],
@@ -59,7 +54,6 @@ class _BookViewState extends State<BookView>
       body: Form(
         key: formKey,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
@@ -71,8 +65,10 @@ class _BookViewState extends State<BookView>
                     child: Container(
                       margin: const EdgeInsets.symmetric(vertical: 20),
                       decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Colors.grey.shade400, width: 2),
+                        border: Border.all(
+                          color: Colors.grey.shade400,
+                          width: 2,
+                        ),
                       ),
                       child: back.book.image != null
                           ? Utility.imageFromBase64String(back.book.image)
@@ -90,7 +86,9 @@ class _BookViewState extends State<BookView>
                           child: Text(
                             back.book.title,
                             style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                         Padding(
@@ -135,11 +133,6 @@ class _BookViewState extends State<BookView>
                     Tab(text: "Informações"),
                     Tab(text: "Notas"),
                   ],
-                  // labelColor: Constants.myOrange,
-                  // unselectedLabelColor: Constants.myBlack,
-                  // labelStyle: const TextStyle(fontSize: 18),
-                  // unselectedLabelStyle: const TextStyle(fontSize: 18),
-                  // indicatorColor: Constants.myOrange,
                 ),
               ],
             ),

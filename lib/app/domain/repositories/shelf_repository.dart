@@ -23,14 +23,14 @@ class ShelfRepository {
     final _db = await _getDatabase();
 
     List<Map<String, dynamic>> allRows =
-        await _db.query(_table, where: "id=?", whereArgs: [id]);
+        await _db.query(_table, where: "shelf_id=?", whereArgs: [id]);
 
     return allRows.map((shelf) => Shelf.fromMap(shelf)).first;
   }
 
   remove(int id) async {
     final _db = await _getDatabase();
-    _db.delete(_table, where: "id=?", whereArgs: [id]);
+    _db.delete(_table, where: "shelf_id=?", whereArgs: [id]);
   }
 
   insert(Shelf shelf) async {
@@ -40,6 +40,7 @@ class ShelfRepository {
 
   update(Shelf shelf) async {
     final _db = await _getDatabase();
-    _db.update(_table, shelf.toMap(), where: "id=?", whereArgs: [shelf.id]);
+    _db.update(_table, shelf.toMap(),
+        where: "shelf_id=?", whereArgs: [shelf.id]);
   }
 }

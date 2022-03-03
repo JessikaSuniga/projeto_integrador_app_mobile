@@ -22,7 +22,7 @@ class Desire {
   });
 
   Desire.fromMap(dynamic obj) {
-    id = obj['id'];
+    id = obj['desire_id'];
     title = obj['title'];
     author = obj['author'];
     publishingCompany = obj['publishingCompany'];

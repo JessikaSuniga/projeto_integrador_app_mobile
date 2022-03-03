@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/domain/models/book.dart';
@@ -33,12 +31,12 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
           children: [
             _bookSelect,
             _nameField,
-            Padding(padding: const EdgeInsets.only(top: 20, bottom: 0)),
+            const Padding(padding: EdgeInsets.only(top: 20, bottom: 0)),
             _startDateField,
-            Padding(padding: const EdgeInsets.only(top: 20, bottom: 0)),
+            const Padding(padding: EdgeInsets.only(top: 20, bottom: 0)),
             widget.back.borrowed.id != null
                 ? _endDateField
-                : Padding(padding: const EdgeInsets.only(top: 20, bottom: 0)),
+                : const Padding(padding: EdgeInsets.only(top: 20, bottom: 0)),
           ],
         ),
       ),
@@ -52,7 +50,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
       //   return _validationIsNullOrEmpty(value);
       // },
       onSaved: (value) => widget.back.borrowed.name = value,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Nome',
         labelStyle: Constants.sdFormTitle,
         hintText: 'Nome de quem foi emprestado',
@@ -90,10 +88,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
                   }
                 });
               },
-              child: Icon(
-                Icons.date_range,
-                // color: Constants.myOrange,
-              ),
+              child: const Icon(Icons.date_range),
             ),
           ],
         ),
@@ -130,10 +125,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
                   }
                 });
               },
-              child: Icon(
-                Icons.date_range,
-                // color: Constants.myOrange,
-              ),
+              child: const Icon(Icons.date_range),
             ),
           ],
         ),
@@ -153,38 +145,40 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
           return const CircularProgressIndicator();
         }
         List<Book> resultData = result.data;
-        return Column(children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Livro:", style: Constants.sdFormText),
-              DropdownButtonHideUnderline(
-                child: DropdownButton(
-                    hint: Text("Selecione uma das opções"),
-                    value: widget.back.borrowed.bookId,
-                    items: resultData
-                        .map((book) => DropdownMenuItem(
-                              child: Padding(
-                                padding: const EdgeInsets.all(10),
-                                child: Text(
-                                  book.title,
-                                  style: Constants.sdFormText,
+        return Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text("Livro:", style: Constants.sdFormText),
+                DropdownButtonHideUnderline(
+                  child: DropdownButton(
+                      hint: const Text("Selecione uma das opções"),
+                      value: widget.back.borrowed.bookId,
+                      items: resultData
+                          .map((book) => DropdownMenuItem(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Text(
+                                    book.title,
+                                    style: Constants.sdFormText,
+                                  ),
                                 ),
-                              ),
-                              value: book.id,
-                            ))
-                        .toList(),
-                    onChanged: (value) =>
-                        setState(() => widget.back.borrowed.bookId = value),
-                    dropdownColor: Constants.bgColorDialogsLigth),
-              )
-            ],
-          ),
-          Divider(
-            thickness: 1,
-            color: Colors.grey.shade700,
-          ),
-        ]);
+                                value: book.id,
+                              ))
+                          .toList(),
+                      onChanged: (value) =>
+                          setState(() => widget.back.borrowed.bookId = value),
+                      dropdownColor: Constants.bgColorDialogsLigth),
+                )
+              ],
+            ),
+            Divider(
+              thickness: 1,
+              color: Colors.grey.shade700,
+            ),
+          ],
+        );
       },
     );
   }

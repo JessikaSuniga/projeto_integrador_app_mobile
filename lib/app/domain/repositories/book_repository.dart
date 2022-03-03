@@ -29,13 +29,13 @@ class BookRepository {
   Future<Book> findById(int id) async {
     Database _db = await _getDatabase();
     List<Map<String, dynamic>> allRows =
-        await _db.query(_table, where: 'id=?', whereArgs: [id]);
+        await _db.query(_table, where: 'book_id=?', whereArgs: [id]);
     return allRows.map((book) => Book.fromMap(book)).first;
   }
 
   remove(int id) async {
     Database _db = await _getDatabase();
-    _db.delete(_table, where: "id=?", whereArgs: [id]);
+    _db.delete(_table, where: "book_id=?", whereArgs: [id]);
   }
 
   insert(Book book) async {
@@ -45,6 +45,6 @@ class BookRepository {
 
   update(Book book) async {
     Database _db = await _getDatabase();
-    _db.update(_table, book.toMap(), where: "id=?", whereArgs: [book.id]);
+    _db.update(_table, book.toMap(), where: "book_id=?", whereArgs: [book.id]);
   }
 }

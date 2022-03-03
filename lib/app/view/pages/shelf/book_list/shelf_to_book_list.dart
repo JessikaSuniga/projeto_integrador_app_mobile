@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
-import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/domain/models/book.dart';
 import 'package:projeto_integrador_app/app/domain/models/shelf_to_book.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
@@ -19,14 +18,11 @@ class ShelfToBookList extends StatelessWidget {
     final _back = ShelfToBookListBack(context);
 
     return Scaffold(
-      // backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           _back.shelf.name,
-          // style: const TextStyle(color: Constants.myOrange),
         ),
-        // backgroundColor: Constants.headerColorLigth,
       ),
       body: Form(
         key: formKey,
@@ -57,26 +53,17 @@ class ShelfToBookList extends StatelessWidget {
                           subtitle: resultData[i].book.author,
                           infoLeft: Row(
                             children: [
-                              const Icon(
-                                Icons.library_books,
-                                // color: Constants.myOrange,
-                              ),
-                              Text(
-                                resultData[i].book.pages.toString(),
-                                // style: Constants.sdAuxMessages,
-                              ),
+                              const Icon(Icons.library_books),
+                              Text(resultData[i].book.pages.toString()),
                             ],
                           ),
                           infoRigth: Row(
                             children: [
-                              const Icon(
-                                Icons.calendar_today_outlined,
-                                // color: Constants.myOrange,
-                              ),
+                              const Icon(Icons.calendar_today_outlined),
                               Text(
                                 CommonService.formattedDate(
-                                    resultData[i].book.publicationDate),
-                                // style: Constants.sdAuxMessages,
+                                  resultData[i].book.publicationDate,
+                                ),
                               ),
                             ],
                           ),

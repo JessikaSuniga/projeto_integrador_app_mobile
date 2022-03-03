@@ -14,7 +14,7 @@ class BookToGenre {
   });
 
   BookToGenre.fromMap(dynamic obj) {
-    id = obj['id'];
+    id = obj['book_to_genre_id'];
     bookId = obj['book_id'];
     genreId = obj['genre_id'];
   }

@@ -20,7 +20,7 @@ class GenreRepository {
   Future<Genre> findById(int id) async {
     Database _db = await _getDatabase();
     List<Map<String, dynamic>> allRows =
-        await _db.query(_table, where: 'id=?', whereArgs: [id]);
+        await _db.query(_table, where: 'genre_id=?', whereArgs: [id]);
     return allRows.map((genre) => Genre.fromMap(genre)).first;
   }
 }

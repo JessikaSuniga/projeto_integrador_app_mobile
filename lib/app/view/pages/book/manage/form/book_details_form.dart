@@ -119,7 +119,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
 
   Widget _imagePicker() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20),
+      margin: const EdgeInsets.symmetric(vertical: 20),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey.shade400, width: 2),
       ),
@@ -140,20 +140,18 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       builder: (BuildContext context) => SimpleDialog(
         title: const Text('Alterar foto'),
         alignment: Alignment.center,
-        // backgroundColor: Constants.bgColorLigth,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(
-                icon: const Icon(Icons.photo_camera),
+              ElevatedButton(
+                child: const Icon(Icons.photo_camera),
                 onPressed: () async => _pickImageFromCamera(),
-                tooltip: 'Shoot picture',
               ),
-              IconButton(
-                icon: const Icon(Icons.photo),
+              const Padding(padding: EdgeInsets.all(10)),
+              ElevatedButton(
+                child: const Icon(Icons.photo),
                 onPressed: () async => _pickImageFromGallery(),
-                tooltip: 'Pick from gallery',
               ),
             ],
           ),
@@ -266,7 +264,6 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
         List<Genre> resultData = result.data;
 
         return MultiSelectDialogField(
-          // backgroundColor: Constants.bgColorLigth,
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
@@ -283,22 +280,13 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
             Icons.arrow_drop_down,
             color: Colors.grey.shade700,
           ),
-          selectedColor: Constants.myBrown,
-          selectedItemsTextStyle: TextStyle(color: Constants.myBlack),
           searchable: true,
           searchHint: 'Pesquisar',
           buttonText: const Text('Gênero:', textAlign: TextAlign.left),
-          cancelText: const Text(
-            'Cancelar',
-            style: TextStyle(
-              color: Constants.myBrown,
-            ),
-          ),
+          cancelText: const Text('Cancelar'),
           confirmText: const Text(
             'Aplicar',
-            style: TextStyle(
-              color: Constants.myOrange,
-            ),
+            style: TextStyle(color: Constants.myOrange),
           ),
           title: const Text('Gênero'),
           closeSearchIcon: const Icon(Icons.search_off),
@@ -341,17 +329,11 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
                   }
                 });
               },
-              child: const Icon(
-                Icons.date_range,
-                // color: Constants.myOrange,
-              ),
+              child: const Icon(Icons.date_range),
             ),
           ],
         ),
-        Divider(
-          thickness: 1,
-          color: Colors.grey.shade700,
-        ),
+        Divider(thickness: 1, color: Colors.grey.shade700),
       ],
     );
   }
@@ -468,7 +450,6 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       onSaved: (value) => widget.back.book.description = value,
       decoration: const InputDecoration(
         labelText: "Descrição:",
-        // border: OutlineInputBorder(),
         labelStyle: Constants.sdFormTitle,
         hintText: 'Escreva a descrição do livro aqui',
         hintStyle: Constants.sdFormHint,

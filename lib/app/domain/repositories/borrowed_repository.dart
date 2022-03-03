@@ -16,7 +16,7 @@ class BorrowedRepository {
 
     String query = '''
       SELECT * FROM $_table 
-        INNER JOIN book ON $_table.book_id = book.id;
+        INNER JOIN book ON $_table.book_id = book.book_id;
     ''';
 
     List<Map<String, dynamic>> allRows = await _db.rawQuery(query);
@@ -28,7 +28,7 @@ class BorrowedRepository {
 
     String query = '''
       SELECT * FROM $_table 
-        INNER JOIN book ON $_table.book_id = book.id 
+        INNER JOIN book ON $_table.book_id = book.book_id 
       WHERE $_table.end_date is null;
     ''';
 
@@ -41,8 +41,8 @@ class BorrowedRepository {
 
     String query = '''
       SELECT * FROM $_table 
-        INNER JOIN book ON $_table.book_id = book.id 
-      WHERE $_table.id = $id;
+        INNER JOIN book ON $_table.book_id = book.book_id  
+      WHERE $_table.borrowed_id = $id;
     ''';
 
     List<Map<String, dynamic>> allRows = await _db.rawQuery(query);
@@ -51,7 +51,7 @@ class BorrowedRepository {
 
   remove(int id) async {
     final _db = await _getDatabase();
-    _db.delete(_table, where: "id=?", whereArgs: [id]);
+    _db.delete(_table, where: "borrowed_id=?", whereArgs: [id]);
   }
 
   removeByBookId(int bookId) async {
@@ -67,6 +67,6 @@ class BorrowedRepository {
   update(Borrowed borrowed) async {
     final _db = await _getDatabase();
     _db.update(_table, borrowed.toMap(),
-        where: "id=?", whereArgs: [borrowed.id]);
+        where: "borrowed_id=?", whereArgs: [borrowed.id]);
   }
 }

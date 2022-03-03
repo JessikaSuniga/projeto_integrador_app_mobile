@@ -50,7 +50,7 @@ class _DesireDetaisState extends State<DesireDetais> {
             _sourceBookSection(),
             _genreField,
             Padding(padding: const EdgeInsets.only(top: 20, bottom: 0)),
-            _publicationDateField,
+            // _publicationDateField,
             _pagesField,
             _languageSelect,
             // _serieField,
@@ -272,7 +272,6 @@ class _DesireDetaisState extends State<DesireDetais> {
         List<Genre> resultData = result.data;
 
         return MultiSelectDialogField(
-          // backgroundColor: Constants.bgColorLigth,
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
@@ -289,22 +288,13 @@ class _DesireDetaisState extends State<DesireDetais> {
             Icons.arrow_drop_down,
             color: Colors.grey.shade700,
           ),
-          selectedColor: Constants.myBrown,
-          selectedItemsTextStyle: TextStyle(color: Constants.myBlack),
           searchable: true,
           searchHint: 'Pesquisar',
           buttonText: Text('Gênero:', textAlign: TextAlign.left),
-          cancelText: Text(
-            'Cancelar',
-            style: TextStyle(
-              color: Constants.myBrown,
-            ),
-          ),
+          cancelText: Text('Cancelar'),
           confirmText: Text(
             'Aplicar',
-            style: TextStyle(
-              color: Constants.myOrange,
-            ),
+            style: TextStyle(color: Constants.myOrange),
           ),
           title: Text('Gênero'),
           closeSearchIcon: Icon(Icons.search_off),
@@ -321,46 +311,46 @@ class _DesireDetaisState extends State<DesireDetais> {
     );
   }
 
-  Widget get _publicationDateField {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "Publicação: ${CommonService.formattedDate(widget.back.book.publicationDate)}",
-              style: Constants.sdFormText,
-            ),
-            GestureDetector(
-              onTap: () {
-                showDatePicker(
-                  context: context,
-                  initialDate:
-                      widget.back.book.publicationDate ?? DateTime.now(),
-                  firstDate: DateTime(1950),
-                  lastDate: DateTime(2222),
-                ).then((value) {
-                  if (value != null) {
-                    setState(() {
-                      widget.back.book.publicationDate = value;
-                    });
-                  }
-                });
-              },
-              child: Icon(
-                Icons.date_range,
-                // color: Constants.myOrange,
-              ),
-            ),
-          ],
-        ),
-        Divider(
-          thickness: 1,
-          color: Colors.grey.shade700,
-        ),
-      ],
-    );
-  }
+  // Widget get _publicationDateField {
+  //   return Column(
+  //     children: [
+  //       Row(
+  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //         children: [
+  //           Text(
+  //             "Publicação: ${CommonService.formattedDate(widget.back.book.publicationDate)}",
+  //             style: Constants.sdFormText,
+  //           ),
+  //           GestureDetector(
+  //             onTap: () {
+  //               showDatePicker(
+  //                 context: context,
+  //                 initialDate:
+  //                     widget.back.book.publicationDate ?? DateTime.now(),
+  //                 firstDate: DateTime(1950),
+  //                 lastDate: DateTime(2222),
+  //               ).then((value) {
+  //                 if (value != null) {
+  //                   setState(() {
+  //                     widget.back.book.publicationDate = value;
+  //                   });
+  //                 }
+  //               });
+  //             },
+  //             child: Icon(
+  //               Icons.date_range,
+  //               // color: Constants.myOrange,
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //       Divider(
+  //         thickness: 1,
+  //         color: Colors.grey.shade700,
+  //       ),
+  //     ],
+  //   );
+  // }
 
   TextFormField get _pagesField {
     return TextFormField(

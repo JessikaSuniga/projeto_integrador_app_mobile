@@ -60,10 +60,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
       allowHalfRating: true,
       itemCount: 5,
       itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-      itemBuilder: (context, _) => const Icon(
-        Icons.star,
-        color: Colors.amber,
-      ),
+      itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
       onRatingUpdate: (value) {
         setState(() {
           widget.back.book.evaluation = value;
@@ -149,10 +146,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
             ),
           ],
         ),
-        Divider(
-          thickness: 1,
-          color: Colors.grey.shade700,
-        ),
+        Divider(thickness: 1, color: Colors.grey.shade700),
       ],
     );
   }
@@ -222,17 +216,11 @@ class _BookNotesFromState extends State<BookNotesFrom> {
                   }
                 });
               },
-              child: const Icon(
-                Icons.date_range,
-                // color: Constants.myOrange,
-              ),
+              child: const Icon(Icons.date_range),
             ),
           ],
         ),
-        Divider(
-          thickness: 1,
-          color: Colors.grey.shade700,
-        ),
+        Divider(thickness: 1, color: Colors.grey.shade700),
       ],
     );
   }
@@ -260,15 +248,13 @@ class _BookNotesFromState extends State<BookNotesFrom> {
                 ),
                 validator: (v) {
                   if (v.trim().isEmpty) {
-                    return 'Por favor. insire um texto valido';
+                    return 'Por favor, insira um texto valido';
                   }
                   return null;
                 },
               ),
             ),
-            const SizedBox(
-              width: 16,
-            ),
+            const SizedBox(width: 16),
             _addRemoveButton(i == widget.back.book.notes.length - 1, i),
           ],
         ),

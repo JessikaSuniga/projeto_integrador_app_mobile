@@ -8,7 +8,7 @@ class Genre {
   });
 
   Genre.fromMap(dynamic obj) {
-    id = obj['id'];
+    id = obj['genre_id'];
     name = obj['name'];
   }
 

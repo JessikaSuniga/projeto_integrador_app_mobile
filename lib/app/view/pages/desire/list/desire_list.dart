@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/domain/models/book.dart';
 import 'package:projeto_integrador_app/app/view/components/tile.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
@@ -59,11 +58,9 @@ class DesireList extends StatelessWidget {
                       children: [
                         const Icon(
                           Icons.library_books,
-                          // color: Constants.myOrange,
                         ),
                         Text(
                           resultData[i].pages.toString(),
-                          // style: Constants.sdAuxMessages,
                         ),
                       ],
                     ),
@@ -71,12 +68,11 @@ class DesireList extends StatelessWidget {
                       children: [
                         const Icon(
                           Icons.calendar_today_outlined,
-                          // color: Constants.myOrange,
                         ),
                         Text(
                           CommonService.formattedDate(
-                              resultData[i].publicationDate),
-                          // style: Constants.sdAuxMessages,
+                            resultData[i].publicationDate,
+                          ),
                         ),
                       ],
                     ),

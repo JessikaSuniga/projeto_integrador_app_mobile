@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/domain/models/borrowed.dart';
-import 'package:projeto_integrador_app/app/view/components/button_delete_icon.dart';
-import 'package:projeto_integrador_app/app/view/components/button_edit_icon.dart';
+import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/view/components/tile.dart';
-import 'package:projeto_integrador_app/app/view/pages/borrowed/list/borrowed_list_back.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/view/components/button_edit_icon.dart';
+import 'package:projeto_integrador_app/app/view/components/button_delete_icon.dart';
+import 'package:projeto_integrador_app/app/view/pages/borrowed/list/borrowed_list_back.dart';
 
 class BorrowedList extends StatelessWidget {
   BorrowedList({Key key}) : super(key: key);
@@ -61,10 +61,7 @@ class BorrowedList extends StatelessWidget {
                           Icons.account_circle,
                           color: Constants.myGrey,
                         ),
-                        Text(
-                          resultData[i].name,
-                          // style: Constants.sdAuxMessages,
-                        ),
+                        Text(resultData[i].name),
                       ],
                     ),
                     infoRigth: Row(

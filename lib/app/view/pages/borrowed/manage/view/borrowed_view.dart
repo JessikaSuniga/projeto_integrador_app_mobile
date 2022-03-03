@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/common/assets.dart';
-import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/utility/utility.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
-import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/borrowed_form_back.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/borrowed_form_back.dart';
 
 class BorrowedView extends StatelessWidget {
   const BorrowedView({Key key}) : super(key: key);
@@ -15,18 +14,12 @@ class BorrowedView extends StatelessWidget {
     final _formKey = GlobalKey<FormState>();
 
     return Scaffold(
-      // backgroundColor: Constants.bgColorLigth,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
-          "Visualizar empréstimo",
-          // style: TextStyle(color: Constants.myOrange),
-        ),
-        // backgroundColor: Constants.headerColorLigth,
+        title: const Text("Visualizar empréstimo"),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
-            // color: Constants.myOrange,
             onPressed: () => _back.goToForm(context, _back.borrowed),
           ),
         ],
@@ -65,7 +58,9 @@ class BorrowedView extends StatelessWidget {
                             child: Text(
                               _back.borrowed.book.title,
                               style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
                             ),
                           ),
                           Padding(
@@ -80,8 +75,9 @@ class BorrowedView extends StatelessWidget {
                                   padding: EdgeInsets.only(right: 8.0),
                                   child: Text(
                                     "ISBN",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                                 Text(_back.borrowed.book.isbn),
@@ -103,7 +99,9 @@ class BorrowedView extends StatelessWidget {
                         const Text(
                           "Nome",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 1,
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10),
@@ -117,12 +115,17 @@ class BorrowedView extends StatelessWidget {
                         const Text(
                           "Data de início:",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Text(CommonService.formattedDate(
-                              _back.borrowed.startDate)),
+                          child: Text(
+                            CommonService.formattedDate(
+                              _back.borrowed.startDate,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -132,12 +135,17 @@ class BorrowedView extends StatelessWidget {
                         const Text(
                           "Data de fim:",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Text(CommonService.formattedDate(
-                              _back.borrowed.endDate)),
+                          child: Text(
+                            CommonService.formattedDate(
+                              _back.borrowed.endDate,
+                            ),
+                          ),
                         ),
                       ],
                     ),

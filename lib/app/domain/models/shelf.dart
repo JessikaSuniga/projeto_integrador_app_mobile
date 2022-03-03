@@ -12,7 +12,7 @@ class Shelf {
   });
 
   Shelf.fromMap(dynamic obj) {
-    id = obj['id'];
+    id = obj['shelf_id'];
     name = obj['name'];
   }
 

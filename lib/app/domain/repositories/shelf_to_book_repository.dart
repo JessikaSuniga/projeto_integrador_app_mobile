@@ -16,7 +16,7 @@ class ShelfToBookRepository {
 
     String query = '''
       SELECT * FROM $_table
-        INNER JOIN book ON $_table.book_id = book.id
+        INNER JOIN book ON $_table.book_id = book.book_id
     ''';
 
     List<Map<String, dynamic>> allRows = await _db.rawQuery(query);
@@ -30,7 +30,7 @@ class ShelfToBookRepository {
 
     String query = '''
       SELECT * FROM $_table
-        INNER JOIN book ON $_table.book_id = book.id
+        INNER JOIN book ON $_table.book_id = book.book_id
       WHERE shelf_Id = '$shelfId'
     ''';
 
@@ -44,7 +44,7 @@ class ShelfToBookRepository {
 
   remove(int id) async {
     final _db = await _getDatabase();
-    _db.delete(_table, where: "id=?", whereArgs: [id]);
+    _db.delete(_table, where: "shelf_to_book_id=?", whereArgs: [id]);
   }
 
   removeByShelfId(int shelfId) async {
@@ -73,6 +73,6 @@ class ShelfToBookRepository {
   update(ShelfToBook shelfToBook) async {
     final _db = await _getDatabase();
     _db.update(_table, shelfToBook.toMap(),
-        where: "id=?", whereArgs: [shelfToBook.id]);
+        where: "shelf_to_book_id=?", whereArgs: [shelfToBook.id]);
   }
 }

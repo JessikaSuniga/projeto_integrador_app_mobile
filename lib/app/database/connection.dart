@@ -71,7 +71,7 @@ class Connection {
 
   String get _book => '''
     CREATE TABLE book(
-      id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      book_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       title VARCHAR(100) NOT NULL,
       author VARCHAR(30) NOT NULL,
       publishing_company VARCHAR(50),
@@ -96,14 +96,14 @@ class Connection {
 
   String get _genre => '''
     CREATE TABLE genre(
-      id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      genre_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       name VARCHAR(20) UNIQUE NOT NULL
     );
   ''';
 
   String get _bookToGenre => '''
     CREATE TABLE book_to_genre(
-      id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      book_to_genre_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       book_id INTEGER NOT NULL,
       genre_id INTEGER NOT NULL,
       foreign key(book_id) references book(id) ON DELETE CASCADE,
@@ -113,14 +113,14 @@ class Connection {
 
   String get _shelf => '''
     CREATE TABLE shelf(
-      id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      shelf_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       name VARCHAR(20) UNIQUE NOT NULL
     );
   ''';
 
   String get _shelfToBook => '''
     CREATE TABLE shelf_to_book(
-      id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      shelf_to_book_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       shelf_id INTEGER NOT NULL,
       book_id INTEGER NOT NULL,
       foreign key(shelf_id) references shelf(id) ON DELETE CASCADE,
@@ -130,7 +130,7 @@ class Connection {
 
   String get _borrowed => '''
     CREATE TABLE borrowed(
-      id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      borrowed_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       book_id INTEGER NOT NULL,
       name VARCHAR(50) NOT NULL,
       start_date DATETIME NOT NULL,

@@ -38,6 +38,75 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Folha Amarela'),
+        bottom: TabBar(
+          isScrollable: true,
+          onTap: _onTabTop,
+          controller: _controller,
+          tabs: const <Widget>[
+            Tab(text: "Livro"),
+            Tab(text: "Estante"),
+            Tab(text: "Emprestado"),
+            Tab(text: "Desejo"),
+          ],
+        ),
+      ),
+      body: TabBarView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: _controller,
+        children: <Widget>[
+          BookList(),
+          ShelfList(),
+          BorrowedList(),
+          DesireList(),
+        ],
+      ),
+      bottomNavigationBar: _indexTop != NavigationTop.shelf.index
+          ? BottomNavigationBar(
+              currentIndex: _indexBottom,
+              onTap: (int i) => _onTabBottom(context, i),
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.book_outlined,
+                    color: Constants.icColorLigth,
+                  ),
+                  activeIcon: Icon(
+                    Icons.book,
+                    color: Constants.icColorPressLigth,
+                  ),
+                  tooltip: 'Livro',
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.add_circle_outline,
+                    color: Constants.icColorLigth,
+                  ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.favorite_outline,
+                    color: Constants.icColorLigth,
+                  ),
+                  activeIcon: Icon(
+                    Icons.favorite,
+                    color: Constants.icColorPressLigth,
+                  ),
+                  tooltip: 'Desejo',
+                  label: '',
+                ),
+              ],
+            )
+          : null,
+    );
+  }
+
   void _onSetStateTop(int index) {
     setState(() {
       _indexTop = index;
@@ -103,24 +172,25 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     TextButton(
                       child: const Text('Buscar por palavra chave ou ISBN'),
                       onPressed: () {
-                        // save(context, shelf) /*.then((e) => refleshList())*/;
+                        Navigator.of(context)
+                            .pushNamed(Routes.BOOK_FIND_API)
+                            .then((value) => Navigator.of(context).pop());
                       },
                     ),
                     TextButton(
                       child: const Text('Adicionar novo livro manualmente'),
                       onPressed: () {
-                        Navigator.of(context).pushNamed(Routes.BOOK_FORM).
-                          then((value) => Navigator.of(context).pop());
+                        Navigator.of(context)
+                            .pushNamed(Routes.BOOK_FORM)
+                            .then((value) => Navigator.of(context).pop());
                       },
                     ),
                   ],
-                  
                 ),
               ),
             ),
           );
-      
-          
+
           return;
         case NavigationTop.borrowed:
           Navigator.of(context).pushNamed(Routes.BORROWED_FORM);
@@ -132,92 +202,5 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           return;
       }
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      // backgroundColor: Constants.bgColorLigth,
-      appBar: AppBar(
-        title: const Text(
-          'Folha Amarela',
-          // style: TextStyle(color: Constants.myOrange),
-        ),
-        // backgroundColor: Constants.headerColorLigth,
-        // actions: [
-        //   IconButton(
-        //     icon: const Icon(Icons.menu),
-        //     color: Constants.myOrange,
-        //     onPressed: () {},
-        //   ),
-        // ],
-        bottom: TabBar(
-          isScrollable: true,
-          onTap: _onTabTop,
-          controller: _controller,
-          tabs: const <Widget>[
-            Tab(text: "Livro"),
-            Tab(text: "Estante"),
-            Tab(text: "Emprestado"),
-            Tab(text: "Desejo"),
-          ],
-          // labelColor: Constants.myOrange,
-          // unselectedLabelColor: Constants.myBlack,
-          // labelStyle: const TextStyle(fontSize: 18),
-          // unselectedLabelStyle: const TextStyle(fontSize: 18),
-          // indicatorColor: Constants.myOrange,
-        ),
-      ),
-      body: TabBarView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: _controller,
-        children: <Widget>[
-          BookList(),
-          ShelfList(),
-          BorrowedList(),
-          DesireList(),
-        ],
-      ),
-      bottomNavigationBar: _indexTop != NavigationTop.shelf.index
-          ? BottomNavigationBar(
-              // backgroundColor: Constants.bgColorLigth,
-              currentIndex: _indexBottom,
-              onTap: (int i) => _onTabBottom(context, i),
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.book_outlined,
-                    // color: Constants.icColorLigth,
-                  ),
-                  activeIcon: Icon(
-                    Icons.book,
-                    color: Constants.icColorPressLigth,
-                  ),
-                  tooltip: 'Livro',
-                  label: '',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.add_circle_outline,
-                    // color: Constants.icColorLigth,
-                  ),
-                  label: '',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.favorite_outline,
-                    // color: Constants.icColorLigth,
-                  ),
-                  activeIcon: Icon(
-                    Icons.favorite,
-                    color: Constants.icColorPressLigth,
-                  ),
-                  tooltip: 'Desejo',
-                  label: '',
-                ),
-              ],
-            )
-          : null,
-    );
   }
 }

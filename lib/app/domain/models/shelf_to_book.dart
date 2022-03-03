@@ -14,7 +14,7 @@ class ShelfToBook {
   });
 
   ShelfToBook.fromMap(dynamic obj) {
-    id = obj['id'];
+    id = obj['shelf_to_book_id'];
     shelfId = obj['shelf_id'];
     bookId = obj['book_id'];
     book = Book.fromMap(obj);

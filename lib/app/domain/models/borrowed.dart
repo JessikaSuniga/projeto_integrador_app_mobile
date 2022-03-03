@@ -18,7 +18,7 @@ class Borrowed {
   });
 
   Borrowed.fromMap(dynamic obj) {
-    id = obj['id'];
+    id = obj['borrowed_id'];
     bookId = obj['book_id'];
     name = obj['name'];
     startDate = _millisecondsToDatetime(obj['start_date'] as int);
