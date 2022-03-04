@@ -23,12 +23,17 @@ class DesireDetais extends StatefulWidget {
 class _DesireDetaisState extends State<DesireDetais> {
   final _picker = ImagePicker();
 
-  // String _validationIsNullOrEmpty(value) {
-  //   if (value == null || value.trim().isEmpty) {
-  //     return 'Informe um valor válido';
-  //   }
-  //   return null;
-  // }
+  String _validationIsNullOrEmpty(String value, int max) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Informe um valor válido';
+    }
+
+    if (value.length > max) {
+      return 'Campo deve ter no máximo $max caracteres';
+    }
+
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +68,9 @@ class _DesireDetaisState extends State<DesireDetais> {
   TextFormField get _titleField {
     return TextFormField(
       initialValue: widget.back.book.title,
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
+      validator: (value) {
+        return _validationIsNullOrEmpty(value, 100);
+      },
       onSaved: (value) => widget.back.book.title = value,
       decoration: const InputDecoration(
         labelText: 'Título',
@@ -83,9 +88,9 @@ class _DesireDetaisState extends State<DesireDetais> {
   TextFormField get _authorField {
     return TextFormField(
       initialValue: widget.back.book.author,
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
+      validator: (value) {
+        return _validationIsNullOrEmpty(value, 30);
+      },
       onSaved: (value) => widget.back.book.author = value,
       decoration: const InputDecoration(
         labelText: 'Autor(a)',
@@ -123,7 +128,7 @@ class _DesireDetaisState extends State<DesireDetais> {
 
   Widget _imagePicker() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 20),
+      margin: const EdgeInsets.symmetric(vertical: 20),
       // decoration: BoxDecoration(
       //   border: Border.all(color: Colors.grey.shade400, width: 2),
       // ),
@@ -187,9 +192,9 @@ class _DesireDetaisState extends State<DesireDetais> {
   TextFormField get _publishingCompanyField {
     return TextFormField(
       initialValue: widget.back.book.publishingCompany,
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
+      validator: (value) {
+        return _validationIsNullOrEmpty(value, 50);
+      },
       onSaved: (value) => widget.back.book.publishingCompany = value,
       decoration: const InputDecoration(
         labelText: 'Editora',
@@ -207,9 +212,9 @@ class _DesireDetaisState extends State<DesireDetais> {
   TextFormField get _isbnField {
     return TextFormField(
       initialValue: widget.back.book.isbn,
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
+      validator: (value) {
+        return _validationIsNullOrEmpty(value,20);
+      },
       onSaved: (value) => widget.back.book.isbn = value,
       decoration: const InputDecoration(
         labelText: 'ISBN',
@@ -278,9 +283,6 @@ class _DesireDetaisState extends State<DesireDetais> {
             ),
           ),
           initialValue: widget.back.book.genres,
-          // validator: (value) {
-          //   return _validationIsNullOrEmpty(value);
-          // },
           buttonIcon: Icon(
             Icons.arrow_drop_down,
             color: Colors.grey.shade700,
@@ -352,10 +354,17 @@ class _DesireDetaisState extends State<DesireDetais> {
   TextFormField get _pagesField {
     return TextFormField(
       initialValue: widget.back.book.pages.toString(),
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
-      onSaved: (value) => widget.back.book.pages = int.parse(value),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'Informe um valor válido';
+        }
+
+        if (int.parse(value) < 0) {
+          return 'Número de páginas não pode ser negativas';
+        }
+        return null;
+      },
+      onSaved: (value) => widget.back.book.pages = value != "" ? int.parse(value) : 0,
       decoration: const InputDecoration(
         labelText: 'Páginas',
         labelStyle: Constants.sdFormTitle,
@@ -404,68 +413,68 @@ class _DesireDetaisState extends State<DesireDetais> {
     );
   }
 
-  TextFormField get _serieField {
-    return TextFormField(
-      initialValue: widget.back.book.serie,
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
-      onSaved: (value) => widget.back.book.serie = value,
-      decoration: const InputDecoration(
-        labelText: 'Série:',
-        labelStyle: Constants.sdFormTitle,
-        hintText: 'Informe a série',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
-      ),
-      style: Constants.sdFormText,
-      cursorColor: Constants.myGrey,
-      textInputAction: TextInputAction.next,
-    );
-  }
+  // TextFormField get _serieField {
+  //   return TextFormField(
+  //     initialValue: widget.back.book.serie,
+  //     // validator: (value) {
+  //     //   return _validationIsNullOrEmpty(value);
+  //     // },
+  //     onSaved: (value) => widget.back.book.serie = value,
+  //     decoration: const InputDecoration(
+  //       labelText: 'Série:',
+  //       labelStyle: Constants.sdFormTitle,
+  //       hintText: 'Informe a série',
+  //       hintStyle: Constants.sdFormHint,
+  //       focusedBorder: Constants.sdFormFocusedDorder,
+  //     ),
+  //     style: Constants.sdFormText,
+  //     cursorColor: Constants.myGrey,
+  //     textInputAction: TextInputAction.next,
+  //   );
+  // }
 
-  TextFormField get _volumeField {
-    return TextFormField(
-      initialValue: widget.back.book.volume.toString(),
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
-      onSaved: (value) => widget.back.book.volume = int.parse(value),
-      decoration: const InputDecoration(
-        labelText: 'Volume:',
-        labelStyle: Constants.sdFormTitle,
-        hintText: 'Informe o Volume do livro',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
-      ),
-      style: Constants.sdFormText,
-      cursorColor: Constants.myGrey,
-      textInputAction: TextInputAction.next,
-      keyboardType: TextInputType.number,
-    );
-  }
+  // TextFormField get _volumeField {
+  //   return TextFormField(
+  //     initialValue: widget.back.book.volume.toString(),
+  //     // validator: (value) {
+  //     //   return _validationIsNullOrEmpty(value);
+  //     // },
+  //     onSaved: (value) => widget.back.book.volume = int.parse(value),
+  //     decoration: const InputDecoration(
+  //       labelText: 'Volume:',
+  //       labelStyle: Constants.sdFormTitle,
+  //       hintText: 'Informe o Volume do livro',
+  //       hintStyle: Constants.sdFormHint,
+  //       focusedBorder: Constants.sdFormFocusedDorder,
+  //     ),
+  //     style: Constants.sdFormText,
+  //     cursorColor: Constants.myGrey,
+  //     textInputAction: TextInputAction.next,
+  //     keyboardType: TextInputType.number,
+  //   );
+  // }
 
-  TextFormField get _descriptionField {
-    return TextFormField(
-      initialValue: widget.back.book.description,
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
-      onSaved: (value) => widget.back.book.description = value,
-      decoration: const InputDecoration(
-        labelText: "Descrição:",
-        // border: OutlineInputBorder(),
-        labelStyle: Constants.sdFormTitle,
-        hintText: 'Escreva a descrição do livro aqui',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
-      ),
-      style: Constants.sdFormText,
-      cursorColor: Constants.myGrey,
-      textInputAction: TextInputAction.next,
-      keyboardType: TextInputType.multiline,
-      minLines: 4,
-      maxLines: 4,
-    );
-  }
+  // TextFormField get _descriptionField {
+  //   return TextFormField(
+  //     initialValue: widget.back.book.description,
+  //     // validator: (value) {
+  //     //   return _validationIsNullOrEmpty(value);
+  //     // },
+  //     onSaved: (value) => widget.back.book.description = value,
+  //     decoration: const InputDecoration(
+  //       labelText: "Descrição:",
+  //       // border: OutlineInputBorder(),
+  //       labelStyle: Constants.sdFormTitle,
+  //       hintText: 'Escreva a descrição do livro aqui',
+  //       hintStyle: Constants.sdFormHint,
+  //       focusedBorder: Constants.sdFormFocusedDorder,
+  //     ),
+  //     style: Constants.sdFormText,
+  //     cursorColor: Constants.myGrey,
+  //     textInputAction: TextInputAction.next,
+  //     keyboardType: TextInputType.multiline,
+  //     minLines: 4,
+  //     maxLines: 4,
+  //   );
+  // }
 }

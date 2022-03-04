@@ -25,9 +25,11 @@ class DesireForm extends StatelessWidget {
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () {
-          _formKey.currentState.validate();
+          var res = _formKey.currentState.validate();
           _formKey.currentState.save();
-          _back.save(context);
+          if (res) {
+            _back.save(context);
+          }
         },
         child: const Text('Salvar'),
       ),

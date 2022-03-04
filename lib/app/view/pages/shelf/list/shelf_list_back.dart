@@ -48,9 +48,16 @@ abstract class _ShelfListBack with Store {
           key: _formKey,
           child: TextFormField(
             initialValue: shelf.name,
-            // validator: (value) {
-            //   return _validationIsNullOrEmpty(value);
-            // },
+            validator: (value) {
+              if (value == null || value.trim().isEmpty) {
+                return 'Informe um valor válido';
+              }
+
+              if (value.length > 20) {
+                return 'Nome da estante deve ser menor que 20 caracteres';
+              }
+              return null;
+            },
             onSaved: (value) => shelf.name = value,
             decoration: const InputDecoration(
               labelText: 'Nome',
@@ -72,9 +79,11 @@ abstract class _ShelfListBack with Store {
           TextButton(
             child: const Text('Sim'),
             onPressed: () {
-              _formKey.currentState.validate();
+              var res = _formKey.currentState.validate();
               _formKey.currentState.save();
-              save(context, shelf) /*.then((e) => refleshList())*/;
+              if (res) {
+                save(context, shelf);
+              }
             },
           ),
         ],
