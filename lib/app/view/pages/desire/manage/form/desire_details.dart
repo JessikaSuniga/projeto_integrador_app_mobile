@@ -44,9 +44,6 @@ class _DesireDetaisState extends State<DesireDetais> {
             _publicationDateField,
             _pagesField,
             _languageSelect,
-            // _serieField,
-            // _volumeField,
-            // _descriptionField,
           ],
         ),
       ),
@@ -70,10 +67,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       onSaved: (value) => widget.back.book.title = value,
       decoration: const InputDecoration(
         labelText: 'Título',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Titulo do livro',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -98,10 +92,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       onSaved: (value) => widget.back.book.author = value,
       decoration: const InputDecoration(
         labelText: 'Autor(a)',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Nome do autor(a)',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -203,10 +194,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       onSaved: (value) => widget.back.book.publishingCompany = value,
       decoration: const InputDecoration(
         labelText: 'Editora',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Nome da editora',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -226,10 +214,7 @@ class _DesireDetaisState extends State<DesireDetais> {
       onSaved: (value) => widget.back.book.isbn = value != "" ? value : null,
       decoration: const InputDecoration(
         labelText: 'ISBN',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Informe o valor do ISBN',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -264,7 +249,7 @@ class _DesireDetaisState extends State<DesireDetais> {
                     widget.back.book.format = value;
                   });
                 },
-                dropdownColor: Constants.bgColorDialogsLigth,
+                dropdownColor: Constants.myBrown,
               ),
             ),
           ],
@@ -375,10 +360,7 @@ class _DesireDetaisState extends State<DesireDetais> {
           widget.back.book.pages = value != "" ? int.parse(value) : 0,
       decoration: const InputDecoration(
         labelText: 'Páginas',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Informe a quantidade de páginas',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -412,7 +394,7 @@ class _DesireDetaisState extends State<DesireDetais> {
                       widget.back.book.language = value;
                     });
                   },
-                  dropdownColor: Constants.bgColorDialogsLigth),
+                  dropdownColor: Constants.myBrown),
             )
           ],
         ),
@@ -423,65 +405,4 @@ class _DesireDetaisState extends State<DesireDetais> {
       ],
     );
   }
-
-  // TextFormField get _serieField {
-  //   return TextFormField(
-  //     initialValue: widget.back.book.serie,
-  //     // validator: (value) {
-  //     //   return _validationIsNullOrEmpty(value);
-  //     // },
-  //     onSaved: (value) => widget.back.book.serie = value,
-  //     decoration: const InputDecoration(
-  //       labelText: 'Série:',
-  //       labelStyle: Constants.sdFormTitle,
-  //       hintText: 'Informe a série',
-  //       hintStyle: Constants.sdFormHint,
-  //       focusedBorder: Constants.sdFormFocusedDorder,
-  //     ),
-  //     style: Constants.sdFormText,
-  //     cursorColor: Constants.myGrey,
-  //     textInputAction: TextInputAction.next,
-  //   );
-  // }
-
-  // TextFormField get _volumeField {
-  //   return TextFormField(
-  //     initialValue: widget.back.book.volume.toString(),
-  //     // validator: (value) {
-  //     //   return _validationIsNullOrEmpty(value);
-  //     // },
-  //     onSaved: (value) => widget.back.book.volume = int.parse(value),
-  //     decoration: const InputDecoration(
-  //       labelText: 'Volume:',
-  //       labelStyle: Constants.sdFormTitle,
-  //       hintText: 'Informe o Volume do livro',
-  //       hintStyle: Constants.sdFormHint,
-  //       focusedBorder: Constants.sdFormFocusedDorder,
-  //     ),
-  //     style: Constants.sdFormText,
-  //     cursorColor: Constants.myGrey,
-  //     textInputAction: TextInputAction.next,
-  //     keyboardType: TextInputType.number,
-  //   );
-  // }
-
-  // TextFormField get _descriptionField {
-  //   return TextFormField(
-  //     onSaved: (value) => widget.back.book.description = value,
-  //     decoration: const InputDecoration(
-  //       labelText: "Descrição:",
-  //       // border: OutlineInputBorder(),
-  //       labelStyle: Constants.sdFormTitle,
-  //       hintText: 'Escreva a descrição do livro aqui',
-  //       hintStyle: Constants.sdFormHint,
-  //       focusedBorder: Constants.sdFormFocusedDorder,
-  //     ),
-  //     style: Constants.sdFormText,
-  //     cursorColor: Constants.myGrey,
-  //     textInputAction: TextInputAction.next,
-  //     keyboardType: TextInputType.multiline,
-  //     minLines: 4,
-  //     maxLines: 4,
-  //   );
-  // }
 }

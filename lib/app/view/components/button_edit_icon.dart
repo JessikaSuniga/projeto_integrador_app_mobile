@@ -12,7 +12,7 @@ class ButtonEditIcon extends StatelessWidget {
     return SlidableAction(
       label: 'Editar',
       icon: Icons.edit,
-      backgroundColor: Constants.bgActions,
+      backgroundColor: Constants.myDarkBeige,
       foregroundColor: Constants.myOrange,
       onPressed: (ctx) => _onPressed(),
     );

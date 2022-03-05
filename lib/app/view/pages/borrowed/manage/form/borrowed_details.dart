@@ -53,10 +53,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
       onSaved: (value) => widget.back.borrowed.name = value,
       decoration: const InputDecoration(
         labelText: 'Nome',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Nome de quem foi emprestado',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -182,7 +179,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
                     onChanged: (value) {
                       setState(() => widget.back.borrowed.bookId = value);
                     },
-                    dropdownColor: Constants.bgColorDialogsLigth,
+                    dropdownColor: Constants.myBrown,
                   ),
                 )
               ],

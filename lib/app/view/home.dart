@@ -73,11 +73,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 BottomNavigationBarItem(
                   icon: Icon(
                     Icons.book_outlined,
-                    color: Constants.icColorLigth,
+                    color: Constants.myDarkGrey,
                   ),
                   activeIcon: Icon(
                     Icons.book,
-                    color: Constants.icColorPressLigth,
+                    color: Constants.myOrange,
                   ),
                   tooltip: 'Livro',
                   label: '',
@@ -85,18 +85,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 BottomNavigationBarItem(
                   icon: Icon(
                     Icons.add_circle_outline,
-                    color: Constants.icColorLigth,
+                    color: Constants.myDarkGrey,
                   ),
                   label: '',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
                     Icons.favorite_outline,
-                    color: Constants.icColorLigth,
+                    color: Constants.myDarkGrey,
                   ),
                   activeIcon: Icon(
                     Icons.favorite,
-                    color: Constants.icColorPressLigth,
+                    color: Constants.myOrange,
                   ),
                   tooltip: 'Desejo',
                   label: '',

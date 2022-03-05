@@ -43,6 +43,13 @@ class Themes {
         borderSide: BorderSide(color: Constants.myOrange, width: 2),
       ),
     ),
+    inputDecorationTheme: const InputDecorationTheme(
+      labelStyle: TextStyle(fontSize: 16, color: Constants.myBlack),
+      hintStyle: TextStyle(color: Constants.myGrey),
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Constants.myBlack),
+      ),
+    ),
     scaffoldBackgroundColor: const Color.fromRGBO(249, 241, 230, 1),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Color.fromRGBO(249, 241, 230, 1),

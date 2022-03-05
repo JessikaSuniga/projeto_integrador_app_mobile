@@ -13,7 +13,7 @@ class ButtonDeleteIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SlidableAction(
       label: 'Delete',
-      backgroundColor: Constants.bgActions,
+      backgroundColor: Constants.myDarkBeige,
       foregroundColor: Colors.black,
       icon: Icons.delete,
       onPressed: (ctx) {

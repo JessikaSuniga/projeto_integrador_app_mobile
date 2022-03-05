@@ -66,10 +66,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       onSaved: (value) => widget.back.book.title = value,
       decoration: const InputDecoration(
         labelText: 'Título',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Titulo do livro',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -94,10 +91,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       onSaved: (value) => widget.back.book.author = value,
       decoration: const InputDecoration(
         labelText: 'Autor(a)',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Nome do autor(a)',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -200,10 +194,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       onSaved: (value) => widget.back.book.publishingCompany = value,
       decoration: const InputDecoration(
         labelText: 'Editora',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Nome da editora',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -223,10 +214,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       onSaved: (value) => widget.back.book.isbn = value == "" ? null : value,
       decoration: const InputDecoration(
         labelText: 'ISBN',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Informe o valor do ISBN',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -261,7 +249,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
                     widget.back.book.format = value;
                   });
                 },
-                dropdownColor: Constants.bgColorDialogsLigth,
+                dropdownColor: Constants.myBrown,
               ),
             ),
           ],
@@ -382,10 +370,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
           widget.back.book.pages = value != "" ? int.parse(value) : null,
       decoration: const InputDecoration(
         labelText: 'Páginas',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Informe a quantidade de páginas',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -421,7 +406,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
                     widget.back.book.language = value;
                   });
                 },
-                dropdownColor: Constants.bgColorDialogsLigth,
+                dropdownColor: Constants.myBrown,
               ),
             )
           ],
@@ -446,10 +431,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       onSaved: (value) => widget.back.book.serie = value,
       decoration: const InputDecoration(
         labelText: 'Série:',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Informe a série',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -474,10 +456,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
           widget.back.book.volume = value != "" ? int.parse(value) : 0,
       decoration: const InputDecoration(
         labelText: 'Volume:',
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Informe o Volume do livro',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,
@@ -492,10 +471,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       onSaved: (value) => widget.back.book.description = value,
       decoration: const InputDecoration(
         labelText: "Descrição:",
-        labelStyle: Constants.sdFormTitle,
         hintText: 'Escreva a descrição do livro aqui',
-        hintStyle: Constants.sdFormHint,
-        focusedBorder: Constants.sdFormFocusedDorder,
       ),
       style: Constants.sdFormText,
       cursorColor: Constants.myGrey,

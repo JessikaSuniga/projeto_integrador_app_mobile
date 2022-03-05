@@ -80,8 +80,12 @@ class ShelfList extends StatelessWidget {
                               leading: _imageBook(resultData[i].books),
                               title: Row(
                                 children: [
-                                  Text(resultData[i].name,
-                                      style: Constants.sdListTitle),
+                                  Text(
+                                    resultData[i].name,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                   _createTextAux(resultData[i].books.length),
                                 ],
                               ),

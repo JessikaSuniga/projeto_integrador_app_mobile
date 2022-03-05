@@ -61,10 +61,7 @@ abstract class _ShelfListBack with Store {
             onSaved: (value) => shelf.name = value,
             decoration: const InputDecoration(
               labelText: 'Nome',
-              labelStyle: Constants.sdFormTitle,
               hintText: 'Informe um nome para sua estante',
-              hintStyle: Constants.sdFormHint,
-              focusedBorder: Constants.sdFormFocusedDorder,
             ),
             style: Constants.sdFormText,
             cursorColor: Constants.myGrey,

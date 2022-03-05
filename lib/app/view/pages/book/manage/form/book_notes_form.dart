@@ -36,7 +36,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
               children: [
                 const Text(
                   'Anotações',
-                  style: Constants.sdFormTitle,
+                  style: TextStyle(fontSize: 16),
                 ),
                 ..._notesField(),
               ],
@@ -135,7 +135,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
                     },
                   );
                 },
-                dropdownColor: Constants.bgColorDialogsLigth,
+                dropdownColor: Constants.myBrown,
               ),
             ),
           ],
@@ -234,8 +234,6 @@ class _BookNotesFromState extends State<BookNotesFrom> {
                 onChanged: (v) => widget.back.book.notes[i] = v,
                 decoration: const InputDecoration(
                   hintText: 'Insira uma anotação',
-                  hintStyle: Constants.sdFormHint,
-                  focusedBorder: Constants.sdFormFocusedDorder,
                 ),
                 validator: (v) {
                   if (v.trim().isEmpty) {

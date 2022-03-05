@@ -43,10 +43,7 @@ class _BookFindAPIState extends State<BookFindAPI> {
                     onChanged: (v) => setState(() => textFind = v),
                     decoration: const InputDecoration(
                       labelText: 'Título ou ISBN',
-                      labelStyle: Constants.sdFormTitle,
                       hintText: 'Insira um titulo ou ISBN',
-                      hintStyle: Constants.sdFormHint,
-                      focusedBorder: Constants.sdFormFocusedDorder,
                     ),
                     style: Constants.sdFormText,
                     cursorColor: Constants.myGrey,
