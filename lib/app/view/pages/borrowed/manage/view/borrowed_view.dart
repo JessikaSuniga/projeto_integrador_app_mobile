@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_integrador_app/app/common/assets.dart';
-import 'package:projeto_integrador_app/app/common/utility/utility.dart';
+import 'package:projeto_integrador_app/app/common/utility/assets.dart';
+import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/borrowed_form_back.dart';
@@ -42,7 +42,7 @@ class BorrowedView extends StatelessWidget {
                               Border.all(color: Colors.grey.shade400, width: 2),
                         ),
                         child: _back.borrowed.book.image != null
-                            ? Utility.imageFromBase64String(
+                            ? ImageParse.imageFromBase64String(
                                 _back.borrowed.book.image)
                             : Image.asset(ConstantAssets.imgDefault),
                       ),
@@ -123,7 +123,7 @@ class BorrowedView extends StatelessWidget {
                           padding: const EdgeInsets.all(10),
                           child: Text(
                             CommonService.formattedDate(
-                              _back.borrowed.startDate,
+                              _back.borrowed.borrowedDate,
                             ),
                           ),
                         ),
@@ -143,7 +143,7 @@ class BorrowedView extends StatelessWidget {
                           padding: const EdgeInsets.all(10),
                           child: Text(
                             CommonService.formattedDate(
-                              _back.borrowed.endDate,
+                              _back.borrowed.returnedDate,
                             ),
                           ),
                         ),

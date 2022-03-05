@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/borrowed_form_back.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/form/borrowed_details.dart';
+import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class BorrowedForm extends StatelessWidget {
   const BorrowedForm({Key key}) : super(key: key);
@@ -20,15 +21,27 @@ class BorrowedForm extends StatelessWidget {
         ),
       ),
       body: Form(
-          key: _formKey,
-          child: BorrowedDetais(
-            back: _back,
-          )),
+        key: _formKey,
+        child: BorrowedDetais(
+          back: _back,
+        ),
+      ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () {
-          _formKey.currentState.validate();
+          if (_back.borrowed.bookId == null) {
+            CommonService.messageError(
+                context, "Selecione um livro para salvar.");
+            return;
+          }
+          if (_back.borrowed.borrowedDate == null) {
+            CommonService.messageError(context, "Informe uma data de início.");
+            return;
+          }
+          var res = _formKey.currentState.validate();
           _formKey.currentState.save();
-          _back.save(context);
+          if (res) {
+            _back.save(context);
+          }
         },
         child: const Text('Salvar'),
       ),

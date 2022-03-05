@@ -16,12 +16,6 @@ class BookNotesFrom extends StatefulWidget {
 }
 
 class _BookNotesFromState extends State<BookNotesFrom> {
-  // String _validationIsNullOrEmpty(value) {
-  //   if (value == null || value.trim().isEmpty) {
-  //     return 'Informe um valor válido';
-  //   }
-  //   return null;
-  // }
   @override
   Widget build(BuildContext context) {
     return Scroll(
@@ -176,10 +170,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
                   }
                 });
               },
-              child: const Icon(
-                Icons.date_range,
-                // color: Constants.myOrange,
-              ),
+              child: const Icon(Icons.date_range),
             ),
           ],
         ),

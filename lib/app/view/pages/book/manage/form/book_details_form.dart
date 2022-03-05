@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:projeto_integrador_app/app/domain/models/genre.dart';
-import 'package:projeto_integrador_app/app/common/assets.dart';
-import 'package:projeto_integrador_app/app/common/utility/utility.dart';
+import 'package:projeto_integrador_app/app/common/utility/assets.dart';
+import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
-import 'package:projeto_integrador_app/app/common/enums/regex_types.dart';
+import 'package:projeto_integrador_app/app/common/utility/regex_types.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_format_type.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_language_type.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
@@ -24,13 +24,6 @@ class BookDetaisForm extends StatefulWidget {
 
 class _BookDetaisFormState extends State<BookDetaisForm> {
   final _picker = ImagePicker();
-
-  // String _validationIsNullOrEmpty(value) {
-  //   if (value == null || value.trim().isEmpty) {
-  //     return 'Informe um valor válido';
-  //   }
-  //   return null;
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +52,17 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
   TextFormField get _titleField {
     return TextFormField(
       initialValue: widget.back.book.title,
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'Informe um valor válido';
+        }
+
+        if (value.length > 100) {
+          return 'Campo deve ter no máximo 100 caracteres';
+        }
+
+        return null;
+      },
       onSaved: (value) => widget.back.book.title = value,
       decoration: const InputDecoration(
         labelText: 'Título',
@@ -79,9 +80,17 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
   TextFormField get _authorField {
     return TextFormField(
       initialValue: widget.back.book.author,
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'Informe um valor válido';
+        }
+
+        if (value.length > 30) {
+          return 'Campo deve ter no máximo 30 caracteres';
+        }
+
+        return null;
+      },
       onSaved: (value) => widget.back.book.author = value,
       decoration: const InputDecoration(
         labelText: 'Autor(a)',
@@ -108,7 +117,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
               children: [
                 _publishingCompanyField,
                 _isbnField,
-                _formatoSelect(),
+                _formatoSelect,
               ],
             ),
           ),
@@ -126,7 +135,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
       child: GestureDetector(
         onTap: _showDialog,
         child: widget.back.book.image != null
-            ? Utility.imageFromBase64String(widget.back.book.image)
+            ? ImageParse.imageFromBase64String(widget.back.book.image)
             : Image.asset(ConstantAssets.imgDefault,
                 fit: BoxFit.fill, height: 160),
       ),
@@ -164,7 +173,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
       setState(() => widget.back.book.image =
-          Utility.base64String(File(pickedFile.path).readAsBytesSync()));
+          ImageParse.base64String(File(pickedFile.path).readAsBytesSync()));
     }
     Navigator.pop(context);
   }
@@ -173,7 +182,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() => widget.back.book.image =
-          Utility.base64String(File(pickedFile.path).readAsBytesSync()));
+          ImageParse.base64String(File(pickedFile.path).readAsBytesSync()));
     }
 
     Navigator.pop(context);
@@ -182,9 +191,12 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
   TextFormField get _publishingCompanyField {
     return TextFormField(
       initialValue: widget.back.book.publishingCompany,
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
+      validator: (value) {
+        if (value.length > 100) {
+          return 'Campo deve ter no máximo 100 caracteres';
+        }
+        return null;
+      },
       onSaved: (value) => widget.back.book.publishingCompany = value,
       decoration: const InputDecoration(
         labelText: 'Editora',
@@ -202,10 +214,13 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
   TextFormField get _isbnField {
     return TextFormField(
       initialValue: widget.back.book.isbn,
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
-      onSaved: (value) => widget.back.book.isbn = value,
+      validator: (value) {
+        if (value.length > 20) {
+          return 'Campo deve ter no máximo 20 caracteres';
+        }
+        return null;
+      },
+      onSaved: (value) => widget.back.book.isbn = value == "" ? null : value,
       decoration: const InputDecoration(
         labelText: 'ISBN',
         labelStyle: Constants.sdFormTitle,
@@ -219,7 +234,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
     );
   }
 
-  Widget _formatoSelect() {
+  Widget get _formatoSelect {
     return Column(
       children: [
         Row(
@@ -231,16 +246,21 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
                 hint: Text(BookFormatType.pocketBook.description),
                 value: widget.back.book.format,
                 items: BookFormatType.values
-                    .map((format) => DropdownMenuItem(
-                          child: Text(
-                            format.description,
-                            style: Constants.sdFormText,
-                          ),
-                          value: format,
-                        ))
+                    .map(
+                      (format) => DropdownMenuItem(
+                        child: Text(
+                          format.description,
+                          style: Constants.sdFormText,
+                        ),
+                        value: format,
+                      ),
+                    )
                     .toList(),
-                onChanged: (value) =>
-                    setState(() => widget.back.book.format = value),
+                onChanged: (value) {
+                  setState(() {
+                    widget.back.book.format = value;
+                  });
+                },
                 dropdownColor: Constants.bgColorDialogsLigth,
               ),
             ),
@@ -273,9 +293,6 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
             ),
           ),
           initialValue: widget.back.book.genres,
-          // validator: (value) {
-          //   return _validationIsNullOrEmpty(value);
-          // },
           buttonIcon: Icon(
             Icons.arrow_drop_down,
             color: Colors.grey.shade700,
@@ -341,6 +358,16 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
   TextFormField get _pagesField {
     return TextFormField(
       initialValue: widget.back.book.pages.toString(),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'Informe um valor válido';
+        }
+
+        if (int.parse(value) < 0) {
+          return 'Número de páginas não pode ser negativas';
+        }
+        return null;
+      },
       onChanged: (nrPages) {
         if (RegexType.number.validate(nrPages)) {
           setState(() {
@@ -351,7 +378,8 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
           });
         }
       },
-      onSaved: (value) => widget.back.book.pages = int.parse(value),
+      onSaved: (value) =>
+          widget.back.book.pages = value != "" ? int.parse(value) : null,
       decoration: const InputDecoration(
         labelText: 'Páginas',
         labelStyle: Constants.sdFormTitle,
@@ -375,20 +403,26 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
             const Text("Idioma:"),
             DropdownButtonHideUnderline(
               child: DropdownButton(
-                  hint: Text(BookLanguageType.portuguese.description),
-                  value: widget.back.book.language,
-                  items: BookLanguageType.values
-                      .map((language) => DropdownMenuItem(
-                            child: Text(
-                              language.description,
-                              style: Constants.sdFormText,
-                            ),
-                            value: language,
-                          ))
-                      .toList(),
-                  onChanged: (value) =>
-                      setState(() => widget.back.book.language = value),
-                  dropdownColor: Constants.bgColorDialogsLigth),
+                hint: Text(BookLanguageType.portuguese.description),
+                value: widget.back.book.language,
+                items: BookLanguageType.values
+                    .map(
+                      (language) => DropdownMenuItem(
+                        child: Text(
+                          language.description,
+                          style: Constants.sdFormText,
+                        ),
+                        value: language,
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    widget.back.book.language = value;
+                  });
+                },
+                dropdownColor: Constants.bgColorDialogsLigth,
+              ),
             )
           ],
         ),
@@ -403,9 +437,12 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
   TextFormField get _serieField {
     return TextFormField(
       initialValue: widget.back.book.serie,
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
+      validator: (value) {
+        if (value.length > 50) {
+          return 'Campo deve ter no máximo 50 caracteres';
+        }
+        return null;
+      },
       onSaved: (value) => widget.back.book.serie = value,
       decoration: const InputDecoration(
         labelText: 'Série:',
@@ -423,10 +460,18 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
   TextFormField get _volumeField {
     return TextFormField(
       initialValue: widget.back.book.volume.toString(),
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
-      onSaved: (value) => widget.back.book.volume = int.parse(value),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'Informe um valor válido';
+        }
+
+        if (int.parse(value) < 0) {
+          return 'Número de volume não pode ser negativo';
+        }
+        return null;
+      },
+      onSaved: (value) =>
+          widget.back.book.volume = value != "" ? int.parse(value) : 0,
       decoration: const InputDecoration(
         labelText: 'Volume:',
         labelStyle: Constants.sdFormTitle,
@@ -444,9 +489,6 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
   TextFormField get _descriptionField {
     return TextFormField(
       initialValue: widget.back.book.description,
-      // validator: (value) {
-      //   return _validationIsNullOrEmpty(value);
-      // },
       onSaved: (value) => widget.back.book.description = value,
       decoration: const InputDecoration(
         labelText: "Descrição:",

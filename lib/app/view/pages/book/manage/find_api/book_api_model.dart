@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:projeto_integrador_app/app/common/assets.dart';
+import 'package:projeto_integrador_app/app/common/utility/assets.dart';
 
 class BookApi {
   final String id;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_integrador_app/app/common/assets.dart';
-import 'package:projeto_integrador_app/app/common/utility/utility.dart';
+import 'package:projeto_integrador_app/app/common/utility/assets.dart';
+import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
 import 'package:projeto_integrador_app/app/view/components/my_divider.dart';
 
 class Tile extends StatelessWidget {
@@ -21,7 +21,7 @@ class Tile extends StatelessWidget {
 
   dynamic _imageBook(String uri) {
     if (uri != null) {
-      return Utility.imageFromBase64String(uri);
+      return ImageParse.imageFromBase64String(uri);
     }
     return Image.asset(
       ConstantAssets.imgDefault,

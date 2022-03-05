@@ -64,9 +64,11 @@ class _BookFormState extends State<BookForm>
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () {
-          formKey.currentState.validate();
+          var res = formKey.currentState.validate();
           formKey.currentState.save();
-          back.save(context);
+          if (res) {
+            back.save(context);
+          }
         },
         child: const Text('Salvar'),
       ),

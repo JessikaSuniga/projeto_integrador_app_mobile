@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_integrador_app/app/common/utility/utility.dart';
+import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
 import 'package:projeto_integrador_app/app/domain/models/book.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
@@ -137,7 +137,7 @@ class BookApiDetailsPage extends StatelessWidget {
       goToBookForm(context, newBook);
     }
 
-    Utility.networkImageToBase64(bookApi.thumbnailUrl).then((value) {
+    ImageParse.networkImageToBase64(bookApi.thumbnailUrl).then((value) {
       newBook.image = value;
       goToBookForm(context, newBook);
     }).catchError(

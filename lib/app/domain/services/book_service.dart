@@ -15,14 +15,15 @@ class BookService {
   save(Book book) async {
     // insert
     if (book.id == null) {
-      await _bookRepository.insert(book);
+      var bookId = await _bookRepository.insert(book);
 
       if (book.genres == null) return;
 
-      for (var genreid in book.genres) {
-        var newGenre = BookToGenre(bookId: book.id, genreId: genreid);
+      for (var genreId in book.genres) {
+        var newGenre = BookToGenre(bookId: bookId, genreId: genreId);
         await _bookToGenreRepository.insert(newGenre);
       }
+
       return;
     }
 

@@ -28,7 +28,7 @@ class BorrowedService {
     var query = "item_type='bought'";
 
     if (borroweds.isNotEmpty) {
-      query += " AND id not in (";
+      query += " AND book_id not in (";
       var count = 0;
       for (var item in borroweds) {
         if (item.id != borrowedBookId) {

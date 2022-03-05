@@ -38,9 +38,9 @@ class BookRepository {
     _db.delete(_table, where: "book_id=?", whereArgs: [id]);
   }
 
-  insert(Book book) async {
+  Future<int> insert(Book book) async {
     Database _db = await _getDatabase();
-    _db.insert(_table, book.toMap());
+    return _db.insert(_table, book.toMap());
   }
 
   update(Book book) async {

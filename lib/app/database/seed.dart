@@ -48,8 +48,8 @@ VALUES (1, 4);
 ''';
 
 const insertBorrowed = '''
-INSERT INTO borrowed (book_id, name, start_date, end_date)
-VALUES (1, 'Alex', 1555962196, null);
+INSERT INTO borrowed (book_id, name, borrowed_date)
+VALUES (1, 'Alex', 1555962196);
 ''';
 
 //

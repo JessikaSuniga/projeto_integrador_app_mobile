@@ -17,6 +17,7 @@ class Constants {
   static const Color myOrange = Color.fromRGBO(206, 78, 40, 1);
   static const Color myBrown = Color.fromRGBO(210, 179, 153, 1);
   static const Color myBlack = Color.fromRGBO(55, 66, 93, 1);
+  static const Color myBeige = Color.fromRGBO(249, 241, 230, 1);
   static const TextStyle sdListTitle = TextStyle(
     fontWeight: FontWeight.bold,
   );

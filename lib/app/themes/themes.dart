@@ -14,6 +14,9 @@ class Themes {
 
   static ThemeData bookTheme = ThemeData(
     brightness: Brightness.light,
+    dialogTheme: const DialogTheme(
+      backgroundColor: Constants.myBeige,
+    ),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
         foregroundColor: MaterialStateProperty.all(Constants.myBlack),
@@ -26,7 +29,7 @@ class Themes {
     ),
     sliderTheme: const SliderThemeData(
       activeTrackColor: Colors.amber,
-      inactiveTrackColor: Colors.black,
+      inactiveTrackColor: Colors.grey,
       overlayColor: Color.fromRGBO(255, 193, 7, 0.3),
       thumbColor: Colors.amber,
     ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
-import 'package:projeto_integrador_app/app/common/utility/utility.dart';
+import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
 import 'package:projeto_integrador_app/app/domain/models/shelf.dart';
 import 'package:projeto_integrador_app/app/domain/models/shelf_to_book.dart';
 import 'package:projeto_integrador_app/app/view/components/button_delete_icon.dart';
@@ -20,7 +20,7 @@ class ShelfList extends StatelessWidget {
 
     if (uri != null) {
       return CircleAvatar(
-          backgroundImage: Utility.imageFromBase64String(uri).image);
+          backgroundImage: ImageParse.imageFromBase64String(uri).image);
     }
     return const CircleAvatar(child: Icon(Icons.menu_book));
   }

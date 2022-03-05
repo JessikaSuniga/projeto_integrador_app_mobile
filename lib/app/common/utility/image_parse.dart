@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 import 'dart:convert';
 
-class Utility {
+class ImageParse {
   static Image imageFromBase64String(String base64String) {
     return Image.memory(
       base64Decode(base64String),

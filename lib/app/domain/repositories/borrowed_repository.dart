@@ -29,7 +29,7 @@ class BorrowedRepository {
     String query = '''
       SELECT * FROM $_table 
         INNER JOIN book ON $_table.book_id = book.book_id 
-      WHERE $_table.end_date is null;
+      WHERE $_table.returned_date is null;
     ''';
 
     List<Map<String, dynamic>> allRows = await _db.rawQuery(query);

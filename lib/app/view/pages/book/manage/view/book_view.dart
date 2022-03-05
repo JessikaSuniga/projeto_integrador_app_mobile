@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_integrador_app/app/common/assets.dart';
+import 'package:projeto_integrador_app/app/common/utility/assets.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
-import 'package:projeto_integrador_app/app/common/utility/utility.dart';
+import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/view/book_details_view.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/view/book_notes_view.dart';
@@ -71,7 +71,7 @@ class _BookViewState extends State<BookView>
                         ),
                       ),
                       child: back.book.image != null
-                          ? Utility.imageFromBase64String(back.book.image)
+                          ? ImageParse.imageFromBase64String(back.book.image)
                           : Image.asset(ConstantAssets.imgDefault),
                     ),
                   ),
@@ -106,7 +106,7 @@ class _BookViewState extends State<BookView>
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              Text(back.book.isbn),
+                              Text(back.book.isbn ?? "_"),
                             ],
                           ),
                         ),

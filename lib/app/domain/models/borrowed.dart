@@ -5,24 +5,24 @@ class Borrowed {
   int bookId;
   Book book;
   String name;
-  DateTime startDate;
-  DateTime endDate;
+  DateTime borrowedDate;
+  DateTime returnedDate;
 
   Borrowed({
     this.id,
     this.bookId,
     this.book,
     this.name,
-    this.startDate,
-    this.endDate,
+    this.borrowedDate,
+    this.returnedDate,
   });
 
   Borrowed.fromMap(dynamic obj) {
     id = obj['borrowed_id'];
     bookId = obj['book_id'];
     name = obj['name'];
-    startDate = _millisecondsToDatetime(obj['start_date'] as int);
-    endDate = _millisecondsToDatetime(obj['end_date'] as int);
+    borrowedDate = _millisecondsToDatetime(obj['borrowed_date'] as int);
+    returnedDate = _millisecondsToDatetime(obj['returned_date'] as int);
     book = Book.fromMap(obj);
   }
 
@@ -30,8 +30,8 @@ class Borrowed {
     var map = <String, dynamic>{
       'book_id': bookId,
       'name': name,
-      'start_date': _datetimeToMilliseconds(startDate),
-      'end_date': _datetimeToMilliseconds(endDate),
+      'borrowed_date': _datetimeToMilliseconds(borrowedDate),
+      'returned_date': _datetimeToMilliseconds(returnedDate),
     };
 
     return map;

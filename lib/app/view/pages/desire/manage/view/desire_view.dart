@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_integrador_app/app/common/assets.dart';
+import 'package:projeto_integrador_app/app/common/utility/assets.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_format_type.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_language_type.dart';
-import 'package:projeto_integrador_app/app/common/utility/utility.dart';
+import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
 import 'package:projeto_integrador_app/app/domain/models/book_to_genre.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
 import 'package:projeto_integrador_app/app/view/pages/desire/manage/desire_form_back.dart';
@@ -45,7 +45,7 @@ class DesireView extends StatelessWidget {
                               Border.all(color: Colors.grey.shade400, width: 2),
                         ),
                         child: _back.book.image != null
-                            ? Utility.imageFromBase64String(_back.book.image)
+                            ? ImageParse.imageFromBase64String(_back.book.image)
                             : Image.asset(ConstantAssets.imgDefault),
                       ),
                     ),
@@ -82,7 +82,7 @@ class DesireView extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Text(_back.book.isbn),
+                                Text(_back.book.isbn ?? "_"),
                               ],
                             ),
                           ),

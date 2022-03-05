@@ -36,7 +36,7 @@ class DesireFormBack {
 
   save(BuildContext context) async {
     try {
-      book.itemType ??= BookItemType.desire;
+      book.itemType = BookItemType.desire;
       await _service.save(book);
       CommonService.messageSuccess(context, 'Livro salvo com sucesso!');
       Navigator.of(context).pop();

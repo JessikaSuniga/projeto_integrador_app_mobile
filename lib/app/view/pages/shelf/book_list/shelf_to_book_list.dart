@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/domain/models/book.dart';
 import 'package:projeto_integrador_app/app/domain/models/shelf_to_book.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
@@ -78,6 +79,7 @@ class ShelfToBookList extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        isExtended: true,
         onPressed: () {
           List<ShelfToBook> list;
           _back.list.then((value) => list = value);
@@ -95,6 +97,10 @@ class ShelfToBookList extends StatelessWidget {
                   List<Book> resultData = result.data;
 
                   return MultiSelectDialog(
+                    title: const Text("Selecione os livros"),
+                    cancelText: const Text("Cancelar"),
+                    searchable: true,
+                    searchHint: 'Pesquisar',
                     items: resultData
                         .map((e) => MultiSelectItem(e.id, e.title))
                         .toList(),
@@ -102,6 +108,10 @@ class ShelfToBookList extends StatelessWidget {
                     onConfirm: (values) {
                       _back.save(ctx, values);
                     },
+                    confirmText: const Text(
+                      'Aplicar',
+                      style: TextStyle(color: Constants.myOrange),
+                    ),
                   );
                 },
               );
