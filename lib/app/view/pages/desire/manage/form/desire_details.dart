@@ -249,7 +249,7 @@ class _DesireDetaisState extends State<DesireDetais> {
                     widget.back.book.format = value;
                   });
                 },
-                dropdownColor: Constants.myBrown,
+                // dropdownColor: Constants.myBrown,
               ),
             ),
           ],
@@ -378,23 +378,24 @@ class _DesireDetaisState extends State<DesireDetais> {
             const Text("Idioma:"),
             DropdownButtonHideUnderline(
               child: DropdownButton(
-                  hint: Text(BookLanguageType.portuguese.description),
-                  value: widget.back.book.language,
-                  items: BookLanguageType.values
-                      .map((language) => DropdownMenuItem(
-                            child: Text(
-                              language.description,
-                              style: Constants.sdFormText,
-                            ),
-                            value: language,
-                          ))
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      widget.back.book.language = value;
-                    });
-                  },
-                  dropdownColor: Constants.myBrown),
+                hint: Text(BookLanguageType.portuguese.description),
+                value: widget.back.book.language,
+                items: BookLanguageType.values
+                    .map((language) => DropdownMenuItem(
+                          child: Text(
+                            language.description,
+                            style: Constants.sdFormText,
+                          ),
+                          value: language,
+                        ))
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    widget.back.book.language = value;
+                  });
+                },
+                // dropdownColor: Constants.myBrown,
+              ),
             )
           ],
         ),

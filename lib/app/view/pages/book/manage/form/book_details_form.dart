@@ -249,7 +249,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
                     widget.back.book.format = value;
                   });
                 },
-                dropdownColor: Constants.myBrown,
+                // dropdownColor: Constants.myBrown,
               ),
             ),
           ],
@@ -406,7 +406,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
                     widget.back.book.language = value;
                   });
                 },
-                dropdownColor: Constants.myBrown,
+                // dropdownColor: Constants.myBrown,
               ),
             )
           ],

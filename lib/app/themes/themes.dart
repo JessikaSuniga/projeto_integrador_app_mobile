@@ -14,6 +14,9 @@ class Themes {
 
   static ThemeData bookTheme = ThemeData(
     brightness: Brightness.light,
+    // canvasColor: Constants.myBlack,
+    // splashColor: Colors.red,
+    // toggleableActiveColor: Colors.amber,
     dialogTheme: const DialogTheme(
       backgroundColor: Constants.myBeige,
     ),
