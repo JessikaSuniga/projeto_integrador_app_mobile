@@ -112,7 +112,7 @@ class _DesireDetaisState extends State<DesireDetais> {
               children: [
                 _publishingCompanyField,
                 _isbnField,
-                _formatoSelect(),
+                _formatoSelect,
               ],
             ),
           ),
@@ -222,7 +222,7 @@ class _DesireDetaisState extends State<DesireDetais> {
     );
   }
 
-  Widget _formatoSelect() {
+  Widget get _formatoSelect {
     return Column(
       children: [
         Row(

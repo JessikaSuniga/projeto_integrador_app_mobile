@@ -101,6 +101,7 @@ class ShelfToBookList extends StatelessWidget {
                     cancelText: const Text("Cancelar"),
                     searchable: true,
                     searchHint: 'Pesquisar',
+                    closeSearchIcon: const Icon(Icons.search_off),
                     items: resultData
                         .map((e) => MultiSelectItem(e.id, e.title))
                         .toList(),
