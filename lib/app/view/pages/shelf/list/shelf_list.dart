@@ -4,25 +4,28 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
 import 'package:projeto_integrador_app/app/domain/models/shelf.dart';
-import 'package:projeto_integrador_app/app/domain/models/shelf_to_book.dart';
 import 'package:projeto_integrador_app/app/view/components/button_delete_icon.dart';
 import 'package:projeto_integrador_app/app/view/components/button_edit_icon.dart';
 import 'package:projeto_integrador_app/app/view/components/my_divider.dart';
 import 'package:projeto_integrador_app/app/view/pages/shelf/list/shelf_list_back.dart';
+import 'dart:math' as math;
 
 class ShelfList extends StatelessWidget {
   ShelfList({Key key}) : super(key: key);
 
   final _back = ShelfListBack();
 
-  dynamic _imageBook(List<ShelfToBook> books) {
-    var uri = books.isNotEmpty ? books[0].book.image : null;
+  dynamic _imageBook(Shelf shelf) {
+    var uri = shelf.books.isNotEmpty ? shelf.books[0].book.image : null;
 
     if (uri != null) {
       return CircleAvatar(
           backgroundImage: ImageParse.imageFromBase64String(uri).image);
     }
-    return const CircleAvatar(child: Icon(Icons.menu_book));
+    return CircleAvatar(
+      backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+      child: Text(shelf.name.substring(0, 1).toUpperCase()),
+    );
   }
 
   Text _createTextAux(int length) {
@@ -77,7 +80,7 @@ class ShelfList extends StatelessWidget {
                             ListTile(
                               contentPadding: const EdgeInsets.only(
                                   bottom: 0, left: 15, right: 15, top: 10),
-                              leading: _imageBook(resultData[i].books),
+                              leading: _imageBook(resultData[i]),
                               title: Row(
                                 children: [
                                   Text(

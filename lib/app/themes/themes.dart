@@ -14,9 +14,7 @@ class Themes {
 
   static ThemeData bookTheme = ThemeData(
     brightness: Brightness.light,
-    // canvasColor: Constants.myBlack,
-    // splashColor: Colors.red,
-    // toggleableActiveColor: Colors.amber,
+    canvasColor: Constants.myBeige,
     dialogTheme: const DialogTheme(
       backgroundColor: Constants.myBeige,
     ),
@@ -57,7 +55,7 @@ class Themes {
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Color.fromRGBO(249, 241, 230, 1),
     ),
-    primaryColor: Constants.myBrown,
+    primaryColor: Constants.myOrange,
     iconTheme: const IconThemeData(color: Constants.myOrange),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Constants.myOrange,
