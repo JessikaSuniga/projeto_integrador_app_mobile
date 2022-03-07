@@ -1,6 +1,6 @@
 import 'package:projeto_integrador_app/app/common/enums/book_item_type.dart';
 import 'package:projeto_integrador_app/app/database/connection.dart';
-import 'package:projeto_integrador_app/app/domain/models/book.dart';
+import 'package:projeto_integrador_app/app/domain/entities/book.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class BookRepository {

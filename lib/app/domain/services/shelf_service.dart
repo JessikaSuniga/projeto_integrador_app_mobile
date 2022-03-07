@@ -1,4 +1,4 @@
-import 'package:projeto_integrador_app/app/domain/models/shelf.dart';
+import 'package:projeto_integrador_app/app/domain/entities/shelf.dart';
 import 'package:projeto_integrador_app/app/domain/repositories/book_repository.dart';
 import 'package:projeto_integrador_app/app/domain/repositories/shelf_repository.dart';
 import 'package:projeto_integrador_app/app/domain/repositories/shelf_to_book_repository.dart';

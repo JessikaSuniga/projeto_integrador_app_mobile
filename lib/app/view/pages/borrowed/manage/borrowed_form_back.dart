@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_integrador_app/app/domain/models/book.dart';
-import 'package:projeto_integrador_app/app/domain/models/borrowed.dart';
+import 'package:projeto_integrador_app/app/domain/entities/book.dart';
+import 'package:projeto_integrador_app/app/domain/entities/borrowed.dart';
 import 'package:projeto_integrador_app/app/domain/services/borrowed_service.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';

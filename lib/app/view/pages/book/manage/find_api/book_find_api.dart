@@ -81,7 +81,7 @@ class _BookFindAPIState extends State<BookFindAPI> {
             children: [
               Container(
                   alignment: Alignment.centerLeft,
-                  child: Text(bookApi.authors)),
+                  child: Text(bookApi.authors),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

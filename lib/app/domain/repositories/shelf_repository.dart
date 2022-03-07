@@ -1,5 +1,5 @@
 import 'package:projeto_integrador_app/app/database/connection.dart';
-import 'package:projeto_integrador_app/app/domain/models/shelf.dart';
+import 'package:projeto_integrador_app/app/domain/entities/shelf.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ShelfRepository {

@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
-import 'package:projeto_integrador_app/app/domain/models/genre.dart';
+import 'package:projeto_integrador_app/app/domain/entities/genre.dart';
 import 'package:projeto_integrador_app/app/common/utility/assets.dart';
 import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';

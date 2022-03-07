@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_item_type.dart';
-import 'package:projeto_integrador_app/app/domain/models/book.dart';
-import 'package:projeto_integrador_app/app/domain/models/shelf.dart';
-import 'package:projeto_integrador_app/app/domain/models/shelf_to_book.dart';
+import 'package:projeto_integrador_app/app/domain/entities/book.dart';
+import 'package:projeto_integrador_app/app/domain/entities/shelf.dart';
+import 'package:projeto_integrador_app/app/domain/entities/shelf_to_book.dart';
 import 'package:projeto_integrador_app/app/domain/services/book_service.dart';
 import 'package:projeto_integrador_app/app/domain/services/shelf_to_book_service.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';

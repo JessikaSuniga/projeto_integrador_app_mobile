@@ -1,5 +1,5 @@
 import 'package:projeto_integrador_app/app/database/connection.dart';
-import 'package:projeto_integrador_app/app/domain/models/genre.dart';
+import 'package:projeto_integrador_app/app/domain/entities/genre.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class GenreRepository {

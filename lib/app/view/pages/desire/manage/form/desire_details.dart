@@ -7,7 +7,7 @@ import 'package:projeto_integrador_app/app/common/enums/book_format_type.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_language_type.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
-import 'package:projeto_integrador_app/app/domain/models/genre.dart';
+import 'package:projeto_integrador_app/app/domain/entities/genre.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
 import 'package:projeto_integrador_app/app/view/pages/desire/manage/desire_form_back.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';

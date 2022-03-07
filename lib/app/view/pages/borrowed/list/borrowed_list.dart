@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:projeto_integrador_app/app/domain/models/borrowed.dart';
+import 'package:projeto_integrador_app/app/domain/entities/borrowed.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/view/components/tile.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';

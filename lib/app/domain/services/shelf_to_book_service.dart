@@ -1,4 +1,4 @@
-import 'package:projeto_integrador_app/app/domain/models/shelf_to_book.dart';
+import 'package:projeto_integrador_app/app/domain/entities/shelf_to_book.dart';
 import 'package:projeto_integrador_app/app/domain/repositories/shelf_to_book_repository.dart';
 
 class ShelfToBookService {

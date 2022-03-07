@@ -1,5 +1,5 @@
-import 'package:projeto_integrador_app/app/domain/models/book.dart';
-import 'package:projeto_integrador_app/app/domain/models/borrowed.dart';
+import 'package:projeto_integrador_app/app/domain/entities/book.dart';
+import 'package:projeto_integrador_app/app/domain/entities/borrowed.dart';
 import 'package:projeto_integrador_app/app/domain/repositories/book_repository.dart';
 import 'package:projeto_integrador_app/app/domain/repositories/borrowed_repository.dart';
 

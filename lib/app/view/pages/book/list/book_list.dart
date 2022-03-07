@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:projeto_integrador_app/app/domain/models/book.dart';
+import 'package:projeto_integrador_app/app/domain/entities/book.dart';
+import 'package:projeto_integrador_app/app/view/components/filter/filter.dart';
 import 'package:projeto_integrador_app/app/view/components/tile.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 import 'package:projeto_integrador_app/app/view/components/button_edit_icon.dart';
@@ -26,55 +27,62 @@ class BookList extends StatelessWidget {
 
             List<Book> resultData = result.data;
 
-            return ListView.builder(
-              itemCount: resultData.length,
-              itemBuilder: (ctx, i) {
-                return Slidable(
-                  key: const ValueKey(0),
-                  endActionPane: ActionPane(
-                    motion: const DrawerMotion(),
-                    children: <Widget>[
-                      Expanded(
-                        child: Row(
-                          children: [
-                            ButtonEditIcon(
-                              () => _back.goToForm(context, resultData[i]),
-                            ),
-                            ButtonDeleteIcon(
-                              context,
-                              () => _back.remove(resultData[i].id, context),
+            return Column(
+              children: [
+                const Filter(),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: resultData.length,
+                    itemBuilder: (ctx, i) {
+                      return Slidable(
+                        key: const ValueKey(0),
+                        endActionPane: ActionPane(
+                          motion: const DrawerMotion(),
+                          children: <Widget>[
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  ButtonEditIcon(
+                                    () => _back.goToForm(context, resultData[i]),
+                                  ),
+                                  ButtonDeleteIcon(
+                                    context,
+                                    () => _back.remove(resultData[i].id, context),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                  child: GestureDetector(
-                    onTap: () => _back.goToView(context, resultData[i]),
-                    child: Tile(
-                      image: resultData[i].image,
-                      title: resultData[i].title,
-                      subtitle: resultData[i].author,
-                      infoLeft: Row(
-                        children: [
-                          const Icon(Icons.library_books),
-                          Text(resultData[i].pages.toString()),
-                        ],
-                      ),
-                      infoRigth: Row(
-                        children: [
-                          const Icon(Icons.calendar_today_outlined),
-                          Text(
-                            CommonService.formattedDate(
-                              resultData[i].publicationDate,
+                        child: GestureDetector(
+                          onTap: () => _back.goToView(context, resultData[i]),
+                          child: Tile(
+                            image: resultData[i].image,
+                            title: resultData[i].title,
+                            subtitle: resultData[i].author,
+                            infoLeft: Row(
+                              children: [
+                                const Icon(Icons.library_books),
+                                Text(resultData[i].pages.toString()),
+                              ],
+                            ),
+                            infoRigth: Row(
+                              children: [
+                                const Icon(Icons.calendar_today_outlined),
+                                Text(
+                                  CommonService.formattedDate(
+                                    resultData[i].publicationDate,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
+                ),
+              ],
             );
           },
         );

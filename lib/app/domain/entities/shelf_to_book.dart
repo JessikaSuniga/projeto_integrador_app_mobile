@@ -1,4 +1,4 @@
-import 'package:projeto_integrador_app/app/domain/models/book.dart';
+import 'package:projeto_integrador_app/app/domain/entities/book.dart';
 
 class ShelfToBook {
   int id;

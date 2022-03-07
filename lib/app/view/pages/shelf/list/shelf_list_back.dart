@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
-import 'package:projeto_integrador_app/app/domain/models/shelf.dart';
+import 'package:projeto_integrador_app/app/domain/entities/shelf.dart';
 import 'package:projeto_integrador_app/app/domain/services/shelf_service.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
@@ -69,19 +69,27 @@ abstract class _ShelfListBack with Store {
           ),
         ),
         actions: [
-          TextButton(
-            child: const Text('Não'),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          TextButton(
-            child: const Text('Sim'),
-            onPressed: () {
-              var res = _formKey.currentState.validate();
-              _formKey.currentState.save();
-              if (res) {
-                save(context, shelf);
-              }
-            },
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  child: const Text('Cancelar'),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+                ElevatedButton(
+                  child: const Text('Salvar'),
+                  onPressed: () {
+                    var res = _formKey.currentState.validate();
+                    _formKey.currentState.save();
+                    if (res) {
+                      save(context, shelf);
+                    }
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),

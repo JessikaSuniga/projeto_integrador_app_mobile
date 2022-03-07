@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_item_type.dart';
-import 'package:projeto_integrador_app/app/domain/models/book.dart';
-import 'package:projeto_integrador_app/app/domain/models/book_to_genre.dart';
-import 'package:projeto_integrador_app/app/domain/models/genre.dart';
+import 'package:projeto_integrador_app/app/domain/entities/book.dart';
+import 'package:projeto_integrador_app/app/domain/entities/book_to_genre.dart';
+import 'package:projeto_integrador_app/app/domain/entities/genre.dart';
 import 'package:projeto_integrador_app/app/domain/services/book_service.dart';
 import 'package:projeto_integrador_app/app/domain/services/book_to_genre_service.dart';
 import 'package:projeto_integrador_app/app/domain/services/genre_service.dart';

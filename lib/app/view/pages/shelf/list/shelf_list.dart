@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
-import 'package:projeto_integrador_app/app/domain/models/shelf.dart';
+import 'package:projeto_integrador_app/app/domain/entities/shelf.dart';
 import 'package:projeto_integrador_app/app/view/components/button_delete_icon.dart';
 import 'package:projeto_integrador_app/app/view/components/button_edit_icon.dart';
 import 'package:projeto_integrador_app/app/view/components/my_divider.dart';

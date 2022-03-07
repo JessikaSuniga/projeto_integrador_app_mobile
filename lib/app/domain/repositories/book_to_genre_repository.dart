@@ -1,5 +1,5 @@
 import 'package:projeto_integrador_app/app/database/connection.dart';
-import 'package:projeto_integrador_app/app/domain/models/book_to_genre.dart';
+import 'package:projeto_integrador_app/app/domain/entities/book_to_genre.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class BookToGenreRepository {

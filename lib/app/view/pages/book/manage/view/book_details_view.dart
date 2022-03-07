@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_integrador_app/app/domain/models/book_to_genre.dart';
+import 'package:projeto_integrador_app/app/domain/entities/book_to_genre.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
@@ -16,12 +16,6 @@ class BookDetaisView extends StatefulWidget {
 }
 
 class _BookDetaisViewState extends State<BookDetaisView> {
-  // String _validationIsNullOrEmpty(value) {
-  //   if (value == null || value.trim().isEmpty) {
-  //     return 'Informe um valor válido';
-  //   }
-  //   return null;
-  // }
 
   @override
   Widget build(BuildContext context) {

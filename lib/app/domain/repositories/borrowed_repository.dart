@@ -1,5 +1,5 @@
 import 'package:projeto_integrador_app/app/database/connection.dart';
-import 'package:projeto_integrador_app/app/domain/models/borrowed.dart';
+import 'package:projeto_integrador_app/app/domain/entities/borrowed.dart';
 import 'package:sqflite/sqflite.dart';
 
 class BorrowedRepository {
