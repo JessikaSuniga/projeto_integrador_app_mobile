@@ -25,7 +25,7 @@ extension SortFilterAvancedTypeDescription on SortFilterAvancedType {
       case SortFilterAvancedType.author:
         return 'author';
       case SortFilterAvancedType.publishingCompany:
-        return 'publishingCompany';
+        return 'publishing_company';
     }
   }
 }

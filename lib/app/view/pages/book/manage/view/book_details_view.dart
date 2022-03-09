@@ -16,7 +16,6 @@ class BookDetaisView extends StatefulWidget {
 }
 
 class _BookDetaisViewState extends State<BookDetaisView> {
-
   @override
   Widget build(BuildContext context) {
     return Scroll(
@@ -48,7 +47,7 @@ class _BookDetaisViewState extends State<BookDetaisView> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(14),
+                    padding: const EdgeInsets.all(10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

@@ -80,8 +80,9 @@ class _BookFindAPIState extends State<BookFindAPI> {
           subtitle: Column(
             children: [
               Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(bookApi.authors),),
+                alignment: Alignment.centerLeft,
+                child: Text(bookApi.authors),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -128,7 +129,10 @@ class _BookFindAPIState extends State<BookFindAPI> {
       scheme: 'https',
       host: 'www.googleapis.com',
       path: 'books/v1/volumes',
-      queryParameters: {'q': query},
+      queryParameters: {
+        'q': query,
+        'maxResults': '40',
+      },
     );
     final http.Response response = await http.get(uri);
     if (response.statusCode == 200) {
@@ -152,6 +156,7 @@ class _BookFindAPIState extends State<BookFindAPI> {
         context,
         'Error $e. O servidor não pode processar a sua solicitação. Tente novamente mais tarde!',
       );
+      // ignore: avoid_print
       print('Erro >>>>>>>>>>>> $e');
     }
     setState(() => _pending = false);

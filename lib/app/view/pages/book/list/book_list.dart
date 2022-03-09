@@ -29,7 +29,7 @@ class BookList extends StatelessWidget {
 
             return Column(
               children: [
-                const Filter(),
+                Filter(_back),
                 Expanded(
                   child: ListView.builder(
                     itemCount: resultData.length,
@@ -43,11 +43,13 @@ class BookList extends StatelessWidget {
                               child: Row(
                                 children: [
                                   ButtonEditIcon(
-                                    () => _back.goToForm(context, resultData[i]),
+                                    () =>
+                                        _back.goToForm(context, resultData[i]),
                                   ),
                                   ButtonDeleteIcon(
                                     context,
-                                    () => _back.remove(resultData[i].id, context),
+                                    () =>
+                                        _back.remove(resultData[i].id, context),
                                   ),
                                 ],
                               ),

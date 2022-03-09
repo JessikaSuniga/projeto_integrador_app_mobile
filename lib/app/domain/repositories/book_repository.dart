@@ -12,10 +12,14 @@ class BookRepository {
 
   final _table = 'book';
 
-  Future<List<Book>> findAll(BookItemType itemType) async {
+  Future<List<Book>> findAll(BookItemType itemType, String filter) async {
     Database _db = await _getDatabase();
-    List<Map<String, dynamic>> allRows = await _db
-        .query(_table, where: "item_type=?", whereArgs: [itemType.cod]);
+
+    String query = '''
+      SELECT * FROM $_table WHERE item_type = '${itemType.cod}' $filter
+    ''';
+
+    List<Map<String, dynamic>> allRows = await _db.rawQuery(query);
     return allRows.map((book) => Book.fromMap(book)).toList();
   }
 

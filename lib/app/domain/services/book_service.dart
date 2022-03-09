@@ -1,6 +1,7 @@
 import 'package:projeto_integrador_app/app/common/enums/book_item_type.dart';
 import 'package:projeto_integrador_app/app/domain/entities/book.dart';
 import 'package:projeto_integrador_app/app/domain/entities/book_to_genre.dart';
+import 'package:projeto_integrador_app/app/domain/models/filter_model.dart';
 import 'package:projeto_integrador_app/app/domain/repositories/book_repository.dart';
 import 'package:projeto_integrador_app/app/domain/repositories/book_to_genre_repository.dart';
 import 'package:projeto_integrador_app/app/domain/repositories/borrowed_repository.dart';
@@ -55,8 +56,11 @@ class BookService {
     await _borrowedRepository.removeByBookId(id); // todo
   }
 
-  Future<List<Book>> findAll(BookItemType itemType) async {
-    List<Book> books = await _bookRepository.findAll(itemType);
+  Future<List<Book>> findAll(BookItemType itemType,
+      [FilterModel filterModel]) async {
+    var filter = filterModel ?? FilterModel();
+
+    List<Book> books = await _bookRepository.findAll(itemType, filter.filter);
 
     for (var book in books) {
       await _bookToGenreRepository

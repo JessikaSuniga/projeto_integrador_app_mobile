@@ -14,8 +14,34 @@ class FilterModel {
     this.sortAvanced = SortFilterAvancedType.title,
     this.sort = SortFilterType.ascending,
     this.status = StatusFilterType.all,
-    this.searchTitle,
-    this.searchAuthor,
-    this.searchPublishingCompany,
+    this.searchTitle = "",
+    this.searchAuthor = "",
+    this.searchPublishingCompany = "",
   });
+
+  String get filter {
+    var string = "";
+
+    if (searchTitle != null && searchTitle != "") {
+      string += "AND title like '%$searchTitle%' ";
+    }
+    if (searchAuthor != null && searchAuthor != "") {
+      string += "AND author like '%$searchAuthor%' ";
+    }
+    if (searchPublishingCompany != null && searchPublishingCompany != "") {
+      string += "AND publishing_company like '%$searchPublishingCompany%' ";
+    }
+
+    if (status != StatusFilterType.all) {
+      string += "AND status = '${status.cod}' ";
+    }
+
+    string += "ORDER BY ${sortAvanced.cod} ";
+
+    if (sort == SortFilterType.descending) {
+      string += "DESC";
+    }
+
+    return string;
+  }
 }

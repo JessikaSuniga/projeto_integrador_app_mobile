@@ -235,12 +235,6 @@ class _BookNotesFromState extends State<BookNotesFrom> {
                 decoration: const InputDecoration(
                   hintText: 'Insira uma anotação',
                 ),
-                validator: (v) {
-                  if (v.trim().isEmpty) {
-                    return 'Por favor, insira um texto valido';
-                  }
-                  return null;
-                },
               ),
             ),
             const SizedBox(width: 16),

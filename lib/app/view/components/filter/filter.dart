@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
-import 'package:projeto_integrador_app/app/domain/models/filter_model.dart';
 import 'package:projeto_integrador_app/app/common/enums/filter/sort_filter_type.dart';
 import 'package:projeto_integrador_app/app/common/enums/filter/status_filter_type.dart';
 import 'package:projeto_integrador_app/app/common/enums/filter/sort_filter_avanced_type.dart';
+import 'package:projeto_integrador_app/app/view/pages/book/list/book_list_back.dart';
 
 class Filter extends StatefulWidget {
-  const Filter({Key key}) : super(key: key);
+  final BookListBack _back;
+
+  const Filter(this._back, {Key key}) : super(key: key);
 
   @override
   State<Filter> createState() => _FilterState();
 }
 
 class _FilterState extends State<Filter> {
-  FilterModel filterModel = FilterModel();
-
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 16, top: 10),
       child: Row(
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           OutlinedButton(
-             onPressed: () {
+            onPressed: () {
               showDialog(
                 context: context,
                 builder: (BuildContext ctx) {
-                  String title = filterModel.searchTitle;
-                  String author = filterModel.searchAuthor;
-                  String publishingCompany = filterModel.searchPublishingCompany;
+                  String title = widget._back.filterModel.searchTitle;
+                  String author = widget._back.filterModel.searchAuthor;
+                  String publishingCompany =
+                      widget._back.filterModel.searchPublishingCompany;
                   return AlertDialog(
                     title: const Text('Filtro por livros'),
                     content: StatefulBuilder(
@@ -44,7 +46,8 @@ class _FilterState extends State<Filter> {
                                   onChanged: (value) => title = value,
                                   decoration: const InputDecoration(
                                     labelText: 'Título',
-                                    hintText: 'Informe um título a ser filtrado',
+                                    hintText:
+                                        'Informe um título a ser filtrado',
                                   ),
                                   style: Constants.sdFormText,
                                   cursorColor: Constants.myGrey,
@@ -67,10 +70,12 @@ class _FilterState extends State<Filter> {
                               Expanded(
                                 child: TextFormField(
                                   initialValue: publishingCompany,
-                                  onChanged: (value) => publishingCompany = value,
+                                  onChanged: (value) =>
+                                      publishingCompany = value,
                                   decoration: const InputDecoration(
                                     labelText: 'Editora',
-                                    hintText: 'Informe uma editora a ser filtrado',
+                                    hintText:
+                                        'Informe uma editora a ser filtrado',
                                   ),
                                   style: Constants.sdFormText,
                                   cursorColor: Constants.myGrey,
@@ -93,16 +98,20 @@ class _FilterState extends State<Filter> {
                               onPressed: () => Navigator.of(context).pop(),
                             ),
                             ElevatedButton(
-                              child: const Text('Aplicar'),
-                              onPressed: () {
-                                setState(() {
-                                  filterModel.searchTitle = title;
-                                  filterModel.searchAuthor = author;
-                                  filterModel.searchPublishingCompany = publishingCompany;
-                                });
-                                Navigator.of(context).pop();
-                              }
-                            ),
+                                child: const Text('Aplicar'),
+                                onPressed: () {
+                                  setState(() {
+                                    widget._back.filterModel.searchTitle =
+                                        title;
+                                    widget._back.filterModel.searchAuthor =
+                                        author;
+                                    widget._back.filterModel
+                                            .searchPublishingCompany =
+                                        publishingCompany;
+                                    widget._back.refleshList();
+                                  });
+                                  Navigator.of(context).pop();
+                                }),
                           ],
                         ),
                       ),
@@ -114,17 +123,19 @@ class _FilterState extends State<Filter> {
             child: Row(
               children: [
                 Icon(Icons.search, color: Theme.of(context).iconTheme.color),
-                Text('Buscar', style: TextStyle(color: Theme.of(context).iconTheme.color)),
+                Text('Buscar',
+                    style: TextStyle(color: Theme.of(context).iconTheme.color)),
               ],
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 10),
           OutlinedButton(
             onPressed: () {
               showDialog(
                 context: context,
                 builder: (BuildContext ctx) {
-                  StatusFilterType statusFilter = filterModel.status;
+                  StatusFilterType statusFilter =
+                      widget._back.filterModel.status;
                   return AlertDialog(
                     title: const Text('Filtro por status'),
                     content: StatefulBuilder(
@@ -167,10 +178,12 @@ class _FilterState extends State<Filter> {
                               child: const Text('Aplicar'),
                               onPressed: () {
                                 setState(() {
-                                  filterModel.status = statusFilter;
+                                  widget._back.filterModel.status =
+                                      statusFilter;
+                                  widget._back.refleshList();
                                 });
                                 Navigator.of(context).pop();
-                              }
+                              },
                             ),
                           ],
                         ),
@@ -182,19 +195,22 @@ class _FilterState extends State<Filter> {
             },
             child: Row(
               children: [
-                Icon(Icons.filter_alt, color: Theme.of(context).iconTheme.color),
-                Text('Filtrar', style: TextStyle(color: Theme.of(context).iconTheme.color)),
+                Icon(Icons.filter_alt,
+                    color: Theme.of(context).iconTheme.color),
+                Text('Filtrar',
+                    style: TextStyle(color: Theme.of(context).iconTheme.color)),
               ],
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 10),
           OutlinedButton(
             onPressed: () {
               showDialog(
                 context: context,
                 builder: (BuildContext ctx) {
-                  SortFilterAvancedType sortFilterAvanced = filterModel.sortAvanced;
-                  SortFilterType sortFilter = filterModel.sort;
+                  SortFilterAvancedType sortFilterAvanced =
+                      widget._back.filterModel.sortAvanced;
+                  SortFilterType sortFilter = widget._back.filterModel.sort;
                   return AlertDialog(
                     title: const Text('Ordenação'),
                     content: StatefulBuilder(
@@ -208,13 +224,15 @@ class _FilterState extends State<Filter> {
                             children: [
                               const Text("Ordenar por:"),
                               Column(
-                                children: SortFilterAvancedType.values.map((type) {
+                                children:
+                                    SortFilterAvancedType.values.map((type) {
                                   return Row(
                                     children: [
                                       Radio<SortFilterAvancedType>(
                                         value: type,
                                         groupValue: sortFilterAvanced,
-                                        onChanged: (SortFilterAvancedType value) {
+                                        onChanged:
+                                            (SortFilterAvancedType value) {
                                           setState(() {
                                             sortFilterAvanced = value;
                                           });
@@ -263,11 +281,13 @@ class _FilterState extends State<Filter> {
                               child: const Text('Aplicar'),
                               onPressed: () {
                                 setState(() {
-                                  filterModel.sortAvanced = sortFilterAvanced;
-                                  filterModel.sort = sortFilter;
+                                  widget._back.filterModel.sortAvanced =
+                                      sortFilterAvanced;
+                                  widget._back.filterModel.sort = sortFilter;
+                                  widget._back.refleshList();
                                 });
                                 Navigator.of(context).pop();
-                              }
+                              },
                             ),
                           ],
                         ),
@@ -279,10 +299,16 @@ class _FilterState extends State<Filter> {
             },
             child: Row(
               children: [
-                Icon(Icons.sort_by_alpha, color: Theme.of(context).iconTheme.color),
-                Text('Ordenar', style: TextStyle(color: Theme.of(context).iconTheme.color)),
+                Icon(Icons.sort_by_alpha,
+                    color: Theme.of(context).iconTheme.color),
+                Text('Ordenar',
+                    style: TextStyle(color: Theme.of(context).iconTheme.color)),
               ],
             ),
+          ),
+          IconButton(
+            icon: const Icon(Icons.clear),
+            onPressed: () => widget._back.handlerCleanFilter(),
           ),
         ],
       ),

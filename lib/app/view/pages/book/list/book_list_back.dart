@@ -2,25 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_item_type.dart';
 import 'package:projeto_integrador_app/app/domain/entities/book.dart';
+import 'package:projeto_integrador_app/app/domain/models/filter_model.dart';
 import 'package:projeto_integrador_app/app/domain/services/book_service.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 part 'book_list_back.g.dart';
 
 class BookListBack = _BookListBack with _$BookListBack;
+FilterModel filterCache;
 
 abstract class _BookListBack with Store {
   final _service = BookService();
+  FilterModel filterModel = filterCache ?? FilterModel();
 
   @observable
   Future<List<Book>> list;
 
   @action
   refleshList([dynamic value]) {
-    list = _service.findAll(BookItemType.bought);
+    filterCache = filterModel;
+    list = _service.findAll(BookItemType.bought, filterModel);
   }
 
   _BookListBack() {
+    refleshList();
+  }
+
+  handlerCleanFilter() {
+    filterCache = FilterModel();
+    filterModel = FilterModel();
     refleshList();
   }
 

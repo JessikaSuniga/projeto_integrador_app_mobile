@@ -16,14 +16,20 @@ class ShelfList extends StatelessWidget {
   final _back = ShelfListBack();
 
   dynamic _imageBook(Shelf shelf) {
-    var uri = shelf.books.isNotEmpty ? shelf.books[0].book.image : null;
+    String uri;
+
+    if (shelf.books.isNotEmpty) {
+      var booksFilter = shelf.books.where((e) => e.book.image != null).toList();
+      uri = booksFilter.isNotEmpty ? booksFilter[0].book.image : null;
+    }
 
     if (uri != null) {
       return CircleAvatar(
           backgroundImage: ImageParse.imageFromBase64String(uri).image);
     }
     return CircleAvatar(
-      backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+      backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
+          .withOpacity(1.0),
       child: Text(shelf.name.substring(0, 1).toUpperCase()),
     );
   }

@@ -100,7 +100,7 @@ class BorrowedView extends StatelessWidget {
                           "Nome",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 1,
+                            fontSize: 16,
                           ),
                         ),
                         Padding(
