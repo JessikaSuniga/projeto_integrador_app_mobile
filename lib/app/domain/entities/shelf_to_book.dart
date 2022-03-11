@@ -1,10 +1,10 @@
 import 'package:projeto_integrador_app/app/domain/entities/book.dart';
 
 class ShelfToBook {
-  int id;
-  int shelfId;
-  int bookId;
-  Book book;
+  int? id;
+  int? shelfId;
+  int? bookId;
+  Book? book;
 
   ShelfToBook({
     this.id,

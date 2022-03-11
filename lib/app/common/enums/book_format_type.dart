@@ -5,7 +5,7 @@ enum BookFormatType {
   ebook,
 }
 
-extension BookFormatTypeDescription on BookFormatType {
+extension BookFormatTypeDescription on BookFormatType? {
   // ignore: missing_return
   String get description {
     switch (this) {
@@ -17,6 +17,8 @@ extension BookFormatTypeDescription on BookFormatType {
         return 'Livro de bolso';
       case BookFormatType.ebook:
         return 'Ebook';
+      default:
+        throw "Valor invalido";
     }
   }
 
@@ -31,6 +33,8 @@ extension BookFormatTypeDescription on BookFormatType {
         return 'pocketBook';
       case BookFormatType.ebook:
         return 'ebook';
+      default:
+        throw "Valor invalido";
     }
   }
 }

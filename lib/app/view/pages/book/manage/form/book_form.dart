@@ -4,7 +4,7 @@ import 'package:projeto_integrador_app/app/view/pages/book/manage/form/book_note
 import 'package:projeto_integrador_app/app/view/pages/book/manage/form/book_details_form.dart';
 
 class BookForm extends StatefulWidget {
-  const BookForm({Key key}) : super(key: key);
+  const BookForm({Key? key}) : super(key: key);
 
   @override
   _BookFormState createState() => _BookFormState();
@@ -14,7 +14,7 @@ class _BookFormState extends State<BookForm>
     with SingleTickerProviderStateMixin {
   final formKey = GlobalKey<FormState>();
 
-  TabController _controller;
+  TabController? _controller;
 
   @override
   void initState() {
@@ -40,7 +40,7 @@ class _BookFormState extends State<BookForm>
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          back.book.id == null ? "Cadastrar livro" : "Editar livro",
+          back.book!.id == null ? "Cadastrar livro" : "Editar livro",
         ),
         bottom: TabBar(
           controller: _controller,
@@ -64,8 +64,8 @@ class _BookFormState extends State<BookForm>
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () {
-          var res = formKey.currentState.validate();
-          formKey.currentState.save();
+          var res = formKey.currentState!.validate();
+          formKey.currentState!.save();
           if (res) {
             back.save(context);
           }

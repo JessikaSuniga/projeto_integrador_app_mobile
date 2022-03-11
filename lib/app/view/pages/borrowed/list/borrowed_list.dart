@@ -10,7 +10,7 @@ import 'package:projeto_integrador_app/app/view/components/button_delete_icon.da
 import 'package:projeto_integrador_app/app/view/pages/borrowed/list/borrowed_list_back.dart';
 
 class BorrowedList extends StatelessWidget {
-  BorrowedList({Key key}) : super(key: key);
+  BorrowedList({Key? key}) : super(key: key);
 
   final _back = BorrowedListBack();
 
@@ -24,7 +24,7 @@ class BorrowedList extends StatelessWidget {
             return const CircularProgressIndicator();
           }
 
-          List<Borrowed> resultData = result.data;
+          List<Borrowed> resultData = result.data as List<Borrowed>;
 
           return ListView.builder(
             itemCount: resultData.length,
@@ -52,18 +52,18 @@ class BorrowedList extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () => _back.goToView(context, resultData[i]),
                   child: Tile(
-                    title: resultData[i].book.title,
-                    subtitle: resultData[i].book.author,
-                    image: resultData[i].book.image,
+                    title: resultData[i].book!.title,
+                    subtitle: resultData[i].book!.author,
+                    image: resultData[i].book!.image,
                     infoLeft: Row(
                       children: [
                         const Icon(
                           Icons.account_circle,
                           color: Constants.myGrey,
                         ),
-                        Text(resultData[i].name.length > 10
-                            ? resultData[i].name.substring(0, 10) + "..."
-                            : resultData[i].name),
+                        Text(resultData[i].name!.length > 10
+                            ? resultData[i].name!.substring(0, 10) + "..."
+                            : resultData[i].name!),
                       ],
                     ),
                     infoRigth: Row(

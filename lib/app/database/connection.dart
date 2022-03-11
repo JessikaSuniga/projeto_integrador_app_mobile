@@ -10,7 +10,7 @@ class Connection {
   final _databaseName = 'database1';
   final _databaseVersion = 1;
 
-  static Database _database;
+  static Database? _database;
 
   get database async {
     if (_database != null) {

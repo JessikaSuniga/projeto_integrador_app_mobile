@@ -7,14 +7,14 @@ import 'package:projeto_integrador_app/app/view/pages/book/manage/find_api/book_
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class BookFindAPI extends StatefulWidget {
-  const BookFindAPI({Key key}) : super(key: key);
+  const BookFindAPI({Key? key}) : super(key: key);
 
   @override
   State<BookFindAPI> createState() => _BookFindAPIState();
 }
 
 class _BookFindAPIState extends State<BookFindAPI> {
-  String textFind;
+  String? textFind;
   List<BookApi> _listBookApi = [];
   bool _pending = false;
 
@@ -59,14 +59,14 @@ class _BookFindAPIState extends State<BookFindAPI> {
               ],
             ),
           ),
-          _listBookApi != null
+          _listBookApi.isNotEmpty || _listBookApi.isEmpty
               ? Expanded(
                   child: ListView.builder(
                     itemCount: _listBookApi.length,
                     itemBuilder: (ctx, i) => _bookToListTile(_listBookApi[i]),
                   ),
                 )
-              : null
+              : const Text('Pesquisar')
         ],
       ),
     );
@@ -76,7 +76,7 @@ class _BookFindAPIState extends State<BookFindAPI> {
     return Column(
       children: [
         ListTile(
-          title: Text(bookApi.title),
+          title: Text(bookApi.title!),
           subtitle: Column(
             children: [
               Container(
@@ -114,7 +114,7 @@ class _BookFindAPIState extends State<BookFindAPI> {
               ),
             ],
           ),
-          leading: Hero(tag: bookApi.id, child: bookApi.thumbnail),
+          leading: Hero(tag: bookApi.id!, child: bookApi.thumbnail),
           onTap: () => Navigator.of(context).push(
             MaterialPageRoute(builder: (_) => BookApiDetailsPage(bookApi)),
           ),
@@ -124,7 +124,7 @@ class _BookFindAPIState extends State<BookFindAPI> {
     );
   }
 
-  Future<List<BookApi>> _getBooksList(String query) async {
+  Future<List<BookApi>> _getBooksList(String? query) async {
     final uri = Uri(
       scheme: 'https',
       host: 'www.googleapis.com',
@@ -141,7 +141,7 @@ class _BookFindAPIState extends State<BookFindAPI> {
     throw response;
   }
 
-  Future<void> _search(String query) async {
+  Future<void> _search(String? query) async {
     setState(() => _pending = true);
     try {
       _listBookApi = await _getBooksList(query);

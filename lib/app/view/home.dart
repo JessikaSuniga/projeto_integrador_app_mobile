@@ -8,16 +8,16 @@ import 'package:projeto_integrador_app/app/view/pages/desire/list/desire_list.da
 import 'package:projeto_integrador_app/app/view/pages/shelf/list/shelf_list.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  TabController _controller;
-  int _indexTop;
-  int _indexBottom;
+  TabController? _controller;
+  int? _indexTop;
+  late int _indexBottom;
 
   @override
   void initState() {
@@ -142,19 +142,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     if (indexBottom == NavigationBottom.book.index) {
       _onSetStateTop(NavigationTop.book.index);
       _onSetStateBottom(indexBottom);
-      _controller.index = NavigationTop.book.index;
+      _controller!.index = NavigationTop.book.index;
       return;
     }
 
     if (indexBottom == NavigationBottom.desire.index) {
       _onSetStateTop(NavigationTop.desire.index);
       _onSetStateBottom(indexBottom);
-      _controller.index = NavigationTop.desire.index;
+      _controller!.index = NavigationTop.desire.index;
       return;
     }
 
     if (indexBottom == NavigationBottom.add.index) {
-      switch (NavigationTop.values[_indexTop]) {
+      switch (NavigationTop.values[_indexTop!]) {
         case NavigationTop.book:
           showDialog(
             context: context,

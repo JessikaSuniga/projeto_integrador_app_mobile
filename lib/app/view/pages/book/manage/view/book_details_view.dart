@@ -7,9 +7,9 @@ import 'package:projeto_integrador_app/app/common/enums/book_format_type.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_language_type.dart';
 
 class BookDetaisView extends StatefulWidget {
-  final BookFormBack back;
+  final BookFormBack? back;
 
-  const BookDetaisView({Key key, this.back}) : super(key: key);
+  const BookDetaisView({Key? key, this.back}) : super(key: key);
 
   @override
   _BookDetaisViewState createState() => _BookDetaisViewState();
@@ -78,7 +78,7 @@ class _BookDetaisViewState extends State<BookDetaisView> {
               "Descrição:",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            Text(widget.back.book.description),
+            Text(widget.back!.book!.description!),
           ],
         ),
       ),
@@ -97,14 +97,14 @@ class _BookDetaisViewState extends State<BookDetaisView> {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           FutureBuilder(
-            future: widget.back.findAllByBookId(widget.back.book.id),
+            future: widget.back!.findAllByBookId(widget.back!.book!.id),
             builder: (context, result) {
               if (!result.hasData) {
                 return const CircularProgressIndicator();
               }
-              List<BookToGenre> resultData = result.data;
+              List<BookToGenre> resultData = result.data as List<BookToGenre>;
 
-              widget.back.book.genres =
+              widget.back!.book!.genres =
                   resultData.map((e) => e.genreId).toList();
 
               return Column(
@@ -113,7 +113,7 @@ class _BookDetaisViewState extends State<BookDetaisView> {
                 children: resultData.isNotEmpty
                     ? resultData
                         .map(
-                          (e) => Text(e.genre.name),
+                          (e) => Text(e.genre!.name!),
                         )
                         .toList()
                     : [const Text("-")],
@@ -136,7 +136,7 @@ class _BookDetaisViewState extends State<BookDetaisView> {
             "Editora",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(widget.back.book.publishingCompany),
+          Text(widget.back!.book!.publishingCompany!),
         ],
       ),
     );
@@ -153,7 +153,7 @@ class _BookDetaisViewState extends State<BookDetaisView> {
             "Série",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(widget.back.book.serie),
+          Text(widget.back!.book!.serie!),
         ],
       ),
     );
@@ -170,7 +170,7 @@ class _BookDetaisViewState extends State<BookDetaisView> {
             "Formato",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(widget.back.book.format.description),
+          Text(widget.back!.book!.format.description),
         ],
       ),
     );
@@ -187,7 +187,7 @@ class _BookDetaisViewState extends State<BookDetaisView> {
             "Páginas",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(widget.back.book.pages.toString()),
+          Text(widget.back!.book!.pages.toString()),
         ],
       ),
     );
@@ -204,7 +204,7 @@ class _BookDetaisViewState extends State<BookDetaisView> {
             "Volume",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(widget.back.book.volume.toString()),
+          Text(widget.back!.book!.volume.toString()),
         ],
       ),
     );
@@ -221,7 +221,7 @@ class _BookDetaisViewState extends State<BookDetaisView> {
             "Idioma",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(widget.back.book.language.description),
+          Text(widget.back!.book!.language.description),
         ],
       ),
     );
@@ -238,7 +238,7 @@ class _BookDetaisViewState extends State<BookDetaisView> {
             "Publicação",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(CommonService.formattedDate(widget.back.book.publicationDate)),
+          Text(CommonService.formattedDate(widget.back!.book!.publicationDate)),
         ],
       ),
     );

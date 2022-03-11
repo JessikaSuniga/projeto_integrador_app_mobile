@@ -49,12 +49,12 @@ class BorrowedRepository {
     return allRows.map((borrowed) => Borrowed.fromMap(borrowed)).first;
   }
 
-  remove(int id) async {
+  remove(int? id) async {
     final _db = await _getDatabase();
     _db.delete(_table, where: "borrowed_id=?", whereArgs: [id]);
   }
 
-  removeByBookId(int bookId) async {
+  removeByBookId(int? bookId) async {
     final _db = await _getDatabase();
     _db.delete(_table, where: "book_id=?", whereArgs: [bookId]);
   }

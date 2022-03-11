@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 
 class MyDivider extends StatelessWidget {
-  const MyDivider({Key key}) : super(key: key);
+  const MyDivider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

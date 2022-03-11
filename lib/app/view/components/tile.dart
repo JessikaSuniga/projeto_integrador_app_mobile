@@ -5,7 +5,7 @@ import 'package:projeto_integrador_app/app/view/components/my_divider.dart';
 
 class Tile extends StatelessWidget {
   const Tile(
-      {Key key,
+      {Key? key,
       this.title,
       this.subtitle,
       this.image,
@@ -13,13 +13,13 @@ class Tile extends StatelessWidget {
       this.infoLeft})
       : super(key: key);
 
-  final String title;
-  final String subtitle;
-  final String image;
-  final Widget infoRigth;
-  final Widget infoLeft;
+  final String? title;
+  final String? subtitle;
+  final String? image;
+  final Widget? infoRigth;
+  final Widget? infoLeft;
 
-  dynamic _imageBook(String uri) {
+  dynamic _imageBook(String? uri) {
     if (uri != null) {
       return ImageParse.imageFromBase64String(uri);
     }
@@ -37,13 +37,13 @@ class Tile extends StatelessWidget {
         ListTile(
           isThreeLine: true,
           leading: _imageBook(image),
-          title: Text(title),
+          title: Text(title!),
           subtitle: Column(
             children: [
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  subtitle,
+                  subtitle!,
                 ),
               ),
               Row(
@@ -51,11 +51,11 @@ class Tile extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 2,
-                    child: infoLeft ?? Expanded(flex: 1, child: infoLeft),
+                    child: infoLeft ?? Expanded(flex: 1, child: infoLeft!),
                   ),
                   Expanded(
                     flex: 2,
-                    child: infoRigth ?? Expanded(flex: 2, child: infoRigth),
+                    child: infoRigth ?? Expanded(flex: 2, child: infoRigth!),
                   ),
                 ],
               ),

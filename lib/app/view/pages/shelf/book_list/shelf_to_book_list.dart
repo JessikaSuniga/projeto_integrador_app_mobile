@@ -11,7 +11,7 @@ import 'package:projeto_integrador_app/app/view/pages/shelf/book_list/shelf_to_b
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class ShelfToBookList extends StatelessWidget {
-  const ShelfToBookList({Key key}) : super(key: key);
+  const ShelfToBookList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class ShelfToBookList extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          _back.shelf.name,
+          _back.shelf.name!,
         ),
       ),
       body: Form(
@@ -36,7 +36,7 @@ class ShelfToBookList extends StatelessWidget {
                   return const CircularProgressIndicator();
                 }
 
-                List<ShelfToBook> resultData = result.data;
+                List<ShelfToBook> resultData = result.data as List<ShelfToBook>;
 
                 return ListView.builder(
                   itemCount: resultData.length,
@@ -49,13 +49,13 @@ class ShelfToBookList extends StatelessWidget {
                           arguments: resultData[i].book,
                         ),
                         child: Tile(
-                          image: resultData[i].book.image,
-                          title: resultData[i].book.title,
-                          subtitle: resultData[i].book.author,
+                          image: resultData[i].book!.image,
+                          title: resultData[i].book!.title,
+                          subtitle: resultData[i].book!.author,
                           infoLeft: Row(
                             children: [
                               const Icon(Icons.library_books),
-                              Text(resultData[i].book.pages.toString()),
+                              Text(resultData[i].book!.pages.toString()),
                             ],
                           ),
                           infoRigth: Row(
@@ -63,7 +63,7 @@ class ShelfToBookList extends StatelessWidget {
                               const Icon(Icons.calendar_today_outlined),
                               Text(
                                 CommonService.formattedDate(
-                                  resultData[i].book.publicationDate,
+                                  resultData[i].book!.publicationDate,
                                 ),
                               ),
                             ],
@@ -81,8 +81,8 @@ class ShelfToBookList extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         isExtended: true,
         onPressed: () {
-          List<ShelfToBook> list;
-          _back.list.then((value) => list = value);
+          late List<ShelfToBook> list;
+          _back.list!.then((value) => list = value);
 
           showDialog(
             context: context,
@@ -94,7 +94,7 @@ class ShelfToBookList extends StatelessWidget {
                     return const CircularProgressIndicator();
                   }
 
-                  List<Book> resultData = result.data;
+                  List<Book> resultData = result.data as List<Book>;
 
                   return MultiSelectDialog(
                     title: const Text("Selecione os livros"),
@@ -103,11 +103,11 @@ class ShelfToBookList extends StatelessWidget {
                     searchHint: 'Pesquisar',
                     closeSearchIcon: const Icon(Icons.search_off),
                     items: resultData
-                        .map((e) => MultiSelectItem(e.id, e.title))
+                        .map((e) => MultiSelectItem(e.id, e.title!))
                         .toList(),
                     initialValue: list.map((e) => e.bookId).toList(),
                     onConfirm: (values) {
-                      _back.save(ctx, values);
+                      _back.save(ctx, values as List<int?>);
                     },
                     confirmText: const Text(
                       'Aplicar',

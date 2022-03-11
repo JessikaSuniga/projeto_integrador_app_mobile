@@ -30,14 +30,14 @@ class BookRepository {
     return allRows.map((book) => Book.fromMap(book)).toList();
   }
 
-  Future<Book> findById(int id) async {
+  Future<Book> findById(int? id) async {
     Database _db = await _getDatabase();
     List<Map<String, dynamic>> allRows =
         await _db.query(_table, where: 'book_id=?', whereArgs: [id]);
     return allRows.map((book) => Book.fromMap(book)).first;
   }
 
-  remove(int id) async {
+  remove(int? id) async {
     Database _db = await _getDatabase();
     _db.delete(_table, where: "book_id=?", whereArgs: [id]);
   }

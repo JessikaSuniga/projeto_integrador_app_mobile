@@ -25,7 +25,7 @@ class ShelfToBookRepository {
     return shelfToBooks;
   }
 
-  Future<List<ShelfToBook>> findAllByShelfId(int shelfId) async {
+  Future<List<ShelfToBook>> findAllByShelfId(int? shelfId) async {
     final _db = await _getDatabase();
 
     String query = '''
@@ -42,17 +42,17 @@ class ShelfToBookRepository {
     return shelfToBooks;
   }
 
-  remove(int id) async {
+  remove(int? id) async {
     final _db = await _getDatabase();
     _db.delete(_table, where: "shelf_to_book_id=?", whereArgs: [id]);
   }
 
-  removeByShelfId(int shelfId) async {
+  removeByShelfId(int? shelfId) async {
     final _db = await _getDatabase();
     _db.delete(_table, where: "shelf_id=?", whereArgs: [shelfId]);
   }
 
-  removeByBookId(int bookId) async {
+  removeByBookId(int? bookId) async {
     final _db = await _getDatabase();
     _db.delete(_table, where: "book_id=?", whereArgs: [bookId]);
   }

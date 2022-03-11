@@ -4,7 +4,7 @@ enum BookStatusType {
   reading,
 }
 
-extension BookStatusTypeDescription on BookStatusType {
+extension BookStatusTypeDescription on BookStatusType? {
   // ignore: missing_return
   String get description {
     switch (this) {
@@ -14,6 +14,8 @@ extension BookStatusTypeDescription on BookStatusType {
         return 'Não lido';
       case BookStatusType.reading:
         return 'Lendo';
+      default:
+        throw "Valor invalido";
     }
   }
 
@@ -26,6 +28,8 @@ extension BookStatusTypeDescription on BookStatusType {
         return 'notRead';
       case BookStatusType.reading:
         return 'reading';
+      default:
+        throw "Valor invalido";
     }
   }
 }

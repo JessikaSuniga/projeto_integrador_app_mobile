@@ -8,7 +8,7 @@ import 'package:projeto_integrador_app/app/view/pages/book/list/book_list_back.d
 class Filter extends StatefulWidget {
   final BookListBack _back;
 
-  const Filter(this._back, {Key key}) : super(key: key);
+  const Filter(this._back, {Key? key}) : super(key: key);
 
   @override
   State<Filter> createState() => _FilterState();
@@ -134,7 +134,7 @@ class _FilterState extends State<Filter> {
               showDialog(
                 context: context,
                 builder: (BuildContext ctx) {
-                  StatusFilterType statusFilter =
+                  StatusFilterType? statusFilter =
                       widget._back.filterModel.status;
                   return AlertDialog(
                     title: const Text('Filtro por status'),
@@ -150,7 +150,7 @@ class _FilterState extends State<Filter> {
                                   Radio<StatusFilterType>(
                                     value: type,
                                     groupValue: statusFilter,
-                                    onChanged: (StatusFilterType value) {
+                                    onChanged: (StatusFilterType? value) {
                                       setState(() {
                                         statusFilter = value;
                                       });
@@ -208,9 +208,9 @@ class _FilterState extends State<Filter> {
               showDialog(
                 context: context,
                 builder: (BuildContext ctx) {
-                  SortFilterAvancedType sortFilterAvanced =
+                  SortFilterAvancedType? sortFilterAvanced =
                       widget._back.filterModel.sortAvanced;
-                  SortFilterType sortFilter = widget._back.filterModel.sort;
+                  SortFilterType? sortFilter = widget._back.filterModel.sort;
                   return AlertDialog(
                     title: const Text('Ordenação'),
                     content: StatefulBuilder(
@@ -232,7 +232,7 @@ class _FilterState extends State<Filter> {
                                         value: type,
                                         groupValue: sortFilterAvanced,
                                         onChanged:
-                                            (SortFilterAvancedType value) {
+                                            (SortFilterAvancedType? value) {
                                           setState(() {
                                             sortFilterAvanced = value;
                                           });
@@ -251,7 +251,7 @@ class _FilterState extends State<Filter> {
                                       Radio<SortFilterType>(
                                         value: type,
                                         groupValue: sortFilter,
-                                        onChanged: (SortFilterType value) {
+                                        onChanged: (SortFilterType? value) {
                                           setState(() {
                                             sortFilter = value;
                                           });

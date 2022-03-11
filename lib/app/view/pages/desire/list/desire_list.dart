@@ -9,7 +9,7 @@ import 'package:projeto_integrador_app/app/view/components/button_delete_icon.da
 import 'package:projeto_integrador_app/app/view/pages/desire/list/desire_list_back.dart';
 
 class DesireList extends StatelessWidget {
-  DesireList({Key key}) : super(key: key);
+  DesireList({Key? key}) : super(key: key);
 
   final _back = DesireListBack();
 
@@ -23,7 +23,7 @@ class DesireList extends StatelessWidget {
             return const CircularProgressIndicator();
           }
 
-          List<Book> resultData = result.data;
+          List<Book> resultData = result.data as List<Book>;
 
           return ListView.builder(
             itemCount: resultData.length,

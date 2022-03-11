@@ -4,7 +4,7 @@ import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/form/borro
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class BorrowedForm extends StatelessWidget {
-  const BorrowedForm({Key key}) : super(key: key);
+  const BorrowedForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class BorrowedForm extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          _back.borrowed.id == null
+          _back.borrowed!.id == null
               ? "Cadastrar empréstimo"
               : "Editar empréstimo",
         ),
@@ -28,17 +28,17 @@ class BorrowedForm extends StatelessWidget {
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () {
-          if (_back.borrowed.bookId == null) {
+          if (_back.borrowed!.bookId == null) {
             CommonService.messageError(
                 context, "Selecione um livro para salvar.");
             return;
           }
-          if (_back.borrowed.borrowedDate == null) {
+          if (_back.borrowed!.borrowedDate == null) {
             CommonService.messageError(context, "Informe uma data de início.");
             return;
           }
-          var res = _formKey.currentState.validate();
-          _formKey.currentState.save();
+          var res = _formKey.currentState!.validate();
+          _formKey.currentState!.save();
           if (res) {
             _back.save(context);
           }

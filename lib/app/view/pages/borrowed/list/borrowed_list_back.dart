@@ -12,7 +12,7 @@ abstract class _BorrowedListBack with Store {
   final _service = BorrowedService();
 
   @observable
-  Future<List<Borrowed>> list;
+  Future<List<Borrowed>>? list;
 
   @action
   refleshList([dynamic value]) {
@@ -23,13 +23,13 @@ abstract class _BorrowedListBack with Store {
     refleshList();
   }
 
-  goToForm(BuildContext context, [Borrowed borrowed]) {
+  goToForm(BuildContext context, [Borrowed? borrowed]) {
     Navigator.of(context)
         .pushNamed(Routes.BORROWED_FORM, arguments: borrowed)
         .then(refleshList);
   }
 
-  goToView(BuildContext context, [Borrowed borrowed]) {
+  goToView(BuildContext context, [Borrowed? borrowed]) {
     Navigator.of(context)
         .pushNamed(Routes.BORROWED_VIEW, arguments: borrowed)
         .then(refleshList);

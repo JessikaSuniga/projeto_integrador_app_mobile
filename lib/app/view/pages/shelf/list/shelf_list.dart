@@ -11,16 +11,17 @@ import 'package:projeto_integrador_app/app/view/pages/shelf/list/shelf_list_back
 import 'dart:math' as math;
 
 class ShelfList extends StatelessWidget {
-  ShelfList({Key key}) : super(key: key);
+  ShelfList({Key? key}) : super(key: key);
 
   final _back = ShelfListBack();
 
   dynamic _imageBook(Shelf shelf) {
-    String uri;
+    String? uri;
 
-    if (shelf.books.isNotEmpty) {
-      var booksFilter = shelf.books.where((e) => e.book.image != null).toList();
-      uri = booksFilter.isNotEmpty ? booksFilter[0].book.image : null;
+    if (shelf.books!.isNotEmpty) {
+      var booksFilter =
+          shelf.books!.where((e) => e.book!.image != null).toList();
+      uri = booksFilter.isNotEmpty ? booksFilter[0].book!.image : null;
     }
 
     if (uri != null) {
@@ -30,7 +31,7 @@ class ShelfList extends StatelessWidget {
     return CircleAvatar(
       backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
           .withOpacity(1.0),
-      child: Text(shelf.name.substring(0, 1).toUpperCase()),
+      child: Text(shelf.name!.substring(0, 1).toUpperCase()),
     );
   }
 
@@ -50,7 +51,7 @@ class ShelfList extends StatelessWidget {
             return const CircularProgressIndicator();
           }
 
-          List<Shelf> resultData = result.data;
+          List<Shelf> resultData = result.data as List<Shelf>;
 
           return Column(
             children: [
@@ -90,12 +91,12 @@ class ShelfList extends StatelessWidget {
                               title: Row(
                                 children: [
                                   Text(
-                                    resultData[i].name,
+                                    resultData[i].name!,
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  _createTextAux(resultData[i].books.length),
+                                  _createTextAux(resultData[i].books!.length),
                                 ],
                               ),
                             ),

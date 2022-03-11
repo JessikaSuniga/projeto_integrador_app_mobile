@@ -13,7 +13,7 @@ import 'package:projeto_integrador_app/app/view/pages/shelf/book_list/shelf_to_b
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class App extends StatefulWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   State<App> createState() => _AppState();

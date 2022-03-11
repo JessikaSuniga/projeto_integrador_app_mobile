@@ -7,9 +7,9 @@ import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back
 import 'package:projeto_integrador_app/app/common/enums/book_status_type.dart';
 
 class BookNotesView extends StatefulWidget {
-  final BookFormBack back;
+  final BookFormBack? back;
 
-  const BookNotesView({Key key, this.back}) : super(key: key);
+  const BookNotesView({Key? key, this.back}) : super(key: key);
 
   @override
   _BookNotesViewState createState() => _BookNotesViewState();
@@ -52,7 +52,7 @@ class _BookNotesViewState extends State<BookNotesView> {
 
   Widget get _evaluationRating {
     return RatingBar.builder(
-      initialRating: widget.back.book.evaluation ?? 0,
+      initialRating: widget.back!.book!.evaluation ?? 0,
       direction: Axis.horizontal,
       allowHalfRating: true,
       itemCount: 5,
@@ -84,16 +84,16 @@ class _BookNotesViewState extends State<BookNotesView> {
             Expanded(
               flex: 4,
               child: Slider(
-                value: widget.back.book.pagesRead.toDouble(),
+                value: widget.back!.book!.pagesRead!.toDouble(),
                 min: 0,
-                max: widget.back.book.pages.toDouble(),
+                max: widget.back!.book!.pages!.toDouble(),
                 onChanged: (double newSliderValue) {},
               ),
             ),
             Expanded(
               flex: 2,
               child: Text(
-                '${widget.back.book.pagesRead.round()}/${widget.back.book.pages.round()}',
+                '${widget.back!.book!.pagesRead!.round()}/${widget.back!.book!.pages!.round()}',
               ),
             )
           ],
@@ -113,7 +113,7 @@ class _BookNotesViewState extends State<BookNotesView> {
             "Status",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(widget.back.book.status.description),
+          Text(widget.back!.book!.status.description),
         ],
       ),
     );
@@ -130,7 +130,7 @@ class _BookNotesViewState extends State<BookNotesView> {
             "Início",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(CommonService.formattedDate(widget.back.book.startDate)),
+          Text(CommonService.formattedDate(widget.back!.book!.startDate)),
         ],
       ),
     );
@@ -147,7 +147,7 @@ class _BookNotesViewState extends State<BookNotesView> {
             "Fim",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(CommonService.formattedDate(widget.back.book.endDate)),
+          Text(CommonService.formattedDate(widget.back!.book!.endDate)),
         ],
       ),
     );
@@ -166,7 +166,7 @@ class _BookNotesViewState extends State<BookNotesView> {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: List.from(widget.back.book.notes.reversed)
+            children: List.from(widget.back!.book!.notes!.reversed)
                 .map(
                   (e) => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

@@ -9,14 +9,14 @@ import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 part 'book_list_back.g.dart';
 
 class BookListBack = _BookListBack with _$BookListBack;
-FilterModel filterCache;
+FilterModel? filterCache;
 
 abstract class _BookListBack with Store {
   final _service = BookService();
   FilterModel filterModel = filterCache ?? FilterModel();
 
   @observable
-  Future<List<Book>> list;
+  Future<List<Book>>? list;
 
   @action
   refleshList([dynamic value]) {
@@ -34,13 +34,13 @@ abstract class _BookListBack with Store {
     refleshList();
   }
 
-  goToForm(BuildContext context, [Book book]) {
+  goToForm(BuildContext context, [Book? book]) {
     Navigator.of(context)
         .pushNamed(Routes.BOOK_FORM, arguments: book)
         .then(refleshList);
   }
 
-  goToView(BuildContext context, [Book book]) {
+  goToView(BuildContext context, [Book? book]) {
     Navigator.of(context)
         .pushNamed(Routes.BOOK_VIEW, arguments: book)
         .then(refleshList);

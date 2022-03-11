@@ -9,7 +9,7 @@ import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back
 
 class BookNotesFrom extends StatefulWidget {
   final BookFormBack back;
-  const BookNotesFrom(this.back, {Key key}) : super(key: key);
+  const BookNotesFrom(this.back, {Key? key}) : super(key: key);
 
   @override
   _BookNotesFromState createState() => _BookNotesFromState();
@@ -49,7 +49,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
 
   RatingBar get _evaluationRating {
     return RatingBar.builder(
-      initialRating: widget.back.book.evaluation ?? 0,
+      initialRating: widget.back.book!.evaluation ?? 0,
       direction: Axis.horizontal,
       allowHalfRating: true,
       itemCount: 5,
@@ -57,7 +57,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
       itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.amber),
       onRatingUpdate: (value) {
         setState(() {
-          widget.back.book.evaluation = value;
+          widget.back.book!.evaluation = value;
         });
       },
     );
@@ -70,21 +70,21 @@ class _BookNotesFromState extends State<BookNotesFrom> {
         Expanded(
           flex: 6,
           child: Slider(
-            value: widget.back.book.pagesRead.toDouble(),
+            value: widget.back.book!.pagesRead!.toDouble(),
             min: 0,
-            max: widget.back.book.pages.toDouble(),
+            max: widget.back.book!.pages!.toDouble(),
             onChanged: (double newSliderValue) {
               setState(
                 () {
                   if (newSliderValue.toInt() == 0) {
-                    widget.back.book.status = BookStatusType.notRead;
-                  } else if (newSliderValue.toInt() == widget.back.book.pages) {
-                    widget.back.book.status = BookStatusType.read;
+                    widget.back.book!.status = BookStatusType.notRead;
+                  } else if (newSliderValue.toInt() == widget.back.book!.pages) {
+                    widget.back.book!.status = BookStatusType.read;
                   } else {
-                    widget.back.book.status = BookStatusType.reading;
+                    widget.back.book!.status = BookStatusType.reading;
                   }
 
-                  widget.back.book.pagesRead = newSliderValue.toInt();
+                  widget.back.book!.pagesRead = newSliderValue.toInt();
                 },
               );
             },
@@ -93,7 +93,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
         Expanded(
           flex: 2,
           child: Text(
-            '${widget.back.book.pagesRead.round()} páginas',
+            '${widget.back.book!.pagesRead!.round()} páginas',
           ),
         )
       ],
@@ -110,7 +110,7 @@ class _BookNotesFromState extends State<BookNotesFrom> {
             DropdownButtonHideUnderline(
               child: DropdownButton(
                 hint: Text(BookStatusType.notRead.description),
-                value: widget.back.book.status,
+                value: widget.back.book!.status,
                 items: BookStatusType.values
                     .map(
                       (status) => DropdownMenuItem(
@@ -122,16 +122,16 @@ class _BookNotesFromState extends State<BookNotesFrom> {
                       ),
                     )
                     .toList(),
-                onChanged: (value) {
+                onChanged: (dynamic value) {
                   setState(
                     () {
                       if (value == BookStatusType.notRead) {
-                        widget.back.book.pagesRead = 0;
+                        widget.back.book!.pagesRead = 0;
                       }
                       if (value == BookStatusType.read) {
-                        widget.back.book.pagesRead = widget.back.book.pages;
+                        widget.back.book!.pagesRead = widget.back.book!.pages;
                       }
-                      widget.back.book.status = value;
+                      widget.back.book!.status = value;
                     },
                   );
                 },
@@ -152,20 +152,20 @@ class _BookNotesFromState extends State<BookNotesFrom> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Início: ${CommonService.formattedDate(widget.back.book.startDate)}",
+              "Início: ${CommonService.formattedDate(widget.back.book!.startDate)}",
               style: Constants.sdFormText,
             ),
             GestureDetector(
               onTap: () {
                 showDatePicker(
                   context: context,
-                  initialDate: widget.back.book.startDate ?? DateTime.now(),
+                  initialDate: widget.back.book!.startDate ?? DateTime.now(),
                   firstDate: DateTime(2001),
                   lastDate: DateTime(2222),
                 ).then((value) {
                   if (value != null) {
                     setState(() {
-                      widget.back.book.startDate = value;
+                      widget.back.book!.startDate = value;
                     });
                   }
                 });
@@ -189,20 +189,20 @@ class _BookNotesFromState extends State<BookNotesFrom> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Fim: ${CommonService.formattedDate(widget.back.book.endDate)}",
+              "Fim: ${CommonService.formattedDate(widget.back.book!.endDate)}",
               style: Constants.sdFormText,
             ),
             GestureDetector(
               onTap: () {
                 showDatePicker(
                   context: context,
-                  initialDate: widget.back.book.endDate ?? DateTime.now(),
+                  initialDate: widget.back.book!.endDate ?? DateTime.now(),
                   firstDate: DateTime(2001),
                   lastDate: DateTime(2222),
                 ).then((value) {
                   if (value != null) {
                     setState(() {
-                      widget.back.book.endDate = value;
+                      widget.back.book!.endDate = value;
                     });
                   }
                 });
@@ -218,27 +218,27 @@ class _BookNotesFromState extends State<BookNotesFrom> {
 
   List<Widget> _notesField() {
     List<Widget> friendsTextFieldsList = [];
-    if (widget.back.book.notes == null) {
+    if (widget.back.book!.notes == null) {
       setState(() {
-        widget.back.book.notes = [""];
+        widget.back.book!.notes = [""];
       });
     }
-    for (int i = 0; i < widget.back.book.notes.length; i++) {
+    for (int i = 0; i < widget.back.book!.notes!.length; i++) {
       friendsTextFieldsList.add(Padding(
         padding: const EdgeInsets.symmetric(vertical: 0),
         child: Row(
           children: [
             Expanded(
               child: TextFormField(
-                initialValue: widget.back.book.notes[i] ?? "",
-                onChanged: (v) => widget.back.book.notes[i] = v,
+                initialValue: widget.back.book!.notes![i] ?? "",
+                onChanged: (v) => widget.back.book!.notes![i] = v,
                 decoration: const InputDecoration(
                   hintText: 'Insira uma anotação',
                 ),
               ),
             ),
             const SizedBox(width: 16),
-            _addRemoveButton(i == widget.back.book.notes.length - 1, i),
+            _addRemoveButton(i == widget.back.book!.notes!.length - 1, i),
           ],
         ),
       ));
@@ -250,9 +250,9 @@ class _BookNotesFromState extends State<BookNotesFrom> {
     return InkWell(
       onTap: () {
         if (add) {
-          widget.back.book.notes.insert(0, null);
+          widget.back.book!.notes!.insert(0, null);
         } else {
-          widget.back.book.notes.removeAt(index);
+          widget.back.book!.notes!.removeAt(index);
         }
         setState(() {});
       },

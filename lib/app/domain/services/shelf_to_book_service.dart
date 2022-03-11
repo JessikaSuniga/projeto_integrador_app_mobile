@@ -4,7 +4,7 @@ import 'package:projeto_integrador_app/app/domain/repositories/shelf_to_book_rep
 class ShelfToBookService {
   final _shelfToBookRepository = ShelfToBookRepository();
 
-  save(int shelfId, List<int> books) async {
+  save(int? shelfId, List<int?> books) async {
     if (shelfId == null || books == null) return;
 
     List<ShelfToBook> dbShelfToBooks = await findAllByShelfId(shelfId);
@@ -23,11 +23,11 @@ class ShelfToBookService {
     }
 
     for (var key in dicDbShelfToBooks.keys) {
-      _shelfToBookRepository.remove(dicDbShelfToBooks[key].id);
+      _shelfToBookRepository.remove(dicDbShelfToBooks[key]!.id);
     }
   }
 
-  Future<List<ShelfToBook>> findAllByShelfId(int shelfId) async {
+  Future<List<ShelfToBook>> findAllByShelfId(int? shelfId) async {
     var shelfToBooks = await _shelfToBookRepository.findAllByShelfId(shelfId);
     return shelfToBooks;
   }

@@ -12,13 +12,13 @@ mixin _$ShelfListBack on _ShelfListBack, Store {
   final _$listAtom = Atom(name: '_ShelfListBack.list');
 
   @override
-  Future<List<Shelf>> get list {
+  Future<List<Shelf>>? get list {
     _$listAtom.reportRead();
     return super.list;
   }
 
   @override
-  set list(Future<List<Shelf>> value) {
+  set list(Future<List<Shelf>>? value) {
     _$listAtom.reportWrite(value, super.list, () {
       super.list = value;
     });
@@ -39,7 +39,7 @@ mixin _$ShelfListBack on _ShelfListBack, Store {
   }
 
   @override
-  dynamic dispacheDialogSave(BuildContext context, [Shelf shelfRef]) {
+  dynamic dispacheDialogSave(BuildContext context, [Shelf? shelfRef]) {
     final _$actionInfo = _$_ShelfListBackActionController.startAction(
         name: '_ShelfListBack.dispacheDialogSave');
     try {

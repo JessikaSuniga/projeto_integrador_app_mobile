@@ -1,10 +1,10 @@
 import 'package:projeto_integrador_app/app/domain/entities/genre.dart';
 
 class BookToGenre {
-  int id;
-  int bookId;
-  int genreId;
-  Genre genre;
+  int? id;
+  int? bookId;
+  int? genreId;
+  Genre? genre;
 
   BookToGenre({
     this.id,

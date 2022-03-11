@@ -17,7 +17,7 @@ class CommonService {
     ));
   }
 
-  static String formattedDate(DateTime date) {
+  static String formattedDate(DateTime? date) {
     if (date == null) {
       return '';
     }

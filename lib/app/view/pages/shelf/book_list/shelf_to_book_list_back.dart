@@ -16,10 +16,10 @@ abstract class _ShelfToBookListBack with Store {
   final _shelfToBookService = ShelfToBookService();
   final _bookService = BookService();
 
-  Shelf shelf;
+  late Shelf shelf;
 
   @observable
-  Future<List<ShelfToBook>> list;
+  Future<List<ShelfToBook>>? list;
 
   @action
   refleshList() {
@@ -31,12 +31,12 @@ abstract class _ShelfToBookListBack with Store {
   }
 
   _ShelfToBookListBack(BuildContext context) {
-    var parameter = ModalRoute.of(context).settings.arguments;
-    shelf = (parameter == null) ? Shelf() : parameter;
+    var parameter = ModalRoute.of(context)!.settings.arguments;
+    shelf = (parameter == null) ? Shelf() : parameter as Shelf;
     refleshList();
   }
 
-  save(BuildContext context, List<int> books) async {
+  save(BuildContext context, List<int?> books) async {
     try {
       await _shelfToBookService.save(shelf.id, books);
       CommonService.messageSuccess(context, 'Estante salvo com sucesso!');

@@ -6,9 +6,9 @@ import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/borrowed_f
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class BorrowedDetais extends StatefulWidget {
-  final BorrowedFormBack back;
+  final BorrowedFormBack? back;
 
-  const BorrowedDetais({Key key, this.back}) : super(key: key);
+  const BorrowedDetais({Key? key, this.back}) : super(key: key);
 
   @override
   _BorrowedDetaisState createState() => _BorrowedDetaisState();
@@ -27,7 +27,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
             const Padding(padding: EdgeInsets.only(top: 20, bottom: 0)),
             _borrowedDateField,
             const Padding(padding: EdgeInsets.only(top: 20, bottom: 0)),
-            widget.back.borrowed.id != null
+            widget.back!.borrowed!.id != null
                 ? _returnedDateField
                 : const Padding(padding: EdgeInsets.only(top: 20, bottom: 0)),
           ],
@@ -38,7 +38,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
 
   TextFormField get _nameField {
     return TextFormField(
-      initialValue: widget.back.borrowed.name,
+      initialValue: widget.back!.borrowed!.name,
       validator: (value) {
         if (value == null || value.trim().isEmpty) {
           return 'Informe um valor válido';
@@ -50,7 +50,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
 
         return null;
       },
-      onSaved: (value) => widget.back.borrowed.name = value,
+      onSaved: (value) => widget.back!.borrowed!.name = value,
       decoration: const InputDecoration(
         labelText: 'Nome',
         hintText: 'Nome de quem foi emprestado',
@@ -68,7 +68,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Data de início: ${CommonService.formattedDate(widget.back.borrowed.borrowedDate)}",
+              "Data de início: ${CommonService.formattedDate(widget.back!.borrowed!.borrowedDate)}",
               style: Constants.sdFormText,
             ),
             GestureDetector(
@@ -76,13 +76,13 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
                 showDatePicker(
                   context: context,
                   initialDate:
-                      widget.back.borrowed.borrowedDate ?? DateTime.now(),
+                      widget.back!.borrowed!.borrowedDate ?? DateTime.now(),
                   firstDate: DateTime(1950),
                   lastDate: DateTime(2222),
                 ).then((value) {
                   if (value != null) {
                     setState(() {
-                      widget.back.borrowed.borrowedDate = value;
+                      widget.back!.borrowed!.borrowedDate = value;
                     });
                   }
                 });
@@ -106,7 +106,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Data de fim: ${CommonService.formattedDate(widget.back.borrowed.returnedDate)}",
+              "Data de fim: ${CommonService.formattedDate(widget.back!.borrowed!.returnedDate)}",
               style: Constants.sdFormText,
             ),
             GestureDetector(
@@ -114,21 +114,21 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
                 showDatePicker(
                   context: context,
                   initialDate:
-                      widget.back.borrowed.returnedDate ?? DateTime.now(),
+                      widget.back!.borrowed!.returnedDate ?? DateTime.now(),
                   firstDate: DateTime(1950),
                   lastDate: DateTime(2222),
                 ).then((value) {
                   if (value == null) return;
 
                   if (value.millisecondsSinceEpoch <=
-                      widget
-                          .back.borrowed.borrowedDate.millisecondsSinceEpoch) {
+                      widget.back!.borrowed!.borrowedDate!
+                          .millisecondsSinceEpoch) {
                     CommonService.messageError(context,
                         "Data final não pode ser inferior que a data de início!");
                     return;
                   }
                   setState(() {
-                    widget.back.borrowed.returnedDate = value;
+                    widget.back!.borrowed!.returnedDate = value;
                   });
                 });
               },
@@ -146,12 +146,12 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
 
   Widget get _bookSelect {
     return FutureBuilder(
-      future: widget.back.findAllBookAvailable(widget.back.borrowed.id),
+      future: widget.back!.findAllBookAvailable(widget.back!.borrowed!.id),
       builder: (context, result) {
         if (!result.hasData) {
           return const CircularProgressIndicator();
         }
-        List<Book> resultData = result.data;
+        List<Book> resultData = result.data as List<Book>;
         return Column(
           children: [
             Row(
@@ -161,14 +161,14 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
                 DropdownButtonHideUnderline(
                   child: DropdownButton(
                     hint: const Text("Selecione uma das opções"),
-                    value: widget.back.borrowed.bookId,
+                    value: widget.back!.borrowed!.bookId,
                     items: resultData
                         .map(
                           (book) => DropdownMenuItem(
                             child: SizedBox(
                               width: 250,
                               child: Text(
-                                book.title,
+                                book.title!,
                                 style: Constants.sdFormText,
                               ),
                             ),
@@ -176,8 +176,8 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
                           ),
                         )
                         .toList(),
-                    onChanged: (value) {
-                      setState(() => widget.back.borrowed.bookId = value);
+                    onChanged: (dynamic value) {
+                      setState(() => widget.back!.borrowed!.bookId = value);
                     },
                     // dropdownColor: Constants.myBrown,
                   ),

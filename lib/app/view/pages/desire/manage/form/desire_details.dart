@@ -13,9 +13,9 @@ import 'package:projeto_integrador_app/app/view/pages/desire/manage/desire_form_
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class DesireDetais extends StatefulWidget {
-  final DesireFormBack back;
+  final DesireFormBack? back;
 
-  const DesireDetais({Key key, this.back}) : super(key: key);
+  const DesireDetais({Key? key, this.back}) : super(key: key);
 
   @override
   _DesireDetaisState createState() => _DesireDetaisState();
@@ -26,9 +26,9 @@ class _DesireDetaisState extends State<DesireDetais> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.back.book.notes == null) {
+    if (widget.back!.book!.notes == null) {
       setState(() {
-        widget.back.book.notes = [''];
+        widget.back!.book!.notes = [''];
       });
     }
     return Scroll(
@@ -52,7 +52,7 @@ class _DesireDetaisState extends State<DesireDetais> {
 
   TextFormField get _titleField {
     return TextFormField(
-      initialValue: widget.back.book.title,
+      initialValue: widget.back!.book!.title,
       validator: (value) {
         if (value == null || value.trim().isEmpty) {
           return 'Informe um valor válido';
@@ -64,7 +64,7 @@ class _DesireDetaisState extends State<DesireDetais> {
 
         return null;
       },
-      onSaved: (value) => widget.back.book.title = value,
+      onSaved: (value) => widget.back!.book!.title = value,
       decoration: const InputDecoration(
         labelText: 'Título',
         hintText: 'Titulo do livro',
@@ -77,7 +77,7 @@ class _DesireDetaisState extends State<DesireDetais> {
 
   TextFormField get _authorField {
     return TextFormField(
-      initialValue: widget.back.book.author,
+      initialValue: widget.back!.book!.author,
       validator: (value) {
         if (value == null || value.trim().isEmpty) {
           return 'Informe um valor válido';
@@ -89,7 +89,7 @@ class _DesireDetaisState extends State<DesireDetais> {
 
         return null;
       },
-      onSaved: (value) => widget.back.book.author = value,
+      onSaved: (value) => widget.back!.book!.author = value,
       decoration: const InputDecoration(
         labelText: 'Autor(a)',
         hintText: 'Nome do autor(a)',
@@ -129,8 +129,8 @@ class _DesireDetaisState extends State<DesireDetais> {
       // ),
       child: GestureDetector(
         onTap: _showDialog,
-        child: widget.back.book.image != null
-            ? ImageParse.imageFromBase64String(widget.back.book.image)
+        child: widget.back!.book!.image != null
+            ? ImageParse.imageFromBase64String(widget.back!.book!.image!)
             : Image.asset(ConstantAssets.imgDefault),
       ),
     );
@@ -166,7 +166,7 @@ class _DesireDetaisState extends State<DesireDetais> {
   Future<void> _pickImageFromCamera() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
-      setState(() => widget.back.book.image =
+      setState(() => widget.back!.book!.image =
           ImageParse.base64String(File(pickedFile.path).readAsBytesSync()));
     }
     Navigator.pop(context);
@@ -175,7 +175,7 @@ class _DesireDetaisState extends State<DesireDetais> {
   Future<void> _pickImageFromGallery() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      setState(() => widget.back.book.image =
+      setState(() => widget.back!.book!.image =
           ImageParse.base64String(File(pickedFile.path).readAsBytesSync()));
     }
 
@@ -184,14 +184,14 @@ class _DesireDetaisState extends State<DesireDetais> {
 
   TextFormField get _publishingCompanyField {
     return TextFormField(
-      initialValue: widget.back.book.publishingCompany,
+      initialValue: widget.back!.book!.publishingCompany,
       validator: (value) {
-        if (value.length > 100) {
+        if (value!.length > 100) {
           return 'Campo deve ter no máximo 100 caracteres';
         }
         return null;
       },
-      onSaved: (value) => widget.back.book.publishingCompany = value,
+      onSaved: (value) => widget.back!.book!.publishingCompany = value,
       decoration: const InputDecoration(
         labelText: 'Editora',
         hintText: 'Nome da editora',
@@ -204,14 +204,14 @@ class _DesireDetaisState extends State<DesireDetais> {
 
   TextFormField get _isbnField {
     return TextFormField(
-      initialValue: widget.back.book.isbn,
+      initialValue: widget.back!.book!.isbn,
       validator: (value) {
-        if (value.length > 20) {
+        if (value!.length > 20) {
           return 'Campo deve ter no máximo 20 caracteres';
         }
         return null;
       },
-      onSaved: (value) => widget.back.book.isbn = value != "" ? value : null,
+      onSaved: (value) => widget.back!.book!.isbn = value != "" ? value : null,
       decoration: const InputDecoration(
         labelText: 'ISBN',
         hintText: 'Informe o valor do ISBN',
@@ -232,7 +232,7 @@ class _DesireDetaisState extends State<DesireDetais> {
             DropdownButtonHideUnderline(
               child: DropdownButton(
                 hint: Text(BookFormatType.pocketBook.description),
-                value: widget.back.book.format,
+                value: widget.back!.book!.format,
                 items: BookFormatType.values
                     .map(
                       (format) => DropdownMenuItem(
@@ -244,9 +244,9 @@ class _DesireDetaisState extends State<DesireDetais> {
                       ),
                     )
                     .toList(),
-                onChanged: (value) {
+                onChanged: (dynamic value) {
                   setState(() {
-                    widget.back.book.format = value;
+                    widget.back!.book!.format = value;
                   });
                 },
                 // dropdownColor: Constants.myBrown,
@@ -264,12 +264,12 @@ class _DesireDetaisState extends State<DesireDetais> {
 
   Widget get _genreField {
     return FutureBuilder(
-      future: widget.back.findAllGenre(),
+      future: widget.back!.findAllGenre(),
       builder: (context, result) {
         if (!result.hasData) {
           return const CircularProgressIndicator();
         }
-        List<Genre> resultData = result.data;
+        List<Genre> resultData = result.data as List<Genre>;
 
         return MultiSelectDialogField(
           decoration: BoxDecoration(
@@ -280,7 +280,7 @@ class _DesireDetaisState extends State<DesireDetais> {
               ),
             ),
           ),
-          initialValue: widget.back.book.genres,
+          initialValue: widget.back!.book!.genres,
           buttonIcon: Icon(
             Icons.arrow_drop_down,
             color: Colors.grey.shade700,
@@ -295,13 +295,13 @@ class _DesireDetaisState extends State<DesireDetais> {
           ),
           title: const Text('Gênero'),
           closeSearchIcon: const Icon(Icons.search_off),
-          onSaved: (value) => widget.back.book.genres = value,
+          onSaved: (value) => widget.back!.book!.genres = value as List<int?>?,
           items: resultData
-              .map((genre) => MultiSelectItem(genre.id, genre.name))
+              .map((genre) => MultiSelectItem(genre.id, genre.name!))
               .toList(),
           listType: MultiSelectListType.CHIP,
           onConfirm: (value) {
-            setState(() => widget.back.book.genres = value);
+            setState(() => widget.back!.book!.genres = value as List<int?>?);
           },
         );
       },
@@ -315,7 +315,7 @@ class _DesireDetaisState extends State<DesireDetais> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Publicação: ${CommonService.formattedDate(widget.back.book.publicationDate)}",
+              "Publicação: ${CommonService.formattedDate(widget.back!.book!.publicationDate)}",
               style: Constants.sdFormText,
             ),
             GestureDetector(
@@ -323,13 +323,13 @@ class _DesireDetaisState extends State<DesireDetais> {
                 showDatePicker(
                   context: context,
                   initialDate:
-                      widget.back.book.publicationDate ?? DateTime.now(),
+                      widget.back!.book!.publicationDate ?? DateTime.now(),
                   firstDate: DateTime(1950),
                   lastDate: DateTime(2222),
                 ).then((value) {
                   if (value != null) {
                     setState(() {
-                      widget.back.book.publicationDate = value;
+                      widget.back!.book!.publicationDate = value;
                     });
                   }
                 });
@@ -345,7 +345,7 @@ class _DesireDetaisState extends State<DesireDetais> {
 
   TextFormField get _pagesField {
     return TextFormField(
-      initialValue: widget.back.book.pages.toString(),
+      initialValue: widget.back!.book!.pages.toString(),
       validator: (value) {
         if (value == null || value.trim().isEmpty) {
           return 'Informe um valor válido';
@@ -357,7 +357,7 @@ class _DesireDetaisState extends State<DesireDetais> {
         return null;
       },
       onSaved: (value) =>
-          widget.back.book.pages = value != "" ? int.parse(value) : 0,
+          widget.back!.book!.pages = value != "" ? int.parse(value!) : 0,
       decoration: const InputDecoration(
         labelText: 'Páginas',
         hintText: 'Informe a quantidade de páginas',
@@ -379,7 +379,7 @@ class _DesireDetaisState extends State<DesireDetais> {
             DropdownButtonHideUnderline(
               child: DropdownButton(
                 hint: Text(BookLanguageType.portuguese.description),
-                value: widget.back.book.language,
+                value: widget.back!.book!.language,
                 items: BookLanguageType.values
                     .map((language) => DropdownMenuItem(
                           child: Text(
@@ -389,9 +389,9 @@ class _DesireDetaisState extends State<DesireDetais> {
                           value: language,
                         ))
                     .toList(),
-                onChanged: (value) {
+                onChanged: (dynamic value) {
                   setState(() {
-                    widget.back.book.language = value;
+                    widget.back!.book!.language = value;
                   });
                 },
                 // dropdownColor: Constants.myBrown,

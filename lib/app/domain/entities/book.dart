@@ -5,27 +5,27 @@ import 'package:projeto_integrador_app/app/common/enums/book_language_type.dart'
 import 'package:projeto_integrador_app/app/common/enums/book_status_type.dart';
 
 class Book {
-  int id;
-  String title;
-  String author;
-  String publishingCompany;
-  String isbn;
-  List<int> genres;
-  List<String> notes;
-  BookFormatType format;
-  DateTime publicationDate;
-  int pages;
-  BookLanguageType language;
-  String serie;
-  int volume;
-  String description;
-  String image;
-  DateTime startDate;
-  DateTime endDate;
-  int pagesRead;
-  BookStatusType status;
-  double evaluation;
-  BookItemType itemType;
+  int? id;
+  String? title;
+  String? author;
+  String? publishingCompany;
+  String? isbn;
+  List<int?>? genres;
+  List<String?>? notes;
+  BookFormatType? format;
+  DateTime? publicationDate;
+  int? pages;
+  BookLanguageType? language;
+  String? serie;
+  int? volume;
+  String? description;
+  String? image;
+  DateTime? startDate;
+  DateTime? endDate;
+  int? pagesRead;
+  BookStatusType? status;
+  double? evaluation;
+  BookItemType? itemType;
 
   Book({
     this.id,
@@ -52,25 +52,25 @@ class Book {
   });
 
   Book.fromMap(dynamic obj) {
-    id = obj['book_id'] as int;
-    title = obj['title'] as String;
-    author = obj['author'] as String;
-    publishingCompany = obj['publishing_company'] as String;
-    isbn = obj['isbn'] as String;
+    id = obj['book_id'] as int?;
+    title = obj['title'] as String?;
+    author = obj['author'] as String?;
+    publishingCompany = obj['publishing_company'] as String?;
+    isbn = obj['isbn'] as String?;
     notes = obj['notes'] != null ? obj['notes'].toString().split('|||') : [''];
     format =
         EnumToString.fromString(BookFormatType.values, obj['format'] as String);
-    publicationDate = _millisecondsToDatetime(obj['publication_date'] as int);
-    pages = obj['pages'] as int;
+    publicationDate = _millisecondsToDatetime(obj['publication_date'] as int?);
+    pages = obj['pages'] as int?;
     language = EnumToString.fromString(
         BookLanguageType.values, obj['language'] as String);
-    serie = obj['serie'] as String;
-    volume = obj['volume'] as int;
-    description = obj['description'] as String;
-    image = obj['image'] as String;
-    startDate = _millisecondsToDatetime(obj['start_date'] as int);
-    endDate = _millisecondsToDatetime(obj['end_date'] as int);
-    pagesRead = obj['pages_read'] as int;
+    serie = obj['serie'] as String?;
+    volume = obj['volume'] as int?;
+    description = obj['description'] as String?;
+    image = obj['image'] as String?;
+    startDate = _millisecondsToDatetime(obj['start_date'] as int?);
+    endDate = _millisecondsToDatetime(obj['end_date'] as int?);
+    pagesRead = obj['pages_read'] as int?;
     status =
         EnumToString.fromString(BookStatusType.values, obj['status'] as String);
     evaluation = obj['evaluation'];
@@ -104,22 +104,22 @@ class Book {
     return map;
   }
 
-  _replaceNotes(List<String> notes) {
+  _replaceNotes(List<String?>? notes) {
     if (notes == null) {
       return notes;
     }
 
-    return notes.map((e) => e.replaceAll('|||', '')).join('|||');
+    return notes.map((e) => e!.replaceAll('|||', '')).join('|||');
   }
 
-  _millisecondsToDatetime(int date) {
+  _millisecondsToDatetime(int? date) {
     if (date == null) {
       return date;
     }
     return DateTime.fromMillisecondsSinceEpoch(date);
   }
 
-  _datetimeToMilliseconds(DateTime date) {
+  _datetimeToMilliseconds(DateTime? date) {
     if (date == null) {
       return date;
     }

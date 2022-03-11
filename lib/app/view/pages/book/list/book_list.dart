@@ -10,7 +10,7 @@ import 'package:projeto_integrador_app/app/view/components/button_delete_icon.da
 import 'package:projeto_integrador_app/app/view/pages/book/list/book_list_back.dart';
 
 class BookList extends StatelessWidget {
-  BookList({Key key}) : super(key: key);
+  BookList({Key? key}) : super(key: key);
 
   final _back = BookListBack();
 
@@ -25,7 +25,7 @@ class BookList extends StatelessWidget {
               return const CircularProgressIndicator();
             }
 
-            List<Book> resultData = result.data;
+            List<Book> resultData = result.data as List<Book>;
 
             return Column(
               children: [

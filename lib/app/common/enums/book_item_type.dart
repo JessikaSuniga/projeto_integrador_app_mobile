@@ -3,7 +3,7 @@ enum BookItemType {
   desire,
 }
 
-extension BookItemTypeDescription on BookItemType {
+extension BookItemTypeDescription on BookItemType? {
   // ignore: missing_return
   String get description {
     switch (this) {
@@ -11,6 +11,8 @@ extension BookItemTypeDescription on BookItemType {
         return 'Comprado';
       case BookItemType.desire:
         return 'Desejo';
+      default:
+        throw "Valor invalido";
     }
   }
 
@@ -21,6 +23,8 @@ extension BookItemTypeDescription on BookItemType {
         return 'bought';
       case BookItemType.desire:
         return 'desire';
+      default:
+        throw "Valor invalido";
     }
   }
 }

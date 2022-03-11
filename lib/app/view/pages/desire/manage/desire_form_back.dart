@@ -11,33 +11,33 @@ import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 // flutter pub run build_runner build
 class DesireFormBack {
-  Book book;
+  Book? book;
   final _service = BookService();
   final _serviceGenre = GenreService();
   final _serviceBookToGenre = BookToGenreService();
 
   DesireFormBack(BuildContext context) {
-    var parameter = ModalRoute.of(context).settings.arguments;
-    book = (parameter == null) ? Book() : parameter;
+    var parameter = ModalRoute.of(context)!.settings.arguments;
+    book = (parameter == null) ? Book() : parameter as Book?;
   }
 
   Future<List<Genre>> findAllGenre() {
     return _serviceGenre.findAll();
   }
 
-  Future<List<BookToGenre>> findAllByBookId(int bookId) {
+  Future<List<BookToGenre>> findAllByBookId(int? bookId) {
     return _serviceBookToGenre.findAllByBookId(bookId);
   }
 
-  goToForm(BuildContext context, [Book book]) {
+  goToForm(BuildContext context, [Book? book]) {
     Navigator.of(context)
         .pushReplacementNamed(Routes.DESIRE_FORM, arguments: book);
   }
 
   save(BuildContext context) async {
     try {
-      book.itemType = BookItemType.desire;
-      await _service.save(book);
+      book!.itemType = BookItemType.desire;
+      await _service.save(book!);
       CommonService.messageSuccess(context, 'Livro salvo com sucesso!');
       Navigator.of(context).pop();
     } catch (e) {

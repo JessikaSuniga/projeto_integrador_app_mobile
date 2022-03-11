@@ -9,7 +9,7 @@ import 'package:projeto_integrador_app/app/view/pages/desire/manage/desire_form_
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class DesireView extends StatelessWidget {
-  const DesireView({Key key}) : super(key: key);
+  const DesireView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +44,9 @@ class DesireView extends StatelessWidget {
                           border:
                               Border.all(color: Colors.grey.shade400, width: 2),
                         ),
-                        child: _back.book.image != null
-                            ? ImageParse.imageFromBase64String(_back.book.image)
+                        child: _back.book!.image != null
+                            ? ImageParse.imageFromBase64String(
+                                _back.book!.image!)
                             : Image.asset(ConstantAssets.imgDefault),
                       ),
                     ),
@@ -58,7 +59,7 @@ class DesireView extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(10),
                             child: Text(
-                              _back.book.title,
+                              _back.book!.title!,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
@@ -67,7 +68,7 @@ class DesireView extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10),
-                            child: Text(_back.book.author),
+                            child: Text(_back.book!.author!),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10),
@@ -82,7 +83,7 @@ class DesireView extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Text(_back.book.isbn ?? "_"),
+                                Text(_back.book!.isbn ?? "_"),
                               ],
                             ),
                           ),
@@ -113,12 +114,13 @@ class DesireView extends StatelessWidget {
                                   ),
                                 ),
                                 FutureBuilder(
-                                  future: _back.findAllByBookId(_back.book.id),
+                                  future: _back.findAllByBookId(_back.book!.id),
                                   builder: (context, result) {
                                     if (!result.hasData) {
                                       return const CircularProgressIndicator();
                                     }
-                                    List<BookToGenre> resultData = result.data;
+                                    List<BookToGenre> resultData =
+                                        result.data as List<BookToGenre>;
 
                                     return Column(
                                       mainAxisAlignment:
@@ -128,7 +130,7 @@ class DesireView extends StatelessWidget {
                                       children: resultData.isNotEmpty
                                           ? resultData
                                               .map(
-                                                (e) => Text(e.genre.name),
+                                                (e) => Text(e.genre!.name!),
                                               )
                                               .toList()
                                           : [const Text("-")],
@@ -151,7 +153,7 @@ class DesireView extends StatelessWidget {
                                     fontSize: 16,
                                   ),
                                 ),
-                                Text(_back.book.publishingCompany),
+                                Text(_back.book!.publishingCompany!),
                               ],
                             ),
                           ),
@@ -168,7 +170,7 @@ class DesireView extends StatelessWidget {
                                     fontSize: 16,
                                   ),
                                 ),
-                                Text(_back.book.format.description),
+                                Text(_back.book!.format.description),
                               ],
                             ),
                           ),
@@ -193,7 +195,7 @@ class DesireView extends StatelessWidget {
                                     fontSize: 16,
                                   ),
                                 ),
-                                Text(_back.book.pages.toString()),
+                                Text(_back.book!.pages.toString()),
                               ],
                             ),
                           ),
@@ -210,7 +212,7 @@ class DesireView extends StatelessWidget {
                                     fontSize: 16,
                                   ),
                                 ),
-                                Text(_back.book.language.description),
+                                Text(_back.book!.language.description),
                               ],
                             ),
                           ),
@@ -229,7 +231,7 @@ class DesireView extends StatelessWidget {
                                 ),
                                 Text(
                                   CommonService.formattedDate(
-                                    _back.book.publicationDate,
+                                    _back.book!.publicationDate,
                                   ),
                                 ),
                               ],

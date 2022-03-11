@@ -14,7 +14,7 @@ class BorrowedService {
     await _borrowedRepository.update(borrowed);
   }
 
-  remove(int id) async {
+  remove(int? id) async {
     await _borrowedRepository.remove(id);
   }
 
@@ -23,7 +23,7 @@ class BorrowedService {
     return borroweds;
   }
 
-  Future<List<Book>> findAllBookAvailable(int borrowedBookId) async {
+  Future<List<Book>> findAllBookAvailable(int? borrowedBookId) async {
     var borroweds = await _borrowedRepository.findAllOpen();
     var query = "item_type='bought'";
 

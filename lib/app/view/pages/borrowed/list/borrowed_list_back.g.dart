@@ -12,13 +12,13 @@ mixin _$BorrowedListBack on _BorrowedListBack, Store {
   final _$listAtom = Atom(name: '_BorrowedListBack.list');
 
   @override
-  Future<List<Borrowed>> get list {
+  Future<List<Borrowed>>? get list {
     _$listAtom.reportRead();
     return super.list;
   }
 
   @override
-  set list(Future<List<Borrowed>> value) {
+  set list(Future<List<Borrowed>>? value) {
     _$listAtom.reportWrite(value, super.list, () {
       super.list = value;
     });

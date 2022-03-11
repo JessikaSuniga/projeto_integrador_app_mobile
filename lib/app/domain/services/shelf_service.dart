@@ -17,7 +17,7 @@ class ShelfService {
     await _shelfRepository.update(shelf);
   }
 
-  remove(int id) async {
+  remove(int? id) async {
     await _shelfRepository.remove(id);
     await _shelfToBookRepository.removeByShelfId(id);
   }
@@ -27,7 +27,7 @@ class ShelfService {
 
     for (var shelf in shelfs) {
       shelf.books = await _shelfToBookRepository.findAllByShelfId(shelf.id);
-      for (var e in shelf.books) {
+      for (var e in shelf.books!) {
         e.book = await _bookRepository.findById(e.bookId);
       }
     }
@@ -37,7 +37,7 @@ class ShelfService {
   Future<Shelf> findById(int id) async {
     Shelf shelf = await _shelfRepository.findById(id);
     shelf.books = await _shelfToBookRepository.findAllByShelfId(shelf.id);
-    for (var e in shelf.books) {
+    for (var e in shelf.books!) {
       e.book = await _bookRepository.findById(e.bookId);
     }
     return shelf;

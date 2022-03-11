@@ -1,12 +1,12 @@
 import 'package:projeto_integrador_app/app/domain/entities/book.dart';
 
 class Borrowed {
-  int id;
-  int bookId;
-  Book book;
-  String name;
-  DateTime borrowedDate;
-  DateTime returnedDate;
+  int? id;
+  int? bookId;
+  Book? book;
+  String? name;
+  DateTime? borrowedDate;
+  DateTime? returnedDate;
 
   Borrowed({
     this.id,
@@ -21,8 +21,8 @@ class Borrowed {
     id = obj['borrowed_id'];
     bookId = obj['book_id'];
     name = obj['name'];
-    borrowedDate = _millisecondsToDatetime(obj['borrowed_date'] as int);
-    returnedDate = _millisecondsToDatetime(obj['returned_date'] as int);
+    borrowedDate = _millisecondsToDatetime(obj['borrowed_date'] as int?);
+    returnedDate = _millisecondsToDatetime(obj['returned_date'] as int?);
     book = Book.fromMap(obj);
   }
 
@@ -37,14 +37,14 @@ class Borrowed {
     return map;
   }
 
-  _millisecondsToDatetime(int date) {
+  _millisecondsToDatetime(int? date) {
     if (date == null) {
       return date;
     }
     return DateTime.fromMillisecondsSinceEpoch(date);
   }
 
-  _datetimeToMilliseconds(DateTime date) {
+  _datetimeToMilliseconds(DateTime? date) {
     if (date == null) {
       return date;
     }

@@ -5,7 +5,7 @@ enum StatusFilterType {
   reading,
 }
 
-extension StatusFilterTypeDescription on StatusFilterType {
+extension StatusFilterTypeDescription on StatusFilterType? {
   // ignore: missing_return
   String get description {
     switch (this) {
@@ -17,6 +17,8 @@ extension StatusFilterTypeDescription on StatusFilterType {
         return 'Não lido';
       case StatusFilterType.reading:
         return 'Lendo';
+      default:
+        throw "Valor invalido";
     }
   }
 
@@ -31,6 +33,8 @@ extension StatusFilterTypeDescription on StatusFilterType {
         return 'notRead';
       case StatusFilterType.reading:
         return 'reading';
+      default:
+        throw "Valor invalido";
     }
   }
 }

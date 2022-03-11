@@ -22,7 +22,7 @@ class BookToGenreRepository {
     return bookToGenres;
   }
 
-  Future<List<BookToGenre>> findAllByBookId(int bookId) async {
+  Future<List<BookToGenre>> findAllByBookId(int? bookId) async {
     final _db = await _getDatabase();
 
     List<Map<String, dynamic>> allRows =
@@ -34,7 +34,7 @@ class BookToGenreRepository {
     return bookToGenres;
   }
 
-  remove(int id) async {
+  remove(int? id) async {
     final _db = await _getDatabase();
     _db.delete(_table, where: "book_to_genre_id=?", whereArgs: [id]);
   }

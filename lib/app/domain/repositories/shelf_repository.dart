@@ -28,7 +28,7 @@ class ShelfRepository {
     return allRows.map((shelf) => Shelf.fromMap(shelf)).first;
   }
 
-  remove(int id) async {
+  remove(int? id) async {
     final _db = await _getDatabase();
     _db.delete(_table, where: "shelf_id=?", whereArgs: [id]);
   }

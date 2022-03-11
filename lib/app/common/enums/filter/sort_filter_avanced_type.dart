@@ -4,8 +4,7 @@ enum SortFilterAvancedType {
   publishingCompany,
 }
 
-extension SortFilterAvancedTypeDescription on SortFilterAvancedType {
-  // ignore: missing_return
+extension SortFilterAvancedTypeDescription on SortFilterAvancedType? {
   String get description {
     switch (this) {
       case SortFilterAvancedType.title:
@@ -14,6 +13,8 @@ extension SortFilterAvancedTypeDescription on SortFilterAvancedType {
         return 'Autor';
       case SortFilterAvancedType.publishingCompany:
         return 'Editora';
+      default:
+        throw "Valor invalido";
     }
   }
 
@@ -26,6 +27,8 @@ extension SortFilterAvancedTypeDescription on SortFilterAvancedType {
         return 'author';
       case SortFilterAvancedType.publishingCompany:
         return 'publishing_company';
+      default:
+        throw "Valor invalido";
     }
   }
 }

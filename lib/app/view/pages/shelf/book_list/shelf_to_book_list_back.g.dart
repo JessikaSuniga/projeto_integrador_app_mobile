@@ -12,13 +12,13 @@ mixin _$ShelfToBookListBack on _ShelfToBookListBack, Store {
   final _$listAtom = Atom(name: '_ShelfToBookListBack.list');
 
   @override
-  Future<List<ShelfToBook>> get list {
+  Future<List<ShelfToBook>>? get list {
     _$listAtom.reportRead();
     return super.list;
   }
 
   @override
-  set list(Future<List<ShelfToBook>> value) {
+  set list(Future<List<ShelfToBook>>? value) {
     _$listAtom.reportWrite(value, super.list, () {
       super.list = value;
     });

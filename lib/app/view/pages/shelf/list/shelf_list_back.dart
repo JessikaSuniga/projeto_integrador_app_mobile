@@ -15,7 +15,7 @@ abstract class _ShelfListBack with Store {
   final _service = ShelfService();
 
   @observable
-  Future<List<Shelf>> list;
+  Future<List<Shelf>>? list;
 
   @action
   refleshList([dynamic value]) {
@@ -26,13 +26,13 @@ abstract class _ShelfListBack with Store {
     refleshList();
   }
 
-  goToForm(BuildContext context, [Shelf shelf]) {
+  goToForm(BuildContext context, [Shelf? shelf]) {
     Navigator.of(context)
         .pushNamed(Routes.SHELF_TO_BOOK_LIST, arguments: shelf)
         .then(refleshList);
   }
 
-  dispacheDialogSave(BuildContext context, [Shelf shelfRef]) {
+  dispacheDialogSave(BuildContext context, [Shelf? shelfRef]) {
     Shelf shelf = Shelf();
     if (shelfRef != null) {
       shelf = shelfRef;
@@ -81,8 +81,8 @@ abstract class _ShelfListBack with Store {
                 ElevatedButton(
                   child: const Text('Salvar'),
                   onPressed: () {
-                    var res = _formKey.currentState.validate();
-                    _formKey.currentState.save();
+                    var res = _formKey.currentState!.validate();
+                    _formKey.currentState!.save();
                     if (res) {
                       save(context, shelf);
                     }

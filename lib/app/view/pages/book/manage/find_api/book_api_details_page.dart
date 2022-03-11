@@ -9,7 +9,7 @@ import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 class BookApiDetailsPage extends StatelessWidget {
   final BookApi _book;
 
-  const BookApiDetailsPage(this._book, {Key key}) : super(key: key);
+  const BookApiDetailsPage(this._book, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class BookApiDetailsPage extends StatelessWidget {
                         ),
                       ),
                       child: Hero(
-                        tag: _book.id,
+                        tag: _book.id!,
                         child: _book.thumbnail,
                       ),
                     ),
@@ -57,7 +57,7 @@ class BookApiDetailsPage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(10),
                           child: Text(
-                            _book.title,
+                            _book.title!,
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -137,7 +137,7 @@ class BookApiDetailsPage extends StatelessWidget {
       goToBookForm(context, newBook);
     }
 
-    ImageParse.networkImageToBase64(bookApi.thumbnailUrl).then((value) {
+    ImageParse.networkImageToBase64(bookApi.thumbnailUrl!).then((value) {
       newBook.image = value;
       goToBookForm(context, newBook);
     }).catchError(

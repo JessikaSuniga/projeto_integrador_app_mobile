@@ -6,7 +6,7 @@ import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/borrowed_form_back.dart';
 
 class BorrowedView extends StatelessWidget {
-  const BorrowedView({Key key}) : super(key: key);
+  const BorrowedView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +41,9 @@ class BorrowedView extends StatelessWidget {
                           border:
                               Border.all(color: Colors.grey.shade400, width: 2),
                         ),
-                        child: _back.borrowed.book.image != null
+                        child: _back.borrowed!.book!.image != null
                             ? ImageParse.imageFromBase64String(
-                                _back.borrowed.book.image)
+                                _back.borrowed!.book!.image!)
                             : Image.asset(ConstantAssets.imgDefault),
                       ),
                     ),
@@ -56,7 +56,7 @@ class BorrowedView extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(10),
                             child: Text(
-                              _back.borrowed.book.title,
+                              _back.borrowed!.book!.title!,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
@@ -65,7 +65,7 @@ class BorrowedView extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10),
-                            child: Text(_back.borrowed.book.author),
+                            child: Text(_back.borrowed!.book!.author!),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10),
@@ -80,7 +80,7 @@ class BorrowedView extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Text(_back.borrowed.book.isbn),
+                                Text(_back.borrowed!.book!.isbn!),
                               ],
                             ),
                           ),
@@ -105,7 +105,7 @@ class BorrowedView extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Text(_back.borrowed.name),
+                          child: Text(_back.borrowed!.name!),
                         ),
                       ],
                     ),
@@ -123,7 +123,7 @@ class BorrowedView extends StatelessWidget {
                           padding: const EdgeInsets.all(10),
                           child: Text(
                             CommonService.formattedDate(
-                              _back.borrowed.borrowedDate,
+                              _back.borrowed!.borrowedDate,
                             ),
                           ),
                         ),
@@ -143,7 +143,7 @@ class BorrowedView extends StatelessWidget {
                           padding: const EdgeInsets.all(10),
                           child: Text(
                             CommonService.formattedDate(
-                              _back.borrowed.returnedDate,
+                              _back.borrowed!.returnedDate,
                             ),
                           ),
                         ),

@@ -20,7 +20,7 @@ class BookService {
 
       if (book.genres == null) return;
 
-      for (var genreId in book.genres) {
+      for (var genreId in book.genres!) {
         var newGenre = BookToGenre(bookId: bookId, genreId: genreId);
         await _bookToGenreRepository.insert(newGenre);
       }
@@ -36,7 +36,7 @@ class BookService {
 
     var dicDBGenres = {for (var genre in dbListGenres) genre.genreId: genre};
 
-    for (var genreId in book.genres) {
+    for (var genreId in book.genres!) {
       if (!dicDBGenres.containsKey(genreId)) {
         var newGenre = BookToGenre(bookId: book.id, genreId: genreId);
         await _bookToGenreRepository.insert(newGenre);
@@ -46,18 +46,18 @@ class BookService {
     }
 
     for (var key in dicDBGenres.keys) {
-      _bookToGenreRepository.remove(dicDBGenres[key].id);
+      _bookToGenreRepository.remove(dicDBGenres[key]!.id);
     }
   }
 
-  remove(int id) async {
+  remove(int? id) async {
     await _bookRepository.remove(id);
     await _shelfToBookRepository.removeByBookId(id);
     await _borrowedRepository.removeByBookId(id); // todo
   }
 
   Future<List<Book>> findAll(BookItemType itemType,
-      [FilterModel filterModel]) async {
+      [FilterModel? filterModel]) async {
     var filter = filterModel ?? FilterModel();
 
     List<Book> books = await _bookRepository.findAll(itemType, filter.filter);

@@ -7,7 +7,7 @@ import 'package:projeto_integrador_app/app/view/pages/book/manage/view/book_deta
 import 'package:projeto_integrador_app/app/view/pages/book/manage/view/book_notes_view.dart';
 
 class BookView extends StatefulWidget {
-  const BookView({Key key}) : super(key: key);
+  const BookView({Key? key}) : super(key: key);
 
   @override
   _BookViewState createState() => _BookViewState();
@@ -17,7 +17,7 @@ class _BookViewState extends State<BookView>
     with SingleTickerProviderStateMixin {
   final formKey = GlobalKey<FormState>();
 
-  TabController _controller;
+  TabController? _controller;
 
   @override
   void initState() {
@@ -70,8 +70,8 @@ class _BookViewState extends State<BookView>
                           width: 2,
                         ),
                       ),
-                      child: back.book.image != null
-                          ? ImageParse.imageFromBase64String(back.book.image)
+                      child: back.book!.image != null
+                          ? ImageParse.imageFromBase64String(back.book!.image!)
                           : Image.asset(ConstantAssets.imgDefault),
                     ),
                   ),
@@ -84,7 +84,7 @@ class _BookViewState extends State<BookView>
                         Padding(
                           padding: const EdgeInsets.all(10),
                           child: Text(
-                            back.book.title,
+                            back.book!.title!,
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -93,7 +93,7 @@ class _BookViewState extends State<BookView>
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Text(back.book.author),
+                          child: Text(back.book!.author!),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10),
@@ -106,7 +106,7 @@ class _BookViewState extends State<BookView>
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              Text(back.book.isbn ?? "_"),
+                              Text(back.book!.isbn ?? "_"),
                             ],
                           ),
                         ),

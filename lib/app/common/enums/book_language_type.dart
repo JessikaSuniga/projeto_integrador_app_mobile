@@ -9,7 +9,7 @@ enum BookLanguageType {
   other,
 }
 
-extension BookLanguageTypeDescription on BookLanguageType {
+extension BookLanguageTypeDescription on BookLanguageType? {
   // ignore: missing_return
   String get description {
     switch (this) {
@@ -29,6 +29,8 @@ extension BookLanguageTypeDescription on BookLanguageType {
         return 'Japones';
       case BookLanguageType.other:
         return 'Outro';
+      default:
+        throw "Valor invalido";
     }
   }
 
@@ -51,6 +53,8 @@ extension BookLanguageTypeDescription on BookLanguageType {
         return 'japanese';
       case BookLanguageType.other:
         return 'other';
+      default:
+        throw "Valor invalido";
     }
   }
 }

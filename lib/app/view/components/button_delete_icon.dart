@@ -6,7 +6,7 @@ class ButtonDeleteIcon extends StatelessWidget {
   final BuildContext _context;
   final Function _onRemove;
 
-  const ButtonDeleteIcon(this._context, this._onRemove, {Key key})
+  const ButtonDeleteIcon(this._context, this._onRemove, {Key? key})
       : super(key: key);
 
   @override
@@ -29,7 +29,7 @@ class ButtonDeleteIcon extends StatelessWidget {
               ),
               TextButton(
                 child: const Text('Sim'),
-                onPressed: _onRemove,
+                onPressed: _onRemove as void Function()?,
               ),
             ],
           ),

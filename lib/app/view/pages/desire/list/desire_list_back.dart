@@ -13,7 +13,7 @@ abstract class _DesireListBack with Store {
   final _service = BookService();
 
   @observable
-  Future<List<Book>> list;
+  Future<List<Book>>? list;
 
   @action
   refleshList([dynamic value]) {
@@ -24,13 +24,13 @@ abstract class _DesireListBack with Store {
     refleshList();
   }
 
-  goToForm(BuildContext context, [Book book]) {
+  goToForm(BuildContext context, [Book? book]) {
     Navigator.of(context)
         .pushNamed(Routes.DESIRE_FORM, arguments: book)
         .then(refleshList);
   }
 
-  goToView(BuildContext context, [Book book]) {
+  goToView(BuildContext context, [Book? book]) {
     Navigator.of(context)
         .pushNamed(Routes.DESIRE_VIEW, arguments: book)
         .then(refleshList);

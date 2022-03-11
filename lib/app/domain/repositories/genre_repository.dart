@@ -17,7 +17,7 @@ class GenreRepository {
     return allRows.map((genre) => Genre.fromMap(genre)).toList();
   }
 
-  Future<Genre> findById(int id) async {
+  Future<Genre> findById(int? id) async {
     Database _db = await _getDatabase();
     List<Map<String, dynamic>> allRows =
         await _db.query(_table, where: 'genre_id=?', whereArgs: [id]);
