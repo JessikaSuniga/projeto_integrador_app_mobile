@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/enums/navigations_types.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
@@ -6,6 +7,8 @@ import 'package:projeto_integrador_app/app/view/pages/book/list/book_list.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/list/borrowed_list.dart';
 import 'package:projeto_integrador_app/app/view/pages/desire/list/desire_list.dart';
 import 'package:projeto_integrador_app/app/view/pages/shelf/list/shelf_list.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -162,13 +165,35 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               title: const Text('Adicionar livro'),
               content: SizedBox(
                 width: 100,
-                height: 100,
+                height: 200,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // ElevatedButton(
-                    //   child: const Text('Cadastro manual'),
-                    //   onPressed: () => Navigator.of(context).pushNamed(Routes.BOOK_FORM).then((value) => Navigator.of(context).pop()),
-                    // ),
+                    TextButton(
+                      child: const Text('Busca por Código de barras'),
+                      onPressed: () async {
+                        try {
+                          await FlutterBarcodeScanner.scanBarcode(
+                            '#ff6666',
+                            'Cancelar',
+                            true,
+                            ScanMode.BARCODE,
+                          ).then((value) {
+                            if (value != '-1') {
+                              CommonService.messageSuccess(context, value);
+                            }
+                          });
+                        } on PlatformException {
+                          CommonService.messageError(
+                            context,
+                            'Falha ao encontrar código de barra',
+                          );
+                        } finally {
+                          Navigator.of(context).pop();
+                        }
+                        if (!mounted) return;
+                      },
+                    ),
                     TextButton(
                       child: const Text('Buscar por palavra chave ou ISBN'),
                       onPressed: () {
