@@ -3,7 +3,7 @@ import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
 import 'package:projeto_integrador_app/app/domain/entities/book.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
-import 'package:projeto_integrador_app/app/view/pages/book/manage/find_api/book_api_model.dart';
+import 'package:projeto_integrador_app/app/domain/models/book_api_model.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class BookApiDetailsPage extends StatelessWidget {

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/enums/navigations_types.dart';
+import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
+import 'package:projeto_integrador_app/app/domain/entities/book.dart';
+import 'package:projeto_integrador_app/app/domain/models/book_api_model.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/list/book_list.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/list/borrowed_list.dart';
@@ -9,7 +12,7 @@ import 'package:projeto_integrador_app/app/view/pages/desire/list/desire_list.da
 import 'package:projeto_integrador_app/app/view/pages/shelf/list/shelf_list.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
-
+import 'package:http/http.dart' as http;
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -178,9 +181,60 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             'Cancelar',
                             true,
                             ScanMode.BARCODE,
-                          ).then((value) {
+                          ).then((value) async {
+                         
                             if (value != '-1') {
-                              CommonService.messageSuccess(context, value);
+
+                              final uri = Uri(
+                                scheme: 'https',
+                                host: 'www.googleapis.com',
+                                path: 'books/v1/volumes',
+                                queryParameters: {
+                                  'q': 'isbn:$value',
+                                  'key': 'AIzaSyBf2vrFs43KCXYdALCcDGm_EeC-3BpS-5w',
+                                },
+                              );
+
+                              final http.Response response = await http.get(uri);
+
+                              if (response.statusCode != 200) {
+                                throw response;
+                              }
+
+                              var jsonResult = BookApi.parseFromJsonStr(response.body);
+
+                              if (jsonResult.isEmpty) {
+                                CommonService.messageError(
+                                  context, 
+                                  'ISBN $value não encontrado'
+                                );
+                                return;
+                              }
+
+                              var bookApi = jsonResult[0];
+
+                              Book newBook = Book(
+                                title: bookApi.title,
+                                author: bookApi.authors,
+                                description: bookApi.description,
+                                pages: bookApi.pageCount,
+                                publicationDate: bookApi.publishedDate,
+                                isbn: value
+                              );
+
+                              if (bookApi.thumbnailUrl == null) {
+                                Navigator.of(context).pushNamed(Routes.BOOK_FORM,arguments: newBook);
+                              } else {
+                                ImageParse.networkImageToBase64(bookApi.thumbnailUrl!).then((value) {
+                                  newBook.image = value;
+                                  Navigator.of(context).pushNamed(Routes.BOOK_FORM, arguments: newBook);
+                                }).catchError(
+                                  (error) {
+                                    Navigator.of(context).pushNamed(Routes.BOOK_FORM, arguments: newBook);
+                                  }
+                                );
+                              }
+                              // CommonService.messageSuccess(context, value);
                             }
                           });
                         } on PlatformException {

@@ -48,9 +48,13 @@ class BookApi {
 
   static List<BookApi> parseFromJsonStr(String jsonStr) {
     final json = jsonDecode(jsonStr);
+
+    if (json['items'] == null ) return [];
+
     final jsonList = json['items'] as List<dynamic>;
+
     return [
-      for (final jsonMap in jsonList)
+      for (final jsonMap in jsonList) 
         BookApi.fromJson(jsonMap as Map<String, dynamic>)
     ];
   }
