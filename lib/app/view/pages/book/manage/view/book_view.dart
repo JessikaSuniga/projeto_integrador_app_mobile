@@ -130,7 +130,7 @@ class _BookViewState extends State<BookView>
                 TabBar(
                   controller: _controller,
                   tabs: const <Widget>[
-                    Tab(text: "Informações"),
+                    Tab(text: "Detalhes"),
                     Tab(text: "Notas"),
                   ],
                 ),

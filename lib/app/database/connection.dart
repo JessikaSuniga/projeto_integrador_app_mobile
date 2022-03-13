@@ -53,27 +53,27 @@ class Connection {
     await db.insert('genre', {'name': 'Thriller'});
     await db.insert('genre', {'name': 'Suspense Policial'});
 
-    await db.execute(insertBook);
-    await db.execute(insertBook1);
+    // await db.execute(insertBook);
+    // await db.execute(insertBook1);
 
-    await db.execute(insertBookIt);
-    await db.execute(insertBookMS);
-    await db.execute(insertBookGiz);
+    // await db.execute(insertBookIt);
+    // await db.execute(insertBookMS);
+    // await db.execute(insertBookGiz);
 
-    await db.execute(insertBookToGenre1);
-    await db.execute(insertBookToGenre2);
-    await db.execute(insertBookToGenre3);
+    // await db.execute(insertBookToGenre1);
+    // await db.execute(insertBookToGenre2);
+    // await db.execute(insertBookToGenre3);
 
-    await db.execute(insertShelf);
-    await db.execute(insertShelfToBook);
-    await db.execute(insertBorrowed);
+    // await db.execute(insertShelf);
+    // await db.execute(insertShelfToBook);
+    // await db.execute(insertBorrowed);
   }
 
   String get _book => '''
     CREATE TABLE book(
       book_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       title VARCHAR(100) NOT NULL,
-      author VARCHAR(30) NOT NULL,
+      author VARCHAR(100) NOT NULL,
       publishing_company VARCHAR(50),
       isbn VARCHAR(20) UNIQUE,
       format VARCHAR DEFAULT 'paperback' NOT NULL,

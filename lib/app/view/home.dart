@@ -13,6 +13,7 @@ import 'package:projeto_integrador_app/app/view/pages/shelf/list/shelf_list.dart
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 import 'package:http/http.dart' as http;
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -165,15 +166,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           showDialog(
             context: context,
             builder: (ctx) => AlertDialog(
-              title: const Text('Adicionar livro'),
+              title:
+                  const Text('Adicionar livro', style: TextStyle(fontSize: 22)),
               content: SizedBox(
-                width: 100,
-                height: 200,
+                width: 120,
+                height: 150,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextButton(
-                      child: const Text('Busca por Código de barras'),
+                      child: const Text(
+                        'Escanear ISBN',
+                        style: TextStyle(fontSize: 16),
+                      ),
                       onPressed: () async {
                         try {
                           await FlutterBarcodeScanner.scanBarcode(
@@ -182,32 +187,31 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             true,
                             ScanMode.BARCODE,
                           ).then((value) async {
-                         
                             if (value != '-1') {
-
                               final uri = Uri(
                                 scheme: 'https',
                                 host: 'www.googleapis.com',
                                 path: 'books/v1/volumes',
                                 queryParameters: {
                                   'q': 'isbn:$value',
-                                  'key': 'AIzaSyBf2vrFs43KCXYdALCcDGm_EeC-3BpS-5w',
+                                  'key':
+                                      'AIzaSyBf2vrFs43KCXYdALCcDGm_EeC-3BpS-5w',
                                 },
                               );
 
-                              final http.Response response = await http.get(uri);
+                              final http.Response response =
+                                  await http.get(uri);
 
                               if (response.statusCode != 200) {
                                 throw response;
                               }
 
-                              var jsonResult = BookApi.parseFromJsonStr(response.body);
+                              var jsonResult =
+                                  BookApi.parseFromJsonStr(response.body);
 
                               if (jsonResult.isEmpty) {
                                 CommonService.messageError(
-                                  context, 
-                                  'ISBN $value não encontrado'
-                                );
+                                    context, 'ISBN $value não encontrado');
                                 return;
                               }
 
@@ -219,20 +223,26 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 description: bookApi.description,
                                 pages: bookApi.pageCount,
                                 publicationDate: bookApi.publishedDate,
-                                isbn: value
+                                isbn: value,
                               );
 
                               if (bookApi.thumbnailUrl == null) {
-                                Navigator.of(context).pushNamed(Routes.BOOK_FORM,arguments: newBook);
+                                Navigator.of(context).pushNamed(
+                                    Routes.BOOK_FORM,
+                                    arguments: newBook);
                               } else {
-                                ImageParse.networkImageToBase64(bookApi.thumbnailUrl!).then((value) {
+                                ImageParse.networkImageToBase64(
+                                        bookApi.thumbnailUrl!)
+                                    .then((value) {
                                   newBook.image = value;
-                                  Navigator.of(context).pushNamed(Routes.BOOK_FORM, arguments: newBook);
-                                }).catchError(
-                                  (error) {
-                                    Navigator.of(context).pushNamed(Routes.BOOK_FORM, arguments: newBook);
-                                  }
-                                );
+                                  Navigator.of(context).pushNamed(
+                                      Routes.BOOK_FORM,
+                                      arguments: newBook);
+                                }).catchError((error) {
+                                  Navigator.of(context).pushNamed(
+                                      Routes.BOOK_FORM,
+                                      arguments: newBook);
+                                });
                               }
                               // CommonService.messageSuccess(context, value);
                             }
@@ -249,7 +259,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       },
                     ),
                     TextButton(
-                      child: const Text('Buscar por palavra chave ou ISBN'),
+                      child: const Text(
+                        'Buscar por título ou ISBN',
+                        style: TextStyle(fontSize: 16),
+                      ),
                       onPressed: () {
                         Navigator.of(context)
                             .pushNamed(Routes.BOOK_FIND_API)
@@ -257,7 +270,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       },
                     ),
                     TextButton(
-                      child: const Text('Adicionar novo livro manualmente'),
+                      child: const Text(
+                        'Adicionar manualmente',
+                        style: TextStyle(fontSize: 16),
+                      ),
                       onPressed: () {
                         Navigator.of(context)
                             .pushNamed(Routes.BOOK_FORM)

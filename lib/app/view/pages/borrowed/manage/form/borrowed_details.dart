@@ -160,7 +160,7 @@ class _BorrowedDetaisState extends State<BorrowedDetais> {
                 const Text("Livro:", style: Constants.sdFormText),
                 DropdownButtonHideUnderline(
                   child: DropdownButton(
-                    hint: const Text("Selecione uma das opções"),
+                    hint: const Text("Selecione um livro"),
                     value: widget.back!.borrowed!.bookId,
                     items: resultData
                         .map(
