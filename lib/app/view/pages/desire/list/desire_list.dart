@@ -64,18 +64,20 @@ class DesireList extends StatelessWidget {
                         ),
                       ],
                     ),
-                    infoRigth: Row(
-                      children: [
-                        const Icon(
-                          Icons.calendar_today_outlined,
-                        ),
-                        Text(
-                          CommonService.formattedDate(
-                            resultData[i].publicationDate,
-                          ),
-                        ),
-                      ],
-                    ),
+                    infoRigth: resultData[i].publicationDate != null
+                        ? Row(
+                            children: [
+                              const Icon(
+                                Icons.calendar_today_outlined,
+                              ),
+                              Text(
+                                CommonService.formattedDate(
+                                  resultData[i].publicationDate,
+                                ),
+                              ),
+                            ],
+                          )
+                        : const Padding(padding: EdgeInsets.all(0)),
                   ),
                 ),
               );

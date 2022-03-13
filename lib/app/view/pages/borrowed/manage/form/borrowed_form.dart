@@ -27,6 +27,11 @@ class BorrowedForm extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: ElevatedButton(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(
+            const EdgeInsets.all(16),
+          ),
+        ),
         onPressed: () {
           if (_back.borrowed!.bookId == null) {
             CommonService.messageError(
@@ -43,7 +48,10 @@ class BorrowedForm extends StatelessWidget {
             _back.save(context);
           }
         },
-        child: const Text('Salvar'),
+        child: const Text(
+          'Salvar',
+          style: TextStyle(fontSize: 16),
+        ),
       ),
     );
   }

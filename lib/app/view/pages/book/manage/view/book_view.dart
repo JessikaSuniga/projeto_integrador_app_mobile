@@ -42,8 +42,6 @@ class _BookViewState extends State<BookView>
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Visualizar livro"),
-        // backgroundColor: Constants.headerColorLigth,
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),

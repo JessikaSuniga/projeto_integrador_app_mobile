@@ -16,7 +16,6 @@ class BorrowedView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Visualizar empréstimo"),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
@@ -38,8 +37,10 @@ class BorrowedView extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.symmetric(vertical: 20),
                         decoration: BoxDecoration(
-                          border:
-                              Border.all(color: Colors.grey.shade400, width: 2),
+                          border: Border.all(
+                            color: Colors.grey.shade400,
+                            width: 2,
+                          ),
                         ),
                         child: _back.borrowed!.book!.image != null
                             ? ImageParse.imageFromBase64String(
@@ -80,7 +81,7 @@ class BorrowedView extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                Text(_back.borrowed!.book!.isbn!),
+                                Text(_back.borrowed!.book!.isbn ?? "_"),
                               ],
                             ),
                           ),
@@ -142,9 +143,11 @@ class BorrowedView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(10),
                           child: Text(
-                            CommonService.formattedDate(
-                              _back.borrowed!.returnedDate,
-                            ),
+                            _back.borrowed!.returnedDate != null
+                                ? CommonService.formattedDate(
+                                    _back.borrowed!.returnedDate,
+                                  )
+                                : "_",
                           ),
                         ),
                       ],

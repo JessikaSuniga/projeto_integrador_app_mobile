@@ -63,6 +63,11 @@ class _BookFormState extends State<BookForm>
         ),
       ),
       bottomNavigationBar: ElevatedButton(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(
+            const EdgeInsets.all(16),
+          ),
+        ),
         onPressed: () {
           var res = formKey.currentState!.validate();
           formKey.currentState!.save();
@@ -70,7 +75,10 @@ class _BookFormState extends State<BookForm>
             back.save(context);
           }
         },
-        child: const Text('Salvar'),
+        child: const Text(
+          'Salvar',
+          style: TextStyle(fontSize: 16),
+        ),
       ),
     );
   }

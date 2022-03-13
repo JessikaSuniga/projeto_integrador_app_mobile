@@ -23,14 +23,21 @@ class ButtonDeleteIcon extends StatelessWidget {
             title: const Text('Excluir livro'),
             content: const Text('Deseja realmente excluir?'),
             actions: [
-              TextButton(
-                child: const Text('Não'),
-                onPressed: () => Navigator.of(_context).pop(),
-              ),
-              TextButton(
-                child: const Text('Sim'),
-                onPressed: _onRemove as void Function()?,
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    child: const Text('Não'),
+                    onPressed: () => Navigator.of(_context).pop(),
+                  ),
+                  const Padding(padding: EdgeInsets.all(6)),
+                  ElevatedButton(
+                    child: const Text('Sim'),
+                    onPressed: _onRemove as void Function()?,
+                  ),
+                  const Padding(padding: EdgeInsets.all(6))
+                ],
+              )
             ],
           ),
         );

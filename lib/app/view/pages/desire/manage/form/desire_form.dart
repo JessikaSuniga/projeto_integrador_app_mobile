@@ -37,6 +37,11 @@ class DesireForm extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: ElevatedButton(
+        style: ButtonStyle(
+          padding: MaterialStateProperty.all(
+            const EdgeInsets.all(16),
+          ),
+        ),
         onPressed: () {
           var res = _formKey.currentState!.validate();
           _formKey.currentState!.save();
@@ -44,7 +49,10 @@ class DesireForm extends StatelessWidget {
             _back.save(context);
           }
         },
-        child: const Text('Salvar'),
+        child: const Text(
+          'Salvar',
+          style: TextStyle(fontSize: 16),
+        ),
       ),
     );
   }

@@ -26,7 +26,7 @@ class Themes {
     appBarTheme: const AppBarTheme(
       iconTheme: IconThemeData(color: Constants.myOrange),
       backgroundColor: Constants.myBrown,
-      titleTextStyle: TextStyle(color: Constants.myOrange, fontSize: 18),
+      titleTextStyle: TextStyle(color: Constants.myOrange, fontSize: 24),
     ),
     sliderTheme: const SliderThemeData(
       activeTrackColor: Colors.amber,
@@ -46,6 +46,7 @@ class Themes {
     ),
     inputDecorationTheme: const InputDecorationTheme(
       labelStyle: TextStyle(fontSize: 16, color: Constants.myBlack),
+      floatingLabelStyle: TextStyle(fontSize: 18, color: Constants.myBlack),
       hintStyle: TextStyle(color: Constants.myGrey),
       focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(color: Constants.myBlack),
@@ -56,6 +57,7 @@ class Themes {
       backgroundColor: Color.fromRGBO(249, 241, 230, 1),
     ),
     primaryColor: Constants.myOrange,
+    primaryColorLight: Constants.myOrange,
     iconTheme: const IconThemeData(color: Constants.myOrange),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Constants.myOrange,
@@ -67,5 +69,8 @@ class Themes {
         backgroundColor: MaterialStateProperty.all(Constants.myOrange),
       ),
     ),
+
+    // timePickerTheme:
+    //     const TimePickerThemeData(dialHandColor: Constants.myOrange)
   );
 }

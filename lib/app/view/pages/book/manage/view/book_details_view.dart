@@ -25,12 +25,6 @@ class _BookDetaisViewState extends State<BookDetaisView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                _descriptionInfo,
-              ],
-            ),
-            Row(
               children: [
                 Expanded(
                   child: Column(
@@ -60,6 +54,12 @@ class _BookDetaisViewState extends State<BookDetaisView> {
                 ),
               ],
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                _descriptionInfo,
+              ],
+            ),
           ],
         ),
       ),
@@ -78,7 +78,9 @@ class _BookDetaisViewState extends State<BookDetaisView> {
               "Descrição:",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            Text(widget.back!.book!.description!),
+            Text(widget.back!.book!.description!.isNotEmpty
+                ? widget.back!.book!.description!
+                : "_"),
           ],
         ),
       ),
@@ -136,7 +138,9 @@ class _BookDetaisViewState extends State<BookDetaisView> {
             "Editora",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(widget.back!.book!.publishingCompany!),
+          Text(widget.back!.book!.publishingCompany!.isNotEmpty
+              ? widget.back!.book!.publishingCompany!
+              : "_"),
         ],
       ),
     );
@@ -153,7 +157,9 @@ class _BookDetaisViewState extends State<BookDetaisView> {
             "Série",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(widget.back!.book!.serie!),
+          Text(widget.back!.book!.serie!.isNotEmpty
+              ? widget.back!.book!.serie!
+              : "_"),
         ],
       ),
     );
@@ -238,7 +244,9 @@ class _BookDetaisViewState extends State<BookDetaisView> {
             "Publicação",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          Text(CommonService.formattedDate(widget.back!.book!.publicationDate)),
+          Text(widget.back!.book!.publicationDate != null
+              ? CommonService.formattedDate(widget.back!.book!.publicationDate)
+              : "_"),
         ],
       ),
     );

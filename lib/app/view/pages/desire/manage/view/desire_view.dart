@@ -19,7 +19,6 @@ class DesireView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Visualizar desejo"),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
@@ -153,7 +152,9 @@ class DesireView extends StatelessWidget {
                                     fontSize: 16,
                                   ),
                                 ),
-                                Text(_back.book!.publishingCompany!),
+                                Text(_back.book!.publishingCompany!.isNotEmpty
+                                    ? _back.book!.publishingCompany!
+                                    : "_"),
                               ],
                             ),
                           ),
@@ -230,9 +231,11 @@ class DesireView extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  CommonService.formattedDate(
-                                    _back.book!.publicationDate,
-                                  ),
+                                  _back.book!.publicationDate != null
+                                      ? CommonService.formattedDate(
+                                          _back.book!.publicationDate,
+                                        )
+                                      : "_",
                                 ),
                               ],
                             ),

@@ -78,7 +78,8 @@ class _BookNotesFromState extends State<BookNotesFrom> {
                 () {
                   if (newSliderValue.toInt() == 0) {
                     widget.back.book!.status = BookStatusType.notRead;
-                  } else if (newSliderValue.toInt() == widget.back.book!.pages) {
+                  } else if (newSliderValue.toInt() ==
+                      widget.back.book!.pages) {
                     widget.back.book!.status = BookStatusType.read;
                   } else {
                     widget.back.book!.status = BookStatusType.reading;
@@ -130,6 +131,10 @@ class _BookNotesFromState extends State<BookNotesFrom> {
                       }
                       if (value == BookStatusType.read) {
                         widget.back.book!.pagesRead = widget.back.book!.pages;
+                      }
+                      if (value == BookStatusType.reading &&
+                          widget.back.book!.pagesRead == 0) {
+                        widget.back.book!.pagesRead = 1;
                       }
                       widget.back.book!.status = value;
                     },

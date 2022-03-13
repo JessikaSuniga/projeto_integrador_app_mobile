@@ -16,13 +16,6 @@ class BookNotesView extends StatefulWidget {
 }
 
 class _BookNotesViewState extends State<BookNotesView> {
-  // String _validationIsNullOrEmpty(value) {
-  //   if (value == null || value.trim().isEmpty) {
-  //     return 'Informe um valor válido';
-  //   }
-  //   return null;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scroll(

@@ -70,27 +70,26 @@ abstract class _ShelfListBack with Store {
           ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                  child: const Text('Cancelar'),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-                ElevatedButton(
-                  child: const Text('Salvar'),
-                  onPressed: () {
-                    var res = _formKey.currentState!.validate();
-                    _formKey.currentState!.save();
-                    if (res) {
-                      save(context, shelf);
-                    }
-                  },
-                ),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ElevatedButton(
+                child: const Text('Cancelar'),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              const Padding(padding: EdgeInsets.all(6)),
+              ElevatedButton(
+                child: const Text('Salvar'),
+                onPressed: () {
+                  var res = _formKey.currentState!.validate();
+                  _formKey.currentState!.save();
+                  if (res) {
+                    save(context, shelf);
+                  }
+                },
+              ),
+              const Padding(padding: EdgeInsets.all(6)),
+            ],
           ),
         ],
       ),

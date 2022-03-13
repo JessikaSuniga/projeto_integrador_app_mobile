@@ -8,7 +8,6 @@ import 'package:projeto_integrador_app/app/view/components/button_delete_icon.da
 import 'package:projeto_integrador_app/app/view/components/button_edit_icon.dart';
 import 'package:projeto_integrador_app/app/view/components/my_divider.dart';
 import 'package:projeto_integrador_app/app/view/pages/shelf/list/shelf_list_back.dart';
-import 'dart:math' as math;
 
 class ShelfList extends StatelessWidget {
   ShelfList({Key? key}) : super(key: key);
@@ -28,10 +27,13 @@ class ShelfList extends StatelessWidget {
       return CircleAvatar(
           backgroundImage: ImageParse.imageFromBase64String(uri).image);
     }
+    // Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0);
     return CircleAvatar(
-      backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
-          .withOpacity(1.0),
-      child: Text(shelf.name!.substring(0, 1).toUpperCase()),
+      backgroundColor: Constants.myBrown,
+      child: Text(
+        shelf.name!.substring(0, 1).toUpperCase(),
+        style: const TextStyle(color: Constants.myBlack),
+      ),
     );
   }
 
@@ -86,7 +88,11 @@ class ShelfList extends StatelessWidget {
                           children: [
                             ListTile(
                               contentPadding: const EdgeInsets.only(
-                                  bottom: 0, left: 15, right: 15, top: 10),
+                                bottom: 0,
+                                left: 15,
+                                right: 15,
+                                top: 10,
+                              ),
                               leading: _imageBook(resultData[i]),
                               title: Row(
                                 children: [
@@ -112,11 +118,11 @@ class ShelfList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(16),
                     child: FloatingActionButton(
                       onPressed: () => _back.dispacheDialogSave(context),
                       child: const Icon(Icons.add),
-                      mini: true,
+                      mini: false,
                     ),
                   ),
                 ],

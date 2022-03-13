@@ -49,7 +49,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Folha Amarela'),
+        title: const Text(
+          'Folha Amarela',
+        ),
         bottom: TabBar(
           isScrollable: true,
           onTap: _onTabTop,
@@ -81,10 +83,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   icon: Icon(
                     Icons.book_outlined,
                     color: Constants.myDarkGrey,
+                    size: 30,
                   ),
                   activeIcon: Icon(
                     Icons.book,
                     color: Constants.myOrange,
+                    size: 30,
                   ),
                   tooltip: 'Livro',
                   label: '',
@@ -93,6 +97,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   icon: Icon(
                     Icons.add_circle_outline,
                     color: Constants.myDarkGrey,
+                    size: 30,
                   ),
                   label: '',
                 ),
@@ -100,10 +105,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   icon: Icon(
                     Icons.favorite_outline,
                     color: Constants.myDarkGrey,
+                    size: 30,
                   ),
                   activeIcon: Icon(
                     Icons.favorite,
                     color: Constants.myOrange,
+                    size: 30,
                   ),
                   tooltip: 'Desejo',
                   label: '',

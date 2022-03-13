@@ -20,7 +20,6 @@ class _FilterState extends State<Filter> {
     return Container(
       padding: const EdgeInsets.only(left: 16, top: 10),
       child: Row(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           OutlinedButton(
             onPressed: () {
@@ -88,32 +87,30 @@ class _FilterState extends State<Filter> {
                       },
                     ),
                     actions: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ElevatedButton(
-                              child: const Text('Cancelar'),
-                              onPressed: () => Navigator.of(context).pop(),
-                            ),
-                            ElevatedButton(
-                                child: const Text('Aplicar'),
-                                onPressed: () {
-                                  setState(() {
-                                    widget._back.filterModel.searchTitle =
-                                        title;
-                                    widget._back.filterModel.searchAuthor =
-                                        author;
-                                    widget._back.filterModel
-                                            .searchPublishingCompany =
-                                        publishingCompany;
-                                    widget._back.refleshList();
-                                  });
-                                  Navigator.of(context).pop();
-                                }),
-                          ],
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ElevatedButton(
+                            child: const Text('Cancelar'),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                          const Padding(padding: EdgeInsets.all(6)),
+                          ElevatedButton(
+                            child: const Text('Aplicar'),
+                            onPressed: () {
+                              setState(() {
+                                widget._back.filterModel.searchTitle = title;
+                                widget._back.filterModel.searchAuthor = author;
+                                widget._back.filterModel
+                                        .searchPublishingCompany =
+                                    publishingCompany;
+                                widget._back.refleshList();
+                              });
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          const Padding(padding: EdgeInsets.all(6)),
+                        ],
                       ),
                     ],
                   );
@@ -165,28 +162,26 @@ class _FilterState extends State<Filter> {
                       },
                     ),
                     actions: [
-                      Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ElevatedButton(
-                              child: const Text('Cancelar'),
-                              onPressed: () => Navigator.of(context).pop(),
-                            ),
-                            ElevatedButton(
-                              child: const Text('Aplicar'),
-                              onPressed: () {
-                                setState(() {
-                                  widget._back.filterModel.status =
-                                      statusFilter;
-                                  widget._back.refleshList();
-                                });
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ElevatedButton(
+                            child: const Text('Cancelar'),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                          const Padding(padding: EdgeInsets.all(6)),
+                          ElevatedButton(
+                            child: const Text('Aplicar'),
+                            onPressed: () {
+                              setState(() {
+                                widget._back.filterModel.status = statusFilter;
+                                widget._back.refleshList();
+                              });
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          const Padding(padding: EdgeInsets.all(6)),
+                        ],
                       ),
                     ],
                   );
@@ -268,29 +263,28 @@ class _FilterState extends State<Filter> {
                       },
                     ),
                     actions: [
-                      Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ElevatedButton(
-                              child: const Text('Cancelar'),
-                              onPressed: () => Navigator.of(context).pop(),
-                            ),
-                            ElevatedButton(
-                              child: const Text('Aplicar'),
-                              onPressed: () {
-                                setState(() {
-                                  widget._back.filterModel.sortAvanced =
-                                      sortFilterAvanced;
-                                  widget._back.filterModel.sort = sortFilter;
-                                  widget._back.refleshList();
-                                });
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ElevatedButton(
+                            child: const Text('Cancelar'),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                          const Padding(padding: EdgeInsets.all(6)),
+                          ElevatedButton(
+                            child: const Text('Aplicar'),
+                            onPressed: () {
+                              setState(() {
+                                widget._back.filterModel.sortAvanced =
+                                    sortFilterAvanced;
+                                widget._back.filterModel.sort = sortFilter;
+                                widget._back.refleshList();
+                              });
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          const Padding(padding: EdgeInsets.all(6)),
+                        ],
                       ),
                     ],
                   );

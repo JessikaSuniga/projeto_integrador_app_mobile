@@ -58,16 +58,18 @@ class ShelfToBookList extends StatelessWidget {
                               Text(resultData[i].book!.pages.toString()),
                             ],
                           ),
-                          infoRigth: Row(
-                            children: [
-                              const Icon(Icons.calendar_today_outlined),
-                              Text(
-                                CommonService.formattedDate(
-                                  resultData[i].book!.publicationDate,
-                                ),
-                              ),
-                            ],
-                          ),
+                          infoRigth: resultData[i].book!.publicationDate != null
+                              ? Row(
+                                  children: [
+                                    const Icon(Icons.calendar_today_outlined),
+                                    Text(
+                                      CommonService.formattedDate(
+                                        resultData[i].book!.publicationDate,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : const Padding(padding: EdgeInsets.all(0)),
                         ),
                       ),
                     );
@@ -120,8 +122,7 @@ class ShelfToBookList extends StatelessWidget {
           );
         },
         child: const Icon(Icons.add),
-        // backgroundColor: Constants.myOrange,
-        mini: true,
+        mini: false,
       ),
     );
   }
