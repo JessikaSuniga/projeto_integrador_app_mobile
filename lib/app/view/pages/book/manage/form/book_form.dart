@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/form/book_notes_form.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/form/book_details_form.dart';
+import 'package:projeto_integrador_app/app/view/services/common_service.dart';
 
 class BookForm extends StatefulWidget {
   const BookForm({Key? key}) : super(key: key);
@@ -67,9 +68,21 @@ class _BookFormState extends State<BookForm>
           ),
         ),
         onPressed: () {
-          var res = formKey.currentState!.validate();
+          var validate = formKey.currentState!.validate();
           formKey.currentState!.save();
-          if (res) {
+          
+          if((back.authorValidated.isEmpty || back.titleValidated.isEmpty)) {
+
+            if (validate == true) {
+              CommonService.messageError(context, 'Possui campos obrigatórios não preenchidos');
+            }
+
+            setState(() => _controller!.index = 0);
+
+            return;
+          }
+          
+          if (validate) {
             back.save(context);
           }
         },

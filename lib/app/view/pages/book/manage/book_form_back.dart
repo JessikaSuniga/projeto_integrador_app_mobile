@@ -15,6 +15,9 @@ class BookFormBack {
   final _service = BookService();
   final _serviceGenre = GenreService();
   final _serviceBookToGenre = BookToGenreService();
+  String titleValidated = "";
+  String authorValidated = "";
+
 
   BookFormBack(BuildContext context) {
     var parameter = ModalRoute.of(context)!.settings.arguments;

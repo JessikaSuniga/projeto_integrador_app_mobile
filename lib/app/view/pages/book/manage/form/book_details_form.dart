@@ -75,6 +75,11 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
         return null;
       },
       onSaved: (value) => widget.back.book!.title = value,
+      onChanged: (value) {
+        setState(() {
+          widget.back.titleValidated = value;
+        });
+      },
       decoration: const InputDecoration(
         labelText: 'Título',
         hintText: 'Titulo do livro',
@@ -100,6 +105,11 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
         return null;
       },
       onSaved: (value) => widget.back.book!.author = value,
+      onChanged: (value) {
+        setState(() {
+          widget.back.authorValidated = value;
+        });
+      },
       decoration: const InputDecoration(
         labelText: 'Autor(a)',
         hintText: 'Nome do autor(a)',

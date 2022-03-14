@@ -42,9 +42,9 @@ class BorrowedForm extends StatelessWidget {
             CommonService.messageError(context, "Informe uma data de início.");
             return;
           }
-          var res = _formKey.currentState!.validate();
+          var validate = _formKey.currentState!.validate();
           _formKey.currentState!.save();
-          if (res) {
+          if (validate) {
             _back.save(context);
           }
         },

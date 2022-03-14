@@ -97,9 +97,9 @@ abstract class _ShelfListBack with Store {
               ElevatedButton(
                 child: const Text('Salvar'),
                 onPressed: () {
-                  var res = _formKey.currentState!.validate();
+                  var validate = _formKey.currentState!.validate();
                   _formKey.currentState!.save();
-                  if (res) {
+                  if (validate) {
                     save(context, shelf);
                   }
                 },

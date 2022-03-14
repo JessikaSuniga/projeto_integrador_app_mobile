@@ -69,8 +69,6 @@ class Themes {
         backgroundColor: MaterialStateProperty.all(Constants.myOrange),
       ),
     ),
-
-    // timePickerTheme:
-    //     const TimePickerThemeData(dialHandColor: Constants.myOrange)
+    colorScheme: const ColorScheme.light(primary: Constants.myOrange),
   );
 }
