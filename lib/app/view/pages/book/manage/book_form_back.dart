@@ -22,6 +22,8 @@ class BookFormBack {
   BookFormBack(BuildContext context) {
     var parameter = ModalRoute.of(context)!.settings.arguments;
     book = (parameter == null) ? Book() : parameter as Book?;
+    titleValidated = book!.title == null || book!.title == "" ? "" : book!.title!;
+    authorValidated = book!.author == null || book!.author == "" ? "" : book!.author!;
   }
 
   Future<List<Genre>> findAllGenre() {
