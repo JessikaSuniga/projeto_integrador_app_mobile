@@ -60,7 +60,7 @@ abstract class _ShelfListBack with Store {
                 initialValue: shelf.name,
                 validator: (value) {
 
-                  if (resultData.where((element) => element.name == value).isNotEmpty) {
+                  if (resultData.where((e) => e.name == value && e.id != shelf.id).isNotEmpty) {
                     return 'Esta estante já existe.';
                   }
                   

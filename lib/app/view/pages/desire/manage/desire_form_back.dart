@@ -25,7 +25,7 @@ class DesireFormBack {
   }
 
   Future<List<String>> findAllISBN() {
-    return _service.findAllISBN();
+    return _service.findAllISBN(book!.id);
   }
 
   Future<List<BookToGenre>> findAllByBookId(int? bookId) {

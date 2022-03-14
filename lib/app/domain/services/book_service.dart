@@ -70,8 +70,8 @@ class BookService {
     return books;
   }
 
-  Future<List<String>> findAllISBN() async {
-    return await _bookRepository.findAllISBN();
+  Future<List<String>> findAllISBN(int? id) async {
+    return await _bookRepository.findAllISBN(id);
   }
 
   Future<Book> findById(int id) async {

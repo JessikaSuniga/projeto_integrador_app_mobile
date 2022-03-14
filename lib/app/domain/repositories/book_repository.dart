@@ -23,10 +23,14 @@ class BookRepository {
     return allRows.map((book) => Book.fromMap(book)).toList();
   }
 
-  Future<List<String>> findAllISBN() async {
+  Future<List<String>> findAllISBN(int? id) async {
     Database _db = await _getDatabase();
 
     String query = 'SELECT * FROM $_table WHERE isbn is not null';
+
+    if (id != null) {
+      query += ' AND book_id != $id';
+    }
 
     List<Map<String, dynamic>> allRows = await _db.rawQuery(query);
     return allRows.map((book) => Book.fromMap(book))
