@@ -32,9 +32,7 @@ class DesireForm extends StatelessWidget {
       ),
       body: Form(
         key: _formKey,
-        child: DesireDetais(
-          back: _back,
-        ),
+        child: DesireDetais(_back),
       ),
       bottomNavigationBar: ElevatedButton(
         style: ButtonStyle(
