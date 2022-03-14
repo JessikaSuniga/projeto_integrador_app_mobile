@@ -1,6 +1,5 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:projeto_integrador_app/app/database/seed.dart';
 
 class Connection {
   Connection._();

@@ -4,7 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_status_type.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 
 class BookNotesFrom extends StatefulWidget {

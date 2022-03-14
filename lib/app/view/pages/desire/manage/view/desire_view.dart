@@ -6,7 +6,7 @@ import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
 import 'package:projeto_integrador_app/app/domain/entities/book_to_genre.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
 import 'package:projeto_integrador_app/app/view/pages/desire/manage/desire_form_back.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 
 class DesireView extends StatelessWidget {
   const DesireView({Key? key}) : super(key: key);

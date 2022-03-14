@@ -10,7 +10,7 @@ import 'package:projeto_integrador_app/app/common/utility/regex_types.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_format_type.dart';
 import 'package:projeto_integrador_app/app/common/enums/book_language_type.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/book_form_back.dart';
 
 class BookDetaisForm extends StatefulWidget {

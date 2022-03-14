@@ -4,7 +4,7 @@ import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/domain/entities/shelf.dart';
 import 'package:projeto_integrador_app/app/domain/services/shelf_service.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 part 'shelf_list_back.g.dart';
 
 class ShelfListBack = _ShelfListBack with _$ShelfListBack;

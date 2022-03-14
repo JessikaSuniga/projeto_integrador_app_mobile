@@ -11,7 +11,7 @@ import 'package:projeto_integrador_app/app/view/pages/borrowed/list/borrowed_lis
 import 'package:projeto_integrador_app/app/view/pages/desire/list/desire_list.dart';
 import 'package:projeto_integrador_app/app/view/pages/shelf/list/shelf_list.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {

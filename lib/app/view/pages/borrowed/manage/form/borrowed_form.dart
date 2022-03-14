@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/borrowed_form_back.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/form/borrowed_details.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 
 class BorrowedForm extends StatelessWidget {
   const BorrowedForm({Key? key}) : super(key: key);

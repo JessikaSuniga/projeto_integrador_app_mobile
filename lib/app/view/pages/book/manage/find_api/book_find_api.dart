@@ -4,7 +4,7 @@ import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/view/components/my_divider.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/find_api/book_api_details_page.dart';
 import 'package:projeto_integrador_app/app/domain/models/book_api_model.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 
 class BookFindAPI extends StatefulWidget {
   const BookFindAPI({Key? key}) : super(key: key);

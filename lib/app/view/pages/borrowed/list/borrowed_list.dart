@@ -4,7 +4,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:projeto_integrador_app/app/domain/entities/borrowed.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/view/components/tile.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 import 'package:projeto_integrador_app/app/view/components/button_edit_icon.dart';
 import 'package:projeto_integrador_app/app/view/components/button_delete_icon.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/list/borrowed_list_back.dart';

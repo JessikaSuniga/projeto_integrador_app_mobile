@@ -3,7 +3,7 @@ import 'package:projeto_integrador_app/app/common/styles/constants.dart';
 import 'package:projeto_integrador_app/app/domain/entities/book.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/borrowed_form_back.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 
 class BorrowedDetais extends StatefulWidget {
   final BorrowedFormBack? back;

@@ -4,7 +4,7 @@ import 'package:projeto_integrador_app/app/domain/entities/book.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
 import 'package:projeto_integrador_app/app/domain/models/book_api_model.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 
 class BookApiDetailsPage extends StatelessWidget {
   final BookApi _book;
@@ -141,7 +141,9 @@ class BookApiDetailsPage extends StatelessWidget {
       newBook.image = value;
       goToBookForm(context, newBook);
     }).catchError(
-      (error) => goToBookForm(context, newBook),
+      (error) {
+        goToBookForm(context, newBook);
+      } 
     );
   }
 

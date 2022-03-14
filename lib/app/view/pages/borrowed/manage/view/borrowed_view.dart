@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_integrador_app/app/common/utility/assets.dart';
 import 'package:projeto_integrador_app/app/common/utility/image_parse.dart';
 import 'package:projeto_integrador_app/app/view/components/scroll.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 import 'package:projeto_integrador_app/app/view/pages/borrowed/manage/borrowed_form_back.dart';
 
 class BorrowedView extends StatelessWidget {

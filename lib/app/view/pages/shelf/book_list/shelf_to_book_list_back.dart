@@ -6,7 +6,7 @@ import 'package:projeto_integrador_app/app/domain/entities/shelf.dart';
 import 'package:projeto_integrador_app/app/domain/entities/shelf_to_book.dart';
 import 'package:projeto_integrador_app/app/domain/services/book_service.dart';
 import 'package:projeto_integrador_app/app/domain/services/shelf_to_book_service.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 part 'shelf_to_book_list_back.g.dart';
 
 class ShelfToBookListBack = _ShelfToBookListBack with _$ShelfToBookListBack;

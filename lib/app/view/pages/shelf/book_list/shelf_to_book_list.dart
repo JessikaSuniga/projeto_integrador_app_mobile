@@ -8,7 +8,7 @@ import 'package:projeto_integrador_app/app/domain/entities/shelf_to_book.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/components/tile.dart';
 import 'package:projeto_integrador_app/app/view/pages/shelf/book_list/shelf_to_book_list_back.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 
 class ShelfToBookList extends StatelessWidget {
   const ShelfToBookList({Key? key}) : super(key: key);

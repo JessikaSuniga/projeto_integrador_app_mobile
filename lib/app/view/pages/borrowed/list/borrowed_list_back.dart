@@ -3,7 +3,7 @@ import 'package:mobx/mobx.dart';
 import 'package:projeto_integrador_app/app/domain/entities/borrowed.dart';
 import 'package:projeto_integrador_app/app/domain/services/borrowed_service.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 part 'borrowed_list_back.g.dart';
 
 class BorrowedListBack = _BorrowedListBack with _$BorrowedListBack;

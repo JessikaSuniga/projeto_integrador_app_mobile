@@ -7,7 +7,7 @@ import 'package:projeto_integrador_app/app/domain/services/book_service.dart';
 import 'package:projeto_integrador_app/app/domain/services/book_to_genre_service.dart';
 import 'package:projeto_integrador_app/app/domain/services/genre_service.dart';
 import 'package:projeto_integrador_app/app/routes/routes.dart';
-import 'package:projeto_integrador_app/app/view/services/common_service.dart';
+import 'package:projeto_integrador_app/app/common/utility/common_service.dart';
 
 // flutter pub run build_runner build
 class BookFormBack {
