@@ -70,18 +70,18 @@ class _BookFormState extends State<BookForm>
         onPressed: () {
           var validate = formKey.currentState!.validate();
           formKey.currentState!.save();
-          
-          if((back.authorValidated.isEmpty || back.titleValidated.isEmpty)) {
 
+          if ((back.authorValidated.isEmpty || back.titleValidated.isEmpty)) {
             if (validate == true) {
-              CommonService.messageError(context, 'Possui campos obrigatórios não preenchidos');
+              CommonService.messageError(
+                  context, 'Possui campos obrigatórios não preenchidos');
             }
 
             setState(() => _controller!.index = 0);
 
             return;
           }
-          
+
           if (validate) {
             back.save(context);
           }

@@ -194,9 +194,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             true,
                             ScanMode.BARCODE,
                           ).then((value) async {
-                            value = '9788587053855';
                             if (value != '-1') {
-
                               final uri = Uri(
                                 scheme: 'https',
                                 host: 'www.googleapis.com',
@@ -223,13 +221,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               if (jsonResult.isEmpty) {
                                 CommonService.messageError(
                                     context, 'ISBN $value não encontrado');
-                                Navigator.of(context).pushNamed(
-                                    Routes.BOOK_FORM,
-                                    arguments: Book(isbn: value))
-                                  .then((value) => Navigator.of(context).pop());
-                              }
-                              else
-                              {
+                                Navigator.of(context)
+                                    .pushNamed(Routes.BOOK_FORM,
+                                        arguments: Book(isbn: value))
+                                    .then(
+                                        (value) => Navigator.of(context).pop());
+                              } else {
                                 var bookApi = jsonResult[0];
 
                                 Book newBook = Book(
@@ -242,29 +239,31 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 );
 
                                 if (bookApi.thumbnailUrl == null) {
-                                  Navigator.of(context).pushNamed(
-                                      Routes.BOOK_FORM,
-                                      arguments: newBook)
-                                    .then((value) => Navigator.of(context).pop());
+                                  Navigator.of(context)
+                                      .pushNamed(Routes.BOOK_FORM,
+                                          arguments: newBook)
+                                      .then((value) =>
+                                          Navigator.of(context).pop());
                                 } else {
                                   ImageParse.networkImageToBase64(
                                           bookApi.thumbnailUrl!)
                                       .then((value) {
                                     newBook.image = value;
-                                    Navigator.of(context).pushNamed(
-                                        Routes.BOOK_FORM,
-                                        arguments: newBook)
-                                      .then((value) => Navigator.of(context).pop());
+                                    Navigator.of(context)
+                                        .pushNamed(Routes.BOOK_FORM,
+                                            arguments: newBook)
+                                        .then((value) =>
+                                            Navigator.of(context).pop());
                                   }).catchError((error) {
-                                    Navigator.of(context).pushNamed(
-                                        Routes.BOOK_FORM,
-                                        arguments: newBook)
-                                      .then((value) => Navigator.of(context).pop());
+                                    Navigator.of(context)
+                                        .pushNamed(Routes.BOOK_FORM,
+                                            arguments: newBook)
+                                        .then((value) =>
+                                            Navigator.of(context).pop());
                                   });
                                 }
                               }
-                            }
-                            else {
+                            } else {
                               Navigator.of(context).pop();
                             }
                           });
