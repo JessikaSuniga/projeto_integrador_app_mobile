@@ -70,6 +70,12 @@ class BookService {
     return books;
   }
 
+  Future<List<String>> findAllISBN(BookItemType itemType) async {
+    List<Book> books = await _bookRepository.findAll(itemType, "AND isbn is not null");
+
+    return books.map((book) => book.isbn as String).toList();
+  }
+
   Future<Book> findById(int id) async {
     Book book = await _bookRepository.findById(id);
     await _bookToGenreRepository

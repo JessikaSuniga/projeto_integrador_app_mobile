@@ -55,9 +55,7 @@ class _BookFormState extends State<BookForm>
         child: TabBarView(
           controller: _controller,
           children: <Widget>[
-            BookDetaisForm(
-              back,
-            ),
+            BookDetaisForm(back),
             BookNotesFrom(back),
           ],
         ),

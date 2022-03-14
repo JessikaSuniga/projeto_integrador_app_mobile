@@ -27,25 +27,36 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Scroll(
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            _titleField,
-            _authorField,
-            _sourceBookSection(),
-            _genreField,
-            const Padding(padding: EdgeInsets.only(top: 20, bottom: 0)),
-            _publicationDateField,
-            _pagesField,
-            _languageSelect,
-            _serieField,
-            _volumeField,
-            _descriptionField,
-          ],
-        ),
-      ),
+    return FutureBuilder(
+      future: widget.back.findAllISBN(),
+      builder: (context, result) {
+        if (!result.hasData) {
+          return const CircularProgressIndicator();
+        }
+
+        List<String> isbns = result.data as List<String>;
+
+        return Scroll(
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                _titleField,
+                _authorField,
+                _sourceBookSection(isbns),
+                _genreField,
+                const Padding(padding: EdgeInsets.only(top: 20, bottom: 0)),
+                _publicationDateField,
+                _pagesField,
+                _languageSelect,
+                _serieField,
+                _volumeField,
+                _descriptionField,
+              ],
+            ),
+          ),
+        );
+      }
     );
   }
 
@@ -99,7 +110,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
     );
   }
 
-  Widget _sourceBookSection() {
+  Widget _sourceBookSection(List<String> isbns) {
     return Row(
       children: [
         _imagePicker(),
@@ -110,7 +121,7 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 _publishingCompanyField,
-                _isbnField,
+                _isbnField(isbns),
                 _formatoSelect,
               ],
             ),
@@ -202,10 +213,13 @@ class _BookDetaisFormState extends State<BookDetaisForm> {
     );
   }
 
-  TextFormField get _isbnField {
+  TextFormField _isbnField(List<String> isbns) {
     return TextFormField(
       initialValue: widget.back.book!.isbn,
       validator: (value) {
+        if (isbns.where((element) => element == value).isNotEmpty) {
+          return 'ISBN não pode ser repetido';
+        }
         if (value!.length > 20) {
           return 'Campo deve ter no máximo 20 caracteres';
         }

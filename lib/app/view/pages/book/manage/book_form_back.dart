@@ -24,6 +24,10 @@ class BookFormBack {
   Future<List<Genre>> findAllGenre() {
     return _serviceGenre.findAll();
   }
+  
+  Future<List<String>> findAllISBN() {
+    return _service.findAllISBN(BookItemType.bought);
+  }
 
   Future<List<BookToGenre>> findAllByBookId(int? bookId) {
     return _serviceBookToGenre.findAllByBookId(bookId);

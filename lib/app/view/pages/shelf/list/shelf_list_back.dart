@@ -45,29 +45,45 @@ abstract class _ShelfListBack with Store {
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Nova estante'),
-        content: Form(
-          key: _formKey,
-          child: TextFormField(
-            initialValue: shelf.name,
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'Informe um valor válido';
-              }
+        content: FutureBuilder(
+          future: list,
+          builder: (context, result) {
+            if (!result.hasData) {
+              return const CircularProgressIndicator();
+            }
 
-              if (value.length > 20) {
-                return 'Nome da estante deve ser menor que 20 caracteres';
-              }
-              return null;
-            },
-            onSaved: (value) => shelf.name = value,
-            decoration: const InputDecoration(
-              labelText: 'Nome',
-              hintText: 'Informe um nome para sua estante',
-            ),
-            style: Constants.sdFormText,
-            cursorColor: Constants.myGrey,
-            textInputAction: TextInputAction.next,
-          ),
+            List<Shelf> resultData = result.data as List<Shelf>;
+
+            return Form(
+              key: _formKey,
+              child: TextFormField(
+                initialValue: shelf.name,
+                validator: (value) {
+
+                  if (resultData.where((element) => element.name == value).isNotEmpty) {
+                    return 'Esta estante já existe.';
+                  }
+                  
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Informe um valor válido';
+                  }
+
+                  if (value.length > 20) {
+                    return 'Nome da estante deve ser menor que 20 caracteres';
+                  }
+                  return null;
+                },
+                onSaved: (value) => shelf.name = value,
+                decoration: const InputDecoration(
+                  labelText: 'Nome',
+                  hintText: 'Informe um nome para sua estante',
+                ),
+                style: Constants.sdFormText,
+                cursorColor: Constants.myGrey,
+                textInputAction: TextInputAction.next,
+              ),
+            );
+          },
         ),
         actions: [
           Row(
