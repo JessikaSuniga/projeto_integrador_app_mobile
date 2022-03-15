@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class CommonService {
   static messageError(BuildContext context, String message) {
@@ -31,5 +32,14 @@ class CommonService {
 
   static double height(BuildContext context) {
     return MediaQuery.of(context).size.height;
+  }
+
+  static Future<bool> validationConnection() async {
+    var connectivityResult = await Connectivity().checkConnectivity();
+    if (connectivityResult == ConnectivityResult.ethernet 
+      || connectivityResult == ConnectivityResult.wifi) {
+        return true;
+    }
+    return false;
   }
 }

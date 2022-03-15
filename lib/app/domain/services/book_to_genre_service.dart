@@ -25,7 +25,7 @@ class BookToGenreService {
     var bookToGenres = await _bookToGenreRepository.findAllByBookId(bookId);
 
     for (var bg in bookToGenres) {
-      bg.genre = await _genreRepository.findById(bg.id);
+      bg.genre = await _genreRepository.findById(bg.genreId);
     }
 
     return bookToGenres;

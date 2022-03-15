@@ -51,6 +51,7 @@ class Connection {
     await db.insert('genre', {'name': 'Literatura infantil'});
     await db.insert('genre', {'name': 'Thriller'});
     await db.insert('genre', {'name': 'Suspense Policial'});
+    await db.insert('genre', {'name': 'Suspense'});
 
     // await db.execute(insertBook);
     // await db.execute(insertBook1);

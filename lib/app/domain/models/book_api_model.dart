@@ -37,7 +37,7 @@ class BookApi {
             ? jsonMap['volumeInfo']['pageCount'] as int?
             : 0,
         description = jsonMap['volumeInfo']['description'] as String? ??
-            '<missing description>',
+            '',
         publishedDate = jsonMap['volumeInfo']['publishedDate'] != null &&
                 jsonMap['volumeInfo']['publishedDate'].length > 8
             ? DateTime.parse(jsonMap['volumeInfo']['publishedDate'])

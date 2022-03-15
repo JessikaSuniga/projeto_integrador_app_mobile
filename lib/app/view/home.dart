@@ -195,72 +195,84 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             ScanMode.BARCODE,
                           ).then((value) async {
                             if (value != '-1') {
-                              final uri = Uri(
-                                scheme: 'https',
-                                host: 'www.googleapis.com',
-                                path: 'books/v1/volumes',
-                                queryParameters: {
-                                  'q': 'isbn:$value',
-                                  'key':
-                                      'AIzaSyBf2vrFs43KCXYdALCcDGm_EeC-3BpS-5w',
-                                },
-                              );
-
-                              final http.Response response =
-                                  await http.get(uri);
-
-                              if (response.statusCode != 200) {
+                              if (!await CommonService.validationConnection()) {
                                 CommonService.messageError(
-                                    context, 'Erro na requisição.');
-                                return;
-                              }
-
-                              var jsonResult =
-                                  BookApi.parseFromJsonStr(response.body);
-
-                              if (jsonResult.isEmpty) {
-                                CommonService.messageError(
-                                    context, 'ISBN $value não encontrado');
-                                Navigator.of(context)
-                                    .pushNamed(Routes.BOOK_FORM,
-                                        arguments: Book(isbn: value))
-                                    .then(
-                                        (value) => Navigator.of(context).pop());
+                                  context, 
+                                  "Sem conexão com internet. Direcionando para cadastro manual",
+                                );
+                                Navigator.of(context).pushNamed(
+                                  Routes.BOOK_FORM,
+                                ).then((value) => Navigator.of(context).pop());
                               } else {
-                                var bookApi = jsonResult[0];
-
-                                Book newBook = Book(
-                                  title: bookApi.title,
-                                  author: bookApi.authors,
-                                  description: bookApi.description,
-                                  pages: bookApi.pageCount,
-                                  publicationDate: bookApi.publishedDate,
-                                  isbn: value,
+                                final uri = Uri(
+                                  scheme: 'https',
+                                  host: 'www.googleapis.com',
+                                  path: 'books/v1/volumes',
+                                  queryParameters: {
+                                    'q': 'isbn:$value',
+                                    'key':
+                                        'AIzaSyBf2vrFs43KCXYdALCcDGm_EeC-3BpS-5w',
+                                  },
                                 );
 
-                                if (bookApi.thumbnailUrl == null) {
+                                final http.Response response =
+                                    await http.get(uri);
+
+                                if (response.statusCode != 200) {
+                                  CommonService.messageError(
+                                      context, 'Erro na requisição.');
+                                  return;
+                                }
+
+                                var jsonResult =
+                                    BookApi.parseFromJsonStr(response.body);
+
+                                if (jsonResult.isEmpty) {
+                                  CommonService.messageError(
+                                      context, 'ISBN $value não encontrado');
                                   Navigator.of(context)
                                       .pushNamed(Routes.BOOK_FORM,
-                                          arguments: newBook)
-                                      .then((value) =>
-                                          Navigator.of(context).pop());
+                                          arguments: Book(isbn: value))
+                                      .then(
+                                          (value) => Navigator.of(context).pop());
                                 } else {
-                                  ImageParse.networkImageToBase64(
-                                          bookApi.thumbnailUrl!)
-                                      .then((value) {
-                                    newBook.image = value;
+                                  var bookApi = jsonResult[0];
+
+                                  Book newBook = Book(
+                                    title: bookApi.title,
+                                    author: bookApi.authors,
+                                    description: bookApi.description,
+                                    pages: bookApi.pageCount,
+                                    publicationDate: bookApi.publishedDate,
+                                    isbn: value,
+                                  );
+
+                                  if (bookApi.thumbnailUrl == null) {
                                     Navigator.of(context)
-                                        .pushNamed(Routes.BOOK_FORM,
-                                            arguments: newBook)
+                                        .pushNamed(
+                                          Routes.BOOK_FORM,
+                                          arguments: newBook,
+                                        )
                                         .then((value) =>
                                             Navigator.of(context).pop());
-                                  }).catchError((error) {
-                                    Navigator.of(context)
-                                        .pushNamed(Routes.BOOK_FORM,
-                                            arguments: newBook)
-                                        .then((value) =>
-                                            Navigator.of(context).pop());
-                                  });
+                                  } else {
+                                    ImageParse.networkImageToBase64(
+                                            bookApi.thumbnailUrl!)
+                                        .then((value) {
+                                      newBook.image = value;
+                                      Navigator.of(context)
+                                          .pushNamed(Routes.BOOK_FORM,
+                                              arguments: newBook)
+                                          .then((value) =>
+                                              Navigator.of(context).pop());
+                                    }).catchError((error) {
+                                      Navigator.of(context)
+                                          .pushNamed(Routes.BOOK_FORM,
+                                              arguments: newBook)
+                                          .then((value) =>
+                                              Navigator.of(context).pop());
+                                    });
+                                  }
                                 }
                               }
                             } else {

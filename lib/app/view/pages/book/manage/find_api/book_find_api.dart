@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:projeto_integrador_app/app/common/styles/constants.dart';
+import 'package:projeto_integrador_app/app/routes/routes.dart';
 import 'package:projeto_integrador_app/app/view/components/my_divider.dart';
 import 'package:projeto_integrador_app/app/view/pages/book/manage/find_api/book_api_details_page.dart';
 import 'package:projeto_integrador_app/app/domain/models/book_api_model.dart';
@@ -144,20 +145,29 @@ class _BookFindAPIState extends State<BookFindAPI> {
   Future<void> _search(String? query) async {
     setState(() => _pending = true);
     try {
-      _listBookApi = await _getBooksList(query);
-      if (mounted) {
-        CommonService.messageSuccess(
-          context,
-          'Sucesso!!! Encontrado ${_listBookApi.length} livros.',
+
+      if (!await CommonService.validationConnection()) {
+        CommonService.messageError(
+          context, 
+          "Sem conexão com internet. Direcionando para cadastro manual",
         );
+        Navigator.of(context).pushNamed(
+          Routes.BOOK_FORM,
+        ).then((value) => Navigator.of(context).pop());
+      } else {
+        _listBookApi = await _getBooksList(query);
+        if (mounted) {
+          CommonService.messageSuccess(
+            context,
+            'Sucesso!!! Encontrado ${_listBookApi.length} livros.',
+          );
+        }
       }
     } catch (e) {
       CommonService.messageError(
         context,
         'Error $e. O servidor não pode processar a sua solicitação. Tente novamente mais tarde!',
       );
-      // ignore: avoid_print
-      print('Erro >>>>>>>>>>>> $e');
     }
     setState(() => _pending = false);
   }
