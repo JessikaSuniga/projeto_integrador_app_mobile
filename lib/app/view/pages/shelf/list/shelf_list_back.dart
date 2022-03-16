@@ -59,11 +59,12 @@ abstract class _ShelfListBack with Store {
               child: TextFormField(
                 initialValue: shelf.name,
                 validator: (value) {
-
-                  if (resultData.where((e) => e.name == value && e.id != shelf.id).isNotEmpty) {
+                  if (resultData
+                      .where((e) => e.name == value && e.id != shelf.id)
+                      .isNotEmpty) {
                     return 'Esta estante já existe.';
                   }
-                  
+
                   if (value == null || value.trim().isEmpty) {
                     return 'Informe um valor válido';
                   }

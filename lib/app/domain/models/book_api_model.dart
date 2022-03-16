@@ -32,12 +32,11 @@ class BookApi {
         // authors = (jsonMap['volumeInfo']['authors'] as List).join(', '),
         authors = jsonMap['volumeInfo']['authors'] != null
             ? (jsonMap['volumeInfo']['authors'] as List)[0]
-            : "-",
+            : "_",
         pageCount = jsonMap['volumeInfo']['pageCount'] != null
             ? jsonMap['volumeInfo']['pageCount'] as int?
             : 0,
-        description = jsonMap['volumeInfo']['description'] as String? ??
-            '',
+        description = jsonMap['volumeInfo']['description'] as String? ?? '_',
         publishedDate = jsonMap['volumeInfo']['publishedDate'] != null &&
                 jsonMap['volumeInfo']['publishedDate'].length > 8
             ? DateTime.parse(jsonMap['volumeInfo']['publishedDate'])
@@ -49,12 +48,12 @@ class BookApi {
   static List<BookApi> parseFromJsonStr(String jsonStr) {
     final json = jsonDecode(jsonStr);
 
-    if (json['items'] == null ) return [];
+    if (json['items'] == null) return [];
 
     final jsonList = json['items'] as List<dynamic>;
 
     return [
-      for (final jsonMap in jsonList) 
+      for (final jsonMap in jsonList)
         BookApi.fromJson(jsonMap as Map<String, dynamic>)
     ];
   }

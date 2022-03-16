@@ -132,7 +132,7 @@ class DesireView extends StatelessWidget {
                                                 (e) => Text(e.genre!.name!),
                                               )
                                               .toList()
-                                          : [const Text("-")],
+                                          : [const Text("_")],
                                     );
                                   },
                                 ),

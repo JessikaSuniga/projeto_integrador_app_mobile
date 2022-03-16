@@ -95,8 +95,8 @@ class _DesireDetaisState extends State<DesireDetais> {
           return 'Informe um valor válido';
         }
 
-        if (value.length > 30) {
-          return 'Campo deve ter no máximo 30 caracteres';
+        if (value.length > 100) {
+          return 'Campo deve ter no máximo 100 caracteres';
         }
 
         return null;

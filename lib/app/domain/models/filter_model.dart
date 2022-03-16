@@ -22,13 +22,13 @@ class FilterModel {
   String get filter {
     var string = "";
 
-    if (searchTitle != null && searchTitle != "") {
+    if (searchTitle.isNotEmpty) {
       string += "AND title like '%$searchTitle%' ";
     }
-    if (searchAuthor != null && searchAuthor != "") {
+    if (searchAuthor.isNotEmpty) {
       string += "AND author like '%$searchAuthor%' ";
     }
-    if (searchPublishingCompany != null && searchPublishingCompany != "") {
+    if (searchPublishingCompany.isNotEmpty) {
       string += "AND publishing_company like '%$searchPublishingCompany%' ";
     }
 

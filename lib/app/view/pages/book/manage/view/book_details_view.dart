@@ -118,7 +118,7 @@ class _BookDetaisViewState extends State<BookDetaisView> {
                           (e) => Text(e.genre!.name!),
                         )
                         .toList()
-                    : [const Text("-")],
+                    : [const Text("_")],
               );
             },
           ),

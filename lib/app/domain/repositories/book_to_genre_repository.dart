@@ -39,11 +39,6 @@ class BookToGenreRepository {
     _db.delete(_table, where: "book_to_genre_id=?", whereArgs: [id]);
   }
 
-  // removeByGenreId(int genreId) async {
-  //   final _db = await _getDatabase();
-  //   _db.delete(_table, where: "genreId=?", whereArgs: [genreId]);
-  // }
-
   insert(BookToGenre bookToGenre) async {
     final _db = await _getDatabase();
     _db.insert(_table, bookToGenre.toMap());

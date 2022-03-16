@@ -33,8 +33,10 @@ class BookRepository {
     }
 
     List<Map<String, dynamic>> allRows = await _db.rawQuery(query);
-    return allRows.map((book) => Book.fromMap(book))
-      .map((book) => book.isbn as String).toList();
+    return allRows
+        .map((book) => Book.fromMap(book))
+        .map((book) => book.isbn as String)
+        .toList();
   }
 
   Future<List<Book>> findAllBookAvailable(String query) async {

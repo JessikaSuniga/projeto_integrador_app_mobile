@@ -6,7 +6,7 @@ class Connection {
 
   static final Connection instance = Connection._();
 
-  final _databaseName = 'database1';
+  final _databaseName = 'database';
   final _databaseVersion = 1;
 
   static Database? _database;

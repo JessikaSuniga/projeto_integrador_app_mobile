@@ -197,12 +197,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             if (value != '-1') {
                               if (!await CommonService.validationConnection()) {
                                 CommonService.messageError(
-                                  context, 
+                                  context,
                                   "Sem conexão com internet. Direcionando para cadastro manual",
                                 );
-                                Navigator.of(context).pushNamed(
-                                  Routes.BOOK_FORM,
-                                ).then((value) => Navigator.of(context).pop());
+                                Navigator.of(context)
+                                    .pushNamed(
+                                      Routes.BOOK_FORM,
+                                    )
+                                    .then(
+                                        (value) => Navigator.of(context).pop());
                               } else {
                                 final uri = Uri(
                                   scheme: 'https',
@@ -233,8 +236,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                   Navigator.of(context)
                                       .pushNamed(Routes.BOOK_FORM,
                                           arguments: Book(isbn: value))
-                                      .then(
-                                          (value) => Navigator.of(context).pop());
+                                      .then((value) =>
+                                          Navigator.of(context).pop());
                                 } else {
                                   var bookApi = jsonResult[0];
 

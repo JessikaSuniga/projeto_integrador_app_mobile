@@ -5,7 +5,7 @@ class ShelfToBookService {
   final _shelfToBookRepository = ShelfToBookRepository();
 
   save(int? shelfId, List<int?> books) async {
-    if (shelfId == null || books == null) return;
+    if (shelfId == null || books.isEmpty) return;
 
     List<ShelfToBook> dbShelfToBooks = await findAllByShelfId(shelfId);
 

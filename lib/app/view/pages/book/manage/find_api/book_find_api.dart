@@ -145,15 +145,16 @@ class _BookFindAPIState extends State<BookFindAPI> {
   Future<void> _search(String? query) async {
     setState(() => _pending = true);
     try {
-
       if (!await CommonService.validationConnection()) {
         CommonService.messageError(
-          context, 
+          context,
           "Sem conexão com internet. Direcionando para cadastro manual",
         );
-        Navigator.of(context).pushNamed(
-          Routes.BOOK_FORM,
-        ).then((value) => Navigator.of(context).pop());
+        Navigator.of(context)
+            .pushNamed(
+              Routes.BOOK_FORM,
+            )
+            .then((value) => Navigator.of(context).pop());
       } else {
         _listBookApi = await _getBooksList(query);
         if (mounted) {
