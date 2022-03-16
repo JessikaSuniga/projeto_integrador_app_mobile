@@ -36,10 +36,9 @@ class CommonService {
 
   static Future<bool> validationConnection() async {
     var connectivityResult = await Connectivity().checkConnectivity();
-    if (connectivityResult == ConnectivityResult.ethernet 
-      || connectivityResult == ConnectivityResult.wifi) {
-        return true;
+    if (connectivityResult == ConnectivityResult.none) {
+      return false;
     }
-    return false;
+    return true;
   }
 }
